@@ -1,0 +1,957 @@
+{
+    "requirements": [
+        {
+            "reqid": "QRP",
+            "parent_reqid": "",
+            "project": "seams26_rover_example",
+            "rationale": "",
+            "comments": "",
+            "fulltext": "in Quiescing rover shall immediately satisfy safeDistanceFromObstacle",
+            "status": "",
+            "semantics": {
+                "type": "nasa",
+                "scope": {
+                    "type": "in"
+                },
+                "condition": "null",
+                "probability": "null",
+                "timing": "immediately",
+                "response": "satisfaction",
+                "variables": [
+                    "Quiescing",
+                    "safeDistanceFromObstacle"
+                ],
+                "scope_mode": "Quiescing",
+                "scopeTextRange": [
+                    0,
+                    11
+                ],
+                "component_name": "rover",
+                "componentTextRange": [
+                    13,
+                    17
+                ],
+                "timingTextRange": [
+                    25,
+                    35
+                ],
+                "post_condition": "(safeDistanceFromObstacle)",
+                "responseTextRange": [
+                    37,
+                    68
+                ],
+                "diagramVariables": "M = <b><i>Quiescing</i></b>, Response = <b><i>(safeDistanceFromObstacle)</i></b>.",
+                "description": "ENFORCED: in every interval where <b><i>Quiescing</i></b> holds.\nTRIGGER: first point in the interval.\nREQUIRES: for every trigger, if trigger holds then RES also holds at the same time point.",
+                "diagram": "_media/user-interface/examples/svgDiagrams/in_null_immediately_satisfaction.svg",
+                "scope_mode_pt": "Quiescing",
+                "scope_mode_ft": "Quiescing",
+                "scope_mode_pctl": "Quiescing",
+                "post_condition_unexp_pt": "safeDistanceFromObstacle",
+                "post_condition_unexp_ft": "safeDistanceFromObstacle",
+                "post_condition_unexp_pctl": "safeDistanceFromObstacle",
+                "post_condition_SMV_pt": "safeDistanceFromObstacle",
+                "post_condition_SMV_ft": "safeDistanceFromObstacle",
+                "post_condition_PRISM_pctl": "safeDistanceFromObstacle",
+                "ft": "((LAST V ((! (Fin_Quiescing & (! LAST))) | (X safeDistanceFromObstacle))) & (Quiescing -> safeDistanceFromObstacle))",
+                "pt": "(H (Fin_Quiescing -> safeDistanceFromObstacle))",
+                "pctl": "P>=1[((G ((! (Fin_Quiescing & (! LAST))) | (X (P>=1[safeDistanceFromObstacle])))) & (Quiescing => (Lin_Quiescing | (P>=1[safeDistanceFromObstacle]))))]",
+                "ptExpanded": "(H ((Quiescing & (Z (! Quiescing))) -> safeDistanceFromObstacle))",
+                "CoCoSpecCode": "H(((Quiescing and ZtoPre(not (Quiescing))) => safeDistanceFromObstacle))",
+                "ftExpanded": "((LAST V ((! ((((! Quiescing) & (! LAST)) & (X Quiescing)) & (! LAST))) | (X safeDistanceFromObstacle))) & (Quiescing -> safeDistanceFromObstacle))",
+                "pctlExpanded": "P>=1[((G ((! (((! Quiescing) & (X Quiescing)) & (! false))) | (X (P>=1[safeDistanceFromObstacle])))) & (Quiescing => ((Quiescing & (X (! Quiescing))) | (P>=1[safeDistanceFromObstacle]))))]",
+                "ftInfAUExpanded": "((G ((! ((! Quiescing) & (X Quiescing))) | (X safeDistanceFromObstacle))) & (Quiescing -> safeDistanceFromObstacle))",
+                "component": "rover"
+            },
+            "_id": "0565ce00-7ebe-11f1-8473-b950cbeebb23"
+        },
+        {
+            "reqid": "AR",
+            "parent_reqid": "",
+            "project": "seams26_rover_example",
+            "rationale": "",
+            "comments": "",
+            "fulltext": "whenever heatpointPathBlocked the rover shall within 10 ticks satisfy if heatPointAccessible then visitAllHeatpoints",
+            "status": "",
+            "semantics": {
+                "type": "nasa",
+                "scope": {
+                    "type": "null"
+                },
+                "condition": "holding",
+                "probability": "null",
+                "timing": "within",
+                "response": "satisfaction",
+                "variables": [
+                    "heatpointPathBlocked",
+                    "heatPointAccessible",
+                    "visitAllHeatpoints"
+                ],
+                "qualifier_word": "whenever",
+                "pre_condition": "(heatpointPathBlocked)",
+                "regular_condition": "(heatpointPathBlocked)",
+                "conditionTextRange": [
+                    0,
+                    28
+                ],
+                "component_name": "rover",
+                "componentTextRange": [
+                    30,
+                    38
+                ],
+                "duration": "10",
+                "timingTextRange": [
+                    46,
+                    60
+                ],
+                "post_condition": "(heatPointAccessible => visitAllHeatpoints)",
+                "responseTextRange": [
+                    62,
+                    115
+                ],
+                "diagramVariables": "CC = <b><i>(heatpointPathBlocked)</i></b>,  n = <b><i>10</i></b>, Response = <b><i>(heatPointAccessible => visitAllHeatpoints)</i></b>.",
+                "description": "ENFORCED: in the interval defined by the entire execution.\nTRIGGER: every point in the interval where <b><i>(heatpointPathBlocked)</i></b> is true.\nREQUIRES: for every trigger, RES must hold at some point with distance <= <b><i>10</i></b> from the trigger (i.e., at trigger, trigger+1, ..., or trigger+<b><i>10</i></b>). If the interval ends sooner than trigger+<b><i>10</i></b>, then RES need not hold.",
+                "diagram": "_media/user-interface/examples/svgDiagrams/null_holding_within_satisfaction.svg",
+                "scope_mode_pt": "BAD_PT",
+                "scope_mode_ft": "BAD_FT",
+                "regular_condition_unexp_pt": "heatpointPathBlocked",
+                "regular_condition_unexp_ft": "heatpointPathBlocked",
+                "regular_condition_unexp_pctl": "heatpointPathBlocked",
+                "regular_condition_SMV_pt": "heatpointPathBlocked",
+                "regular_condition_SMV_ft": "heatpointPathBlocked",
+                "regular_condition_PRISM_pctl": "heatpointPathBlocked",
+                "post_condition_unexp_pt": "(heatPointAccessible -> visitAllHeatpoints)",
+                "post_condition_unexp_ft": "(heatPointAccessible -> visitAllHeatpoints)",
+                "post_condition_unexp_pctl": "(heatPointAccessible -> visitAllHeatpoints)",
+                "post_condition_SMV_pt": "(heatPointAccessible -> visitAllHeatpoints)",
+                "post_condition_SMV_ft": "(heatPointAccessible -> visitAllHeatpoints)",
+                "post_condition_PRISM_pctl": "(heatPointAccessible -> visitAllHeatpoints)",
+                "ft": "(LAST V (heatpointPathBlocked -> ((F[<=10] (heatPointAccessible -> visitAllHeatpoints)) | (F[<10] LAST))))",
+                "pt": "(H ((O[=10] (heatpointPathBlocked & (! (heatPointAccessible -> visitAllHeatpoints)))) -> (O[<10] ((Z FALSE) | (heatPointAccessible -> visitAllHeatpoints)))))",
+                "pctl": "P>=1[(G (heatpointPathBlocked => (P>=1[(F<=10 (heatPointAccessible -> visitAllHeatpoints))])))]",
+                "ptExpanded": "(H ((O[10,10] (heatpointPathBlocked & (! (heatPointAccessible -> visitAllHeatpoints)))) -> (O[0,9] ((Z FALSE) | (heatPointAccessible -> visitAllHeatpoints)))))",
+                "CoCoSpecCode": "H((OT(10, 10, (heatpointPathBlocked and not ((heatPointAccessible => visitAllHeatpoints)))) => OT(9, 0, (ZtoPre(false) or (heatPointAccessible => visitAllHeatpoints)))))",
+                "ftExpanded": "(LAST V (heatpointPathBlocked -> ((F[0,10] (heatPointAccessible -> visitAllHeatpoints)) | (F[0,9] LAST))))",
+                "pctlExpanded": "P>=1[(G (heatpointPathBlocked => (P>=1[(F<=10 (heatPointAccessible -> visitAllHeatpoints))])))]",
+                "ftInfAUExpanded": "(G (heatpointPathBlocked -> (F[0,10] (heatPointAccessible -> visitAllHeatpoints))))",
+                "component": "rover"
+            },
+            "_id": "0b133450-7ebe-11f1-8473-b950cbeebb23"
+        },
+        {
+            "reqid": "RC",
+            "parent_reqid": "",
+            "project": "seams26_rover_example",
+            "rationale": "",
+            "comments": "",
+            "fulltext": "whenever calculateNewRoute & heatpointPathBlocked the rover shall satisfy visitHeatpoint",
+            "status": "",
+            "semantics": {
+                "type": "nasa",
+                "scope": {
+                    "type": "null"
+                },
+                "condition": "holding",
+                "probability": "null",
+                "timing": "null",
+                "response": "satisfaction",
+                "variables": [
+                    "calculateNewRoute",
+                    "heatpointPathBlocked",
+                    "visitHeatpoint"
+                ],
+                "qualifier_word": "whenever",
+                "pre_condition": "(calculateNewRoute & heatpointPathBlocked)",
+                "regular_condition": "(calculateNewRoute & heatpointPathBlocked)",
+                "conditionTextRange": [
+                    0,
+                    48
+                ],
+                "component_name": "rover",
+                "componentTextRange": [
+                    50,
+                    58
+                ],
+                "post_condition": "(visitHeatpoint)",
+                "responseTextRange": [
+                    66,
+                    87
+                ],
+                "diagramVariables": "CC = <b><i>(calculateNewRoute & heatpointPathBlocked)</i></b>, Response = <b><i>(visitHeatpoint)</i></b>.",
+                "description": "ENFORCED: in the interval defined by the entire execution.\nTRIGGER: every point in the interval where <b><i>(calculateNewRoute & heatpointPathBlocked)</i></b> is true.\nREQUIRES: for every trigger, RES must hold at some time point between (and including) the trigger and the end of the interval.",
+                "diagram": "_media/user-interface/examples/svgDiagrams/null_holding_null_satisfaction.svg",
+                "scope_mode_pt": "BAD_PT",
+                "scope_mode_ft": "BAD_FT",
+                "regular_condition_unexp_pt": "(calculateNewRoute & heatpointPathBlocked)",
+                "regular_condition_unexp_ft": "(calculateNewRoute & heatpointPathBlocked)",
+                "regular_condition_unexp_pctl": "(calculateNewRoute & heatpointPathBlocked)",
+                "regular_condition_SMV_pt": "(calculateNewRoute & heatpointPathBlocked)",
+                "regular_condition_SMV_ft": "(calculateNewRoute & heatpointPathBlocked)",
+                "regular_condition_PRISM_pctl": "(calculateNewRoute & heatpointPathBlocked)",
+                "post_condition_unexp_pt": "visitHeatpoint",
+                "post_condition_unexp_ft": "visitHeatpoint",
+                "post_condition_unexp_pctl": "visitHeatpoint",
+                "post_condition_SMV_pt": "visitHeatpoint",
+                "post_condition_SMV_ft": "visitHeatpoint",
+                "post_condition_PRISM_pctl": "visitHeatpoint",
+                "ft": "(LAST V ((calculateNewRoute & heatpointPathBlocked) -> ((! LAST) U visitHeatpoint)))",
+                "pt": "((H (! (calculateNewRoute & heatpointPathBlocked))) | (! ((! visitHeatpoint) S ((! visitHeatpoint) & (calculateNewRoute & heatpointPathBlocked)))))",
+                "pctl": "P>=1[(G ((calculateNewRoute & heatpointPathBlocked) => (P>=1[(F visitHeatpoint)])))]",
+                "ptExpanded": "((H (! (calculateNewRoute & heatpointPathBlocked))) | (! ((! visitHeatpoint) S ((! visitHeatpoint) & (calculateNewRoute & heatpointPathBlocked)))))",
+                "CoCoSpecCode": "(H(not ((calculateNewRoute and heatpointPathBlocked))) or not (SI((calculateNewRoute and heatpointPathBlocked),not (visitHeatpoint))))",
+                "ftExpanded": "(LAST V ((calculateNewRoute & heatpointPathBlocked) -> ((! LAST) U visitHeatpoint)))",
+                "pctlExpanded": "P>=1[(G ((calculateNewRoute & heatpointPathBlocked) => (P>=1[(F visitHeatpoint)])))]",
+                "ftInfAUExpanded": "(G ((calculateNewRoute & heatpointPathBlocked) -> (F visitHeatpoint)))",
+                "component": "rover"
+            },
+            "_id": "0f781510-7ebe-11f1-8473-b950cbeebb23"
+        },
+        {
+            "reqid": "MP1",
+            "parent_reqid": "",
+            "project": "seams26_rover_example",
+            "rationale": "R1",
+            "comments": "Rover shall not run out of battery",
+            "fulltext": "rover shall always satisfy !lowBattery",
+            "status": "",
+            "semantics": {
+                "type": "nasa",
+                "scope": {
+                    "type": "null"
+                },
+                "condition": "null",
+                "probability": "null",
+                "timing": "always",
+                "response": "satisfaction",
+                "variables": [
+                    "lowBattery"
+                ],
+                "component_name": "rover",
+                "componentTextRange": [
+                    0,
+                    4
+                ],
+                "timingTextRange": [
+                    12,
+                    17
+                ],
+                "post_condition": "(! lowBattery)",
+                "responseTextRange": [
+                    19,
+                    37
+                ],
+                "diagramVariables": "Response = <b><i>(! lowBattery)</i></b>.",
+                "description": "ENFORCED: in the interval defined by the entire execution.\nTRIGGER: first point in the interval.\nREQUIRES: for every trigger, RES must hold at all time points between (and including) the trigger and the end of the interval.",
+                "diagram": "_media/user-interface/examples/svgDiagrams/null_null_always_satisfaction.svg",
+                "scope_mode_pt": "BAD_PT",
+                "scope_mode_ft": "BAD_FT",
+                "post_condition_unexp_pt": "(! lowBattery)",
+                "post_condition_unexp_ft": "(! lowBattery)",
+                "post_condition_unexp_pctl": "(! lowBattery)",
+                "post_condition_SMV_pt": "(! lowBattery)",
+                "post_condition_SMV_ft": "(! lowBattery)",
+                "post_condition_PRISM_pctl": "(! lowBattery)",
+                "ft": "(LAST V (! lowBattery))",
+                "pt": "(H (! lowBattery))",
+                "pctl": "(P>=1[(G (! lowBattery))])",
+                "ptExpanded": "(H (! lowBattery))",
+                "CoCoSpecCode": "H(not (lowBattery))",
+                "ftExpanded": "(LAST V (! lowBattery))",
+                "pctlExpanded": "(P>=1[(G (! lowBattery))])",
+                "ftInfAUExpanded": "(G (! lowBattery))",
+                "component": "rover"
+            },
+            "_id": "3a17e4a0-7e94-11f1-8473-b950cbeebb23"
+        },
+        {
+            "reqid": "QRC",
+            "parent_reqid": "",
+            "project": "seams26_rover_example",
+            "rationale": "Relaxes the time to complete the heatpoints if an obstacle is detected",
+            "comments": "",
+            "fulltext": "in Quiescing rover shall within 5 ticks satisfy calculateNewRoute & visitHeatpoint",
+            "status": "",
+            "semantics": {
+                "type": "nasa",
+                "scope": {
+                    "type": "in"
+                },
+                "condition": "null",
+                "probability": "null",
+                "timing": "within",
+                "response": "satisfaction",
+                "variables": [
+                    "Quiescing",
+                    "calculateNewRoute",
+                    "visitHeatpoint"
+                ],
+                "scope_mode": "Quiescing",
+                "scopeTextRange": [
+                    0,
+                    11
+                ],
+                "component_name": "rover",
+                "componentTextRange": [
+                    13,
+                    17
+                ],
+                "duration": "5",
+                "timingTextRange": [
+                    25,
+                    38
+                ],
+                "post_condition": "(calculateNewRoute & visitHeatpoint)",
+                "responseTextRange": [
+                    40,
+                    81
+                ],
+                "diagramVariables": "M = <b><i>Quiescing</i></b>,  n = <b><i>5</i></b>, Response = <b><i>(calculateNewRoute & visitHeatpoint)</i></b>.",
+                "description": "ENFORCED: in every interval where <b><i>Quiescing</i></b> holds.\nTRIGGER: first point in the interval.\nREQUIRES: for every trigger, RES must hold at some point with distance <= <b><i>5</i></b> from the trigger (i.e., at trigger, trigger+1, ..., or trigger+<b><i>5</i></b>). If the interval ends sooner than trigger+<b><i>5</i></b>, then RES need not hold.",
+                "diagram": "_media/user-interface/examples/svgDiagrams/in_null_within_satisfaction.svg",
+                "scope_mode_pt": "Quiescing",
+                "scope_mode_ft": "Quiescing",
+                "scope_mode_pctl": "Quiescing",
+                "post_condition_unexp_pt": "(calculateNewRoute & visitHeatpoint)",
+                "post_condition_unexp_ft": "(calculateNewRoute & visitHeatpoint)",
+                "post_condition_unexp_pctl": "(calculateNewRoute & visitHeatpoint)",
+                "post_condition_SMV_pt": "(calculateNewRoute & visitHeatpoint)",
+                "post_condition_SMV_ft": "(calculateNewRoute & visitHeatpoint)",
+                "post_condition_PRISM_pctl": "(calculateNewRoute & visitHeatpoint)",
+                "ft": "((LAST V ((! (Fin_Quiescing & (! LAST))) | (X ((F[<=5] (calculateNewRoute & visitHeatpoint)) | (F[<5] (Lin_Quiescing | LAST)))))) & (Quiescing -> ((F[<=5] (calculateNewRoute & visitHeatpoint)) | (F[<5] (Lin_Quiescing | LAST)))))",
+                "pt": "((H (Lin_Quiescing -> (Y ((((! (calculateNewRoute & visitHeatpoint)) S ((! (calculateNewRoute & visitHeatpoint)) & Fin_Quiescing)) -> (O[<5] Fin_Quiescing)) S ((((! (calculateNewRoute & visitHeatpoint)) S ((! (calculateNewRoute & visitHeatpoint)) & Fin_Quiescing)) -> (O[<5] Fin_Quiescing)) & Fin_Quiescing))))) & (((! Lin_Quiescing) S ((! Lin_Quiescing) & Fin_Quiescing)) -> ((((! (calculateNewRoute & visitHeatpoint)) S ((! (calculateNewRoute & visitHeatpoint)) & Fin_Quiescing)) -> (O[<5] Fin_Quiescing)) S ((((! (calculateNewRoute & visitHeatpoint)) S ((! (calculateNewRoute & visitHeatpoint)) & Fin_Quiescing)) -> (O[<5] Fin_Quiescing)) & Fin_Quiescing))))",
+                "pctl": "P>=1[((G ((! (Fin_Quiescing & (! LAST))) | (X (P>=1[(F<=5 (calculateNewRoute & visitHeatpoint))])))) & (Quiescing => (Lin_Quiescing | (P>=1[(F[<=5] (calculateNewRoute & visitHeatpoint))]))))]",
+                "ptExpanded": "((H (((! Quiescing) & (Y Quiescing)) -> (Y ((((! (calculateNewRoute & visitHeatpoint)) S ((! (calculateNewRoute & visitHeatpoint)) & (Quiescing & (Z (! Quiescing))))) -> (O[0,4] (Quiescing & (Z (! Quiescing))))) S ((((! (calculateNewRoute & visitHeatpoint)) S ((! (calculateNewRoute & visitHeatpoint)) & (Quiescing & (Z (! Quiescing))))) -> (O[0,4] (Quiescing & (Z (! Quiescing))))) & (Quiescing & (Z (! Quiescing)))))))) & (((! ((! Quiescing) & (Y Quiescing))) S ((! ((! Quiescing) & (Y Quiescing))) & (Quiescing & (Z (! Quiescing))))) -> ((((! (calculateNewRoute & visitHeatpoint)) S ((! (calculateNewRoute & visitHeatpoint)) & (Quiescing & (Z (! Quiescing))))) -> (O[0,4] (Quiescing & (Z (! Quiescing))))) S ((((! (calculateNewRoute & visitHeatpoint)) S ((! (calculateNewRoute & visitHeatpoint)) & (Quiescing & (Z (! Quiescing))))) -> (O[0,4] (Quiescing & (Z (! Quiescing))))) & (Quiescing & (Z (! Quiescing)))))))",
+                "CoCoSpecCode": "(H(((not (Quiescing) and YtoPre(Quiescing)) => YtoPre(SI((Quiescing and ZtoPre(not (Quiescing))),(SI((Quiescing and ZtoPre(not (Quiescing))),not ((calculateNewRoute and visitHeatpoint))) => OT(4, 0, (Quiescing and ZtoPre(not (Quiescing))))))))) and (SI((Quiescing and ZtoPre(not (Quiescing))),not ((not (Quiescing) and YtoPre(Quiescing)))) => SI((Quiescing and ZtoPre(not (Quiescing))),(SI((Quiescing and ZtoPre(not (Quiescing))),not ((calculateNewRoute and visitHeatpoint))) => OT(4, 0, (Quiescing and ZtoPre(not (Quiescing))))))))",
+                "ftExpanded": "((LAST V ((! ((((! Quiescing) & (! LAST)) & (X Quiescing)) & (! LAST))) | (X ((F[0,5] (calculateNewRoute & visitHeatpoint)) | (F[0,4] (((Quiescing & (! LAST)) & (X (! Quiescing))) | LAST)))))) & (Quiescing -> ((F[0,5] (calculateNewRoute & visitHeatpoint)) | (F[0,4] (((Quiescing & (! LAST)) & (X (! Quiescing))) | LAST)))))",
+                "pctlExpanded": "P>=1[((G ((! (((! Quiescing) & (X Quiescing)) & (! false))) | (X (P>=1[(F<=5 (calculateNewRoute & visitHeatpoint))])))) & (Quiescing => ((Quiescing & (X (! Quiescing))) | (P>=1[(F[<=5] (calculateNewRoute & visitHeatpoint))]))))]",
+                "ftInfAUExpanded": "((G ((! ((! Quiescing) & (X Quiescing))) | (X ((F[0,5] (calculateNewRoute & visitHeatpoint)) | (F[0,4] (Quiescing & (X (! Quiescing)))))))) & (Quiescing -> ((F[0,5] (calculateNewRoute & visitHeatpoint)) | (F[0,4] (Quiescing & (X (! Quiescing)))))))",
+                "component": "rover"
+            },
+            "_id": "7aea4c10-7ebd-11f1-8473-b950cbeebb23"
+        },
+        {
+            "reqid": "NR1",
+            "parent_reqid": "",
+            "project": "seams26_rover_example",
+            "rationale": "",
+            "comments": "R3.1: All heatpoints shall be correctly identified",
+            "fulltext": "in Nominal the rover shall immediately satisfy identifyHeatpoints",
+            "status": "",
+            "semantics": {
+                "type": "nasa",
+                "scope": {
+                    "type": "in"
+                },
+                "condition": "null",
+                "probability": "null",
+                "timing": "immediately",
+                "response": "satisfaction",
+                "variables": [
+                    "Nominal",
+                    "identifyHeatpoints"
+                ],
+                "scope_mode": "Nominal",
+                "scopeTextRange": [
+                    0,
+                    9
+                ],
+                "component_name": "rover",
+                "componentTextRange": [
+                    11,
+                    19
+                ],
+                "timingTextRange": [
+                    27,
+                    37
+                ],
+                "post_condition": "(identifyHeatpoints)",
+                "responseTextRange": [
+                    39,
+                    64
+                ],
+                "diagramVariables": "M = <b><i>Nominal</i></b>, Response = <b><i>(identifyHeatpoints)</i></b>.",
+                "description": "ENFORCED: in every interval where <b><i>Nominal</i></b> holds.\nTRIGGER: first point in the interval.\nREQUIRES: for every trigger, if trigger holds then RES also holds at the same time point.",
+                "diagram": "_media/user-interface/examples/svgDiagrams/in_null_immediately_satisfaction.svg",
+                "scope_mode_pt": "Nominal",
+                "scope_mode_ft": "Nominal",
+                "scope_mode_pctl": "Nominal",
+                "post_condition_unexp_pt": "identifyHeatpoints",
+                "post_condition_unexp_ft": "identifyHeatpoints",
+                "post_condition_unexp_pctl": "identifyHeatpoints",
+                "post_condition_SMV_pt": "identifyHeatpoints",
+                "post_condition_SMV_ft": "identifyHeatpoints",
+                "post_condition_PRISM_pctl": "identifyHeatpoints",
+                "ft": "((LAST V ((! (Fin_Nominal & (! LAST))) | (X identifyHeatpoints))) & (Nominal -> identifyHeatpoints))",
+                "pt": "(H (Fin_Nominal -> identifyHeatpoints))",
+                "pctl": "P>=1[((G ((! (Fin_Nominal & (! LAST))) | (X (P>=1[identifyHeatpoints])))) & (Nominal => (Lin_Nominal | (P>=1[identifyHeatpoints]))))]",
+                "ptExpanded": "(H ((Nominal & (Z (! Nominal))) -> identifyHeatpoints))",
+                "CoCoSpecCode": "H(((Nominal and ZtoPre(not (Nominal))) => identifyHeatpoints))",
+                "ftExpanded": "((LAST V ((! ((((! Nominal) & (! LAST)) & (X Nominal)) & (! LAST))) | (X identifyHeatpoints))) & (Nominal -> identifyHeatpoints))",
+                "pctlExpanded": "P>=1[((G ((! (((! Nominal) & (X Nominal)) & (! false))) | (X (P>=1[identifyHeatpoints])))) & (Nominal => ((Nominal & (X (! Nominal))) | (P>=1[identifyHeatpoints]))))]",
+                "ftInfAUExpanded": "((G ((! ((! Nominal) & (X Nominal))) | (X identifyHeatpoints))) & (Nominal -> identifyHeatpoints))",
+                "component": "rover"
+            },
+            "_id": "93f3dcb0-7e97-11f1-8473-b950cbeebb23"
+        },
+        {
+            "reqid": "MP2",
+            "parent_reqid": "",
+            "project": "seams26_rover_example",
+            "rationale": "",
+            "comments": "",
+            "fulltext": "rover shall always satisfy safeDistanceFromObstacle",
+            "status": "",
+            "semantics": {
+                "type": "nasa",
+                "scope": {
+                    "type": "null"
+                },
+                "condition": "null",
+                "probability": "null",
+                "timing": "always",
+                "response": "satisfaction",
+                "variables": [
+                    "safeDistanceFromObstacle"
+                ],
+                "component_name": "rover",
+                "componentTextRange": [
+                    0,
+                    4
+                ],
+                "timingTextRange": [
+                    12,
+                    17
+                ],
+                "post_condition": "(safeDistanceFromObstacle)",
+                "responseTextRange": [
+                    19,
+                    50
+                ],
+                "diagramVariables": "Response = <b><i>(safeDistanceFromObstacle)</i></b>.",
+                "description": "ENFORCED: in the interval defined by the entire execution.\nTRIGGER: first point in the interval.\nREQUIRES: for every trigger, RES must hold at all time points between (and including) the trigger and the end of the interval.",
+                "diagram": "_media/user-interface/examples/svgDiagrams/null_null_always_satisfaction.svg",
+                "scope_mode_pt": "BAD_PT",
+                "scope_mode_ft": "BAD_FT",
+                "post_condition_unexp_pt": "safeDistanceFromObstacle",
+                "post_condition_unexp_ft": "safeDistanceFromObstacle",
+                "post_condition_unexp_pctl": "safeDistanceFromObstacle",
+                "post_condition_SMV_pt": "safeDistanceFromObstacle",
+                "post_condition_SMV_ft": "safeDistanceFromObstacle",
+                "post_condition_PRISM_pctl": "safeDistanceFromObstacle",
+                "ft": "(LAST V safeDistanceFromObstacle)",
+                "pt": "(H safeDistanceFromObstacle)",
+                "pctl": "(P>=1[(G safeDistanceFromObstacle)])",
+                "ptExpanded": "(H safeDistanceFromObstacle)",
+                "CoCoSpecCode": "H(safeDistanceFromObstacle)",
+                "ftExpanded": "(LAST V safeDistanceFromObstacle)",
+                "pctlExpanded": "(P>=1[(G safeDistanceFromObstacle)])",
+                "ftInfAUExpanded": "(G safeDistanceFromObstacle)",
+                "component": "rover"
+            },
+            "_id": "9ad2f720-7e95-11f1-8473-b950cbeebb23"
+        },
+        {
+            "reqid": "NR2",
+            "parent_reqid": "",
+            "project": "seams26_rover_example",
+            "rationale": "",
+            "comments": "",
+            "fulltext": "in Nominal whenever identifyHeatpoints rover shall within 2 ticks satisfy visitHeatpoint",
+            "status": "",
+            "semantics": {
+                "type": "nasa",
+                "scope": {
+                    "type": "in"
+                },
+                "condition": "holding",
+                "probability": "null",
+                "timing": "within",
+                "response": "satisfaction",
+                "variables": [
+                    "Nominal",
+                    "identifyHeatpoints",
+                    "visitHeatpoint"
+                ],
+                "scope_mode": "Nominal",
+                "scopeTextRange": [
+                    0,
+                    9
+                ],
+                "qualifier_word": "whenever",
+                "pre_condition": "(identifyHeatpoints)",
+                "regular_condition": "(identifyHeatpoints)",
+                "conditionTextRange": [
+                    11,
+                    37
+                ],
+                "component_name": "rover",
+                "componentTextRange": [
+                    39,
+                    43
+                ],
+                "duration": "2",
+                "timingTextRange": [
+                    51,
+                    64
+                ],
+                "post_condition": "(visitHeatpoint)",
+                "responseTextRange": [
+                    66,
+                    87
+                ],
+                "diagramVariables": "M = <b><i>Nominal</i></b>, CC = <b><i>(identifyHeatpoints)</i></b>,  n = <b><i>2</i></b>, Response = <b><i>(visitHeatpoint)</i></b>.",
+                "description": "ENFORCED: in every interval where <b><i>Nominal</i></b> holds.\nTRIGGER: every point in the interval where <b><i>(identifyHeatpoints)</i></b> is true.\nREQUIRES: for every trigger, RES must hold at some point with distance <= <b><i>2</i></b> from the trigger (i.e., at trigger, trigger+1, ..., or trigger+<b><i>2</i></b>). If the interval ends sooner than trigger+<b><i>2</i></b>, then RES need not hold.",
+                "diagram": "_media/user-interface/examples/svgDiagrams/in_holding_within_satisfaction.svg",
+                "scope_mode_pt": "Nominal",
+                "scope_mode_ft": "Nominal",
+                "scope_mode_pctl": "Nominal",
+                "regular_condition_unexp_pt": "identifyHeatpoints",
+                "regular_condition_unexp_ft": "identifyHeatpoints",
+                "regular_condition_unexp_pctl": "identifyHeatpoints",
+                "regular_condition_SMV_pt": "identifyHeatpoints",
+                "regular_condition_SMV_ft": "identifyHeatpoints",
+                "regular_condition_PRISM_pctl": "identifyHeatpoints",
+                "post_condition_unexp_pt": "visitHeatpoint",
+                "post_condition_unexp_ft": "visitHeatpoint",
+                "post_condition_unexp_pctl": "visitHeatpoint",
+                "post_condition_SMV_pt": "visitHeatpoint",
+                "post_condition_SMV_ft": "visitHeatpoint",
+                "post_condition_PRISM_pctl": "visitHeatpoint",
+                "ft": "((LAST V ((! (Fin_Nominal & (! LAST))) | (X ((Lin_Nominal | LAST) V (identifyHeatpoints -> ((F[<=2] visitHeatpoint) | (F[<2] (Lin_Nominal | LAST)))))))) & (Nominal -> ((Lin_Nominal | LAST) V (identifyHeatpoints -> ((F[<=2] visitHeatpoint) | (F[<2] (Lin_Nominal | LAST)))))))",
+                "pt": "((H (Lin_Nominal -> (Y (((O[=2] (identifyHeatpoints & (! visitHeatpoint))) -> (O[<2] (Fin_Nominal | visitHeatpoint))) S (((O[=2] (identifyHeatpoints & (! visitHeatpoint))) -> (O[<2] (Fin_Nominal | visitHeatpoint))) & Fin_Nominal))))) & (((! Lin_Nominal) S ((! Lin_Nominal) & Fin_Nominal)) -> (((O[=2] (identifyHeatpoints & (! visitHeatpoint))) -> (O[<2] (Fin_Nominal | visitHeatpoint))) S (((O[=2] (identifyHeatpoints & (! visitHeatpoint))) -> (O[<2] (Fin_Nominal | visitHeatpoint))) & Fin_Nominal))))",
+                "pctl": "P>=1[((G ((! (Fin_Nominal & (! LAST))) | (X (Lin_Nominal R (identifyHeatpoints => (P>=1[(F<=2 visitHeatpoint)])))))) & (Nominal => (Lin_Nominal | (Lin_Nominal R (identifyHeatpoints => (P>=1[(F[<=2] visitHeatpoint)]))))))]",
+                "ptExpanded": "((H (((! Nominal) & (Y Nominal)) -> (Y (((O[2,2] (identifyHeatpoints & (! visitHeatpoint))) -> (O[0,1] ((Nominal & (Z (! Nominal))) | visitHeatpoint))) S (((O[2,2] (identifyHeatpoints & (! visitHeatpoint))) -> (O[0,1] ((Nominal & (Z (! Nominal))) | visitHeatpoint))) & (Nominal & (Z (! Nominal)))))))) & (((! ((! Nominal) & (Y Nominal))) S ((! ((! Nominal) & (Y Nominal))) & (Nominal & (Z (! Nominal))))) -> (((O[2,2] (identifyHeatpoints & (! visitHeatpoint))) -> (O[0,1] ((Nominal & (Z (! Nominal))) | visitHeatpoint))) S (((O[2,2] (identifyHeatpoints & (! visitHeatpoint))) -> (O[0,1] ((Nominal & (Z (! Nominal))) | visitHeatpoint))) & (Nominal & (Z (! Nominal)))))))",
+                "CoCoSpecCode": "(H(((not (Nominal) and YtoPre(Nominal)) => YtoPre(SI((Nominal and ZtoPre(not (Nominal))),(OT(2, 2, (identifyHeatpoints and not (visitHeatpoint))) => OT(1, 0, ((Nominal and ZtoPre(not (Nominal))) or visitHeatpoint))))))) and (SI((Nominal and ZtoPre(not (Nominal))),not ((not (Nominal) and YtoPre(Nominal)))) => SI((Nominal and ZtoPre(not (Nominal))),(OT(2, 2, (identifyHeatpoints and not (visitHeatpoint))) => OT(1, 0, ((Nominal and ZtoPre(not (Nominal))) or visitHeatpoint))))))",
+                "ftExpanded": "((LAST V ((! ((((! Nominal) & (! LAST)) & (X Nominal)) & (! LAST))) | (X ((((Nominal & (! LAST)) & (X (! Nominal))) | LAST) V (identifyHeatpoints -> ((F[0,2] visitHeatpoint) | (F[0,1] (((Nominal & (! LAST)) & (X (! Nominal))) | LAST)))))))) & (Nominal -> ((((Nominal & (! LAST)) & (X (! Nominal))) | LAST) V (identifyHeatpoints -> ((F[0,2] visitHeatpoint) | (F[0,1] (((Nominal & (! LAST)) & (X (! Nominal))) | LAST)))))))",
+                "pctlExpanded": "P>=1[((G ((! (((! Nominal) & (X Nominal)) & (! false))) | (X ((Nominal & (X (! Nominal))) R (identifyHeatpoints => (P>=1[(F<=2 visitHeatpoint)])))))) & (Nominal => ((Nominal & (X (! Nominal))) | ((Nominal & (X (! Nominal))) R (identifyHeatpoints => (P>=1[(F[<=2] visitHeatpoint)]))))))]",
+                "ftInfAUExpanded": "((G ((! ((! Nominal) & (X Nominal))) | (X ((Nominal & (X (! Nominal))) V (identifyHeatpoints -> ((F[0,2] visitHeatpoint) | (F[0,1] (Nominal & (X (! Nominal)))))))))) & (Nominal -> ((Nominal & (X (! Nominal))) V (identifyHeatpoints -> ((F[0,2] visitHeatpoint) | (F[0,1] (Nominal & (X (! Nominal)))))))))",
+                "component": "rover"
+            },
+            "_id": "a88b50e0-7e97-11f1-8473-b950cbeebb23"
+        },
+        {
+            "reqid": "NR3",
+            "parent_reqid": "",
+            "project": "seams26_rover_example",
+            "rationale": "",
+            "comments": "R3: The rover shall visit all reachable heatpoints",
+            "fulltext": "in Nominal whenever visitHeatpoint the rover shall within 5 ticks satisfy visitAllHeatpoints",
+            "status": "",
+            "semantics": {
+                "type": "nasa",
+                "scope": {
+                    "type": "in"
+                },
+                "condition": "holding",
+                "probability": "null",
+                "timing": "within",
+                "response": "satisfaction",
+                "variables": [
+                    "Nominal",
+                    "visitHeatpoint",
+                    "visitAllHeatpoints"
+                ],
+                "scope_mode": "Nominal",
+                "scopeTextRange": [
+                    0,
+                    9
+                ],
+                "qualifier_word": "whenever",
+                "pre_condition": "(visitHeatpoint)",
+                "regular_condition": "(visitHeatpoint)",
+                "conditionTextRange": [
+                    11,
+                    33
+                ],
+                "component_name": "rover",
+                "componentTextRange": [
+                    35,
+                    43
+                ],
+                "duration": "5",
+                "timingTextRange": [
+                    51,
+                    64
+                ],
+                "post_condition": "(visitAllHeatpoints)",
+                "responseTextRange": [
+                    66,
+                    91
+                ],
+                "diagramVariables": "M = <b><i>Nominal</i></b>, CC = <b><i>(visitHeatpoint)</i></b>,  n = <b><i>5</i></b>, Response = <b><i>(visitAllHeatpoints)</i></b>.",
+                "description": "ENFORCED: in every interval where <b><i>Nominal</i></b> holds.\nTRIGGER: every point in the interval where <b><i>(visitHeatpoint)</i></b> is true.\nREQUIRES: for every trigger, RES must hold at some point with distance <= <b><i>5</i></b> from the trigger (i.e., at trigger, trigger+1, ..., or trigger+<b><i>5</i></b>). If the interval ends sooner than trigger+<b><i>5</i></b>, then RES need not hold.",
+                "diagram": "_media/user-interface/examples/svgDiagrams/in_holding_within_satisfaction.svg",
+                "scope_mode_pt": "Nominal",
+                "scope_mode_ft": "Nominal",
+                "scope_mode_pctl": "Nominal",
+                "regular_condition_unexp_pt": "visitHeatpoint",
+                "regular_condition_unexp_ft": "visitHeatpoint",
+                "regular_condition_unexp_pctl": "visitHeatpoint",
+                "regular_condition_SMV_pt": "visitHeatpoint",
+                "regular_condition_SMV_ft": "visitHeatpoint",
+                "regular_condition_PRISM_pctl": "visitHeatpoint",
+                "post_condition_unexp_pt": "visitAllHeatpoints",
+                "post_condition_unexp_ft": "visitAllHeatpoints",
+                "post_condition_unexp_pctl": "visitAllHeatpoints",
+                "post_condition_SMV_pt": "visitAllHeatpoints",
+                "post_condition_SMV_ft": "visitAllHeatpoints",
+                "post_condition_PRISM_pctl": "visitAllHeatpoints",
+                "ft": "((LAST V ((! (Fin_Nominal & (! LAST))) | (X ((Lin_Nominal | LAST) V (visitHeatpoint -> ((F[<=5] visitAllHeatpoints) | (F[<5] (Lin_Nominal | LAST)))))))) & (Nominal -> ((Lin_Nominal | LAST) V (visitHeatpoint -> ((F[<=5] visitAllHeatpoints) | (F[<5] (Lin_Nominal | LAST)))))))",
+                "pt": "((H (Lin_Nominal -> (Y (((O[=5] (visitHeatpoint & (! visitAllHeatpoints))) -> (O[<5] (Fin_Nominal | visitAllHeatpoints))) S (((O[=5] (visitHeatpoint & (! visitAllHeatpoints))) -> (O[<5] (Fin_Nominal | visitAllHeatpoints))) & Fin_Nominal))))) & (((! Lin_Nominal) S ((! Lin_Nominal) & Fin_Nominal)) -> (((O[=5] (visitHeatpoint & (! visitAllHeatpoints))) -> (O[<5] (Fin_Nominal | visitAllHeatpoints))) S (((O[=5] (visitHeatpoint & (! visitAllHeatpoints))) -> (O[<5] (Fin_Nominal | visitAllHeatpoints))) & Fin_Nominal))))",
+                "pctl": "P>=1[((G ((! (Fin_Nominal & (! LAST))) | (X (Lin_Nominal R (visitHeatpoint => (P>=1[(F<=5 visitAllHeatpoints)])))))) & (Nominal => (Lin_Nominal | (Lin_Nominal R (visitHeatpoint => (P>=1[(F[<=5] visitAllHeatpoints)]))))))]",
+                "ptExpanded": "((H (((! Nominal) & (Y Nominal)) -> (Y (((O[5,5] (visitHeatpoint & (! visitAllHeatpoints))) -> (O[0,4] ((Nominal & (Z (! Nominal))) | visitAllHeatpoints))) S (((O[5,5] (visitHeatpoint & (! visitAllHeatpoints))) -> (O[0,4] ((Nominal & (Z (! Nominal))) | visitAllHeatpoints))) & (Nominal & (Z (! Nominal)))))))) & (((! ((! Nominal) & (Y Nominal))) S ((! ((! Nominal) & (Y Nominal))) & (Nominal & (Z (! Nominal))))) -> (((O[5,5] (visitHeatpoint & (! visitAllHeatpoints))) -> (O[0,4] ((Nominal & (Z (! Nominal))) | visitAllHeatpoints))) S (((O[5,5] (visitHeatpoint & (! visitAllHeatpoints))) -> (O[0,4] ((Nominal & (Z (! Nominal))) | visitAllHeatpoints))) & (Nominal & (Z (! Nominal)))))))",
+                "CoCoSpecCode": "(H(((not (Nominal) and YtoPre(Nominal)) => YtoPre(SI((Nominal and ZtoPre(not (Nominal))),(OT(5, 5, (visitHeatpoint and not (visitAllHeatpoints))) => OT(4, 0, ((Nominal and ZtoPre(not (Nominal))) or visitAllHeatpoints))))))) and (SI((Nominal and ZtoPre(not (Nominal))),not ((not (Nominal) and YtoPre(Nominal)))) => SI((Nominal and ZtoPre(not (Nominal))),(OT(5, 5, (visitHeatpoint and not (visitAllHeatpoints))) => OT(4, 0, ((Nominal and ZtoPre(not (Nominal))) or visitAllHeatpoints))))))",
+                "ftExpanded": "((LAST V ((! ((((! Nominal) & (! LAST)) & (X Nominal)) & (! LAST))) | (X ((((Nominal & (! LAST)) & (X (! Nominal))) | LAST) V (visitHeatpoint -> ((F[0,5] visitAllHeatpoints) | (F[0,4] (((Nominal & (! LAST)) & (X (! Nominal))) | LAST)))))))) & (Nominal -> ((((Nominal & (! LAST)) & (X (! Nominal))) | LAST) V (visitHeatpoint -> ((F[0,5] visitAllHeatpoints) | (F[0,4] (((Nominal & (! LAST)) & (X (! Nominal))) | LAST)))))))",
+                "pctlExpanded": "P>=1[((G ((! (((! Nominal) & (X Nominal)) & (! false))) | (X ((Nominal & (X (! Nominal))) R (visitHeatpoint => (P>=1[(F<=5 visitAllHeatpoints)])))))) & (Nominal => ((Nominal & (X (! Nominal))) | ((Nominal & (X (! Nominal))) R (visitHeatpoint => (P>=1[(F[<=5] visitAllHeatpoints)]))))))]",
+                "ftInfAUExpanded": "((G ((! ((! Nominal) & (X Nominal))) | (X ((Nominal & (X (! Nominal))) V (visitHeatpoint -> ((F[0,5] visitAllHeatpoints) | (F[0,4] (Nominal & (X (! Nominal)))))))))) & (Nominal -> ((Nominal & (X (! Nominal))) V (visitHeatpoint -> ((F[0,5] visitAllHeatpoints) | (F[0,4] (Nominal & (X (! Nominal)))))))))",
+                "component": "rover"
+            },
+            "_id": "c8ef8d60-7e97-11f1-8473-b950cbeebb23"
+        },
+        {
+            "reqid": "UC",
+            "parent_reqid": "",
+            "project": "seams26_rover_example",
+            "rationale": "",
+            "comments": "Heatpoint becomes unreachable",
+            "fulltext": "in Nominal whenever identifyHeatpoints & heatpointPathBlocked the rover shall never satisfy visitHeatpoint",
+            "status": "",
+            "semantics": {
+                "type": "nasa",
+                "scope": {
+                    "type": "in"
+                },
+                "condition": "holding",
+                "probability": "null",
+                "timing": "never",
+                "response": "satisfaction",
+                "variables": [
+                    "Nominal",
+                    "identifyHeatpoints",
+                    "heatpointPathBlocked",
+                    "visitHeatpoint"
+                ],
+                "scope_mode": "Nominal",
+                "scopeTextRange": [
+                    0,
+                    9
+                ],
+                "qualifier_word": "whenever",
+                "pre_condition": "(identifyHeatpoints & heatpointPathBlocked)",
+                "regular_condition": "(identifyHeatpoints & heatpointPathBlocked)",
+                "conditionTextRange": [
+                    11,
+                    60
+                ],
+                "component_name": "rover",
+                "componentTextRange": [
+                    62,
+                    70
+                ],
+                "timingTextRange": [
+                    78,
+                    82
+                ],
+                "post_condition": "(visitHeatpoint)",
+                "responseTextRange": [
+                    84,
+                    105
+                ],
+                "diagramVariables": "M = <b><i>Nominal</i></b>, CC = <b><i>(identifyHeatpoints & heatpointPathBlocked)</i></b>, Response = <b><i>(visitHeatpoint)</i></b>.",
+                "description": "ENFORCED: in every interval where <b><i>Nominal</i></b> holds.\nTRIGGER: every point in the interval where <b><i>(identifyHeatpoints & heatpointPathBlocked)</i></b> is true.\nREQUIRES: for every trigger, RES must be false at all time points between (and including) the trigger and the end of the interval.",
+                "diagram": "_media/user-interface/examples/svgDiagrams/in_holding_never_satisfaction.svg",
+                "scope_mode_pt": "Nominal",
+                "scope_mode_ft": "Nominal",
+                "scope_mode_pctl": "Nominal",
+                "regular_condition_unexp_pt": "(identifyHeatpoints & heatpointPathBlocked)",
+                "regular_condition_unexp_ft": "(identifyHeatpoints & heatpointPathBlocked)",
+                "regular_condition_unexp_pctl": "(identifyHeatpoints & heatpointPathBlocked)",
+                "regular_condition_SMV_pt": "(identifyHeatpoints & heatpointPathBlocked)",
+                "regular_condition_SMV_ft": "(identifyHeatpoints & heatpointPathBlocked)",
+                "regular_condition_PRISM_pctl": "(identifyHeatpoints & heatpointPathBlocked)",
+                "post_condition_unexp_pt": "visitHeatpoint",
+                "post_condition_unexp_ft": "visitHeatpoint",
+                "post_condition_unexp_pctl": "visitHeatpoint",
+                "post_condition_SMV_pt": "visitHeatpoint",
+                "post_condition_SMV_ft": "visitHeatpoint",
+                "post_condition_PRISM_pctl": "visitHeatpoint",
+                "ft": "((LAST V ((! (Fin_Nominal & (! LAST))) | (X ((Lin_Nominal | LAST) V ((identifyHeatpoints & heatpointPathBlocked) -> ((Lin_Nominal | LAST) V (! visitHeatpoint))))))) & (Nominal -> ((Lin_Nominal | LAST) V ((identifyHeatpoints & heatpointPathBlocked) -> ((Lin_Nominal | LAST) V (! visitHeatpoint))))))",
+                "pt": "((H (Lin_Nominal -> (Y ((((! (identifyHeatpoints & heatpointPathBlocked)) S ((! (identifyHeatpoints & heatpointPathBlocked)) & Fin_Nominal)) | (! visitHeatpoint)) S ((((! (identifyHeatpoints & heatpointPathBlocked)) S ((! (identifyHeatpoints & heatpointPathBlocked)) & Fin_Nominal)) | (! visitHeatpoint)) & Fin_Nominal))))) & (((! Lin_Nominal) S ((! Lin_Nominal) & Fin_Nominal)) -> ((((! (identifyHeatpoints & heatpointPathBlocked)) S ((! (identifyHeatpoints & heatpointPathBlocked)) & Fin_Nominal)) | (! visitHeatpoint)) S ((((! (identifyHeatpoints & heatpointPathBlocked)) S ((! (identifyHeatpoints & heatpointPathBlocked)) & Fin_Nominal)) | (! visitHeatpoint)) & Fin_Nominal))))",
+                "pctl": "P>=1[((G ((! (Fin_Nominal & (! LAST))) | (X (Lin_Nominal R ((identifyHeatpoints & heatpointPathBlocked) => (P>=1[(Lin_Nominal R (! visitHeatpoint))])))))) & (Nominal => (Lin_Nominal | (Lin_Nominal R ((identifyHeatpoints & heatpointPathBlocked) => (P>=1[(Lin_Nominal R (! visitHeatpoint))]))))))]",
+                "ptExpanded": "((H (((! Nominal) & (Y Nominal)) -> (Y ((((! (identifyHeatpoints & heatpointPathBlocked)) S ((! (identifyHeatpoints & heatpointPathBlocked)) & (Nominal & (Z (! Nominal))))) | (! visitHeatpoint)) S ((((! (identifyHeatpoints & heatpointPathBlocked)) S ((! (identifyHeatpoints & heatpointPathBlocked)) & (Nominal & (Z (! Nominal))))) | (! visitHeatpoint)) & (Nominal & (Z (! Nominal)))))))) & (((! ((! Nominal) & (Y Nominal))) S ((! ((! Nominal) & (Y Nominal))) & (Nominal & (Z (! Nominal))))) -> ((((! (identifyHeatpoints & heatpointPathBlocked)) S ((! (identifyHeatpoints & heatpointPathBlocked)) & (Nominal & (Z (! Nominal))))) | (! visitHeatpoint)) S ((((! (identifyHeatpoints & heatpointPathBlocked)) S ((! (identifyHeatpoints & heatpointPathBlocked)) & (Nominal & (Z (! Nominal))))) | (! visitHeatpoint)) & (Nominal & (Z (! Nominal)))))))",
+                "CoCoSpecCode": "(H(((not (Nominal) and YtoPre(Nominal)) => YtoPre(SI((Nominal and ZtoPre(not (Nominal))),(SI((Nominal and ZtoPre(not (Nominal))),not ((identifyHeatpoints and heatpointPathBlocked))) or not (visitHeatpoint)))))) and (SI((Nominal and ZtoPre(not (Nominal))),not ((not (Nominal) and YtoPre(Nominal)))) => SI((Nominal and ZtoPre(not (Nominal))),(SI((Nominal and ZtoPre(not (Nominal))),not ((identifyHeatpoints and heatpointPathBlocked))) or not (visitHeatpoint)))))",
+                "ftExpanded": "((LAST V ((! ((((! Nominal) & (! LAST)) & (X Nominal)) & (! LAST))) | (X ((((Nominal & (! LAST)) & (X (! Nominal))) | LAST) V ((identifyHeatpoints & heatpointPathBlocked) -> ((((Nominal & (! LAST)) & (X (! Nominal))) | LAST) V (! visitHeatpoint))))))) & (Nominal -> ((((Nominal & (! LAST)) & (X (! Nominal))) | LAST) V ((identifyHeatpoints & heatpointPathBlocked) -> ((((Nominal & (! LAST)) & (X (! Nominal))) | LAST) V (! visitHeatpoint))))))",
+                "pctlExpanded": "P>=1[((G ((! (((! Nominal) & (X Nominal)) & (! false))) | (X ((Nominal & (X (! Nominal))) R ((identifyHeatpoints & heatpointPathBlocked) => (P>=1[((Nominal & (X (! Nominal))) R (! visitHeatpoint))])))))) & (Nominal => ((Nominal & (X (! Nominal))) | ((Nominal & (X (! Nominal))) R ((identifyHeatpoints & heatpointPathBlocked) => (P>=1[((Nominal & (X (! Nominal))) R (! visitHeatpoint))]))))))]",
+                "ftInfAUExpanded": "((G ((! ((! Nominal) & (X Nominal))) | (X ((Nominal & (X (! Nominal))) V ((identifyHeatpoints & heatpointPathBlocked) -> ((Nominal & (X (! Nominal))) V (! visitHeatpoint))))))) & (Nominal -> ((Nominal & (X (! Nominal))) V ((identifyHeatpoints & heatpointPathBlocked) -> ((Nominal & (X (! Nominal))) V (! visitHeatpoint))))))",
+                "component": "rover"
+            },
+            "_id": "f4980140-7e97-11f1-8473-b950cbeebb23"
+        }
+    ],
+    "variables": [
+        {
+            "project": "seams26_rover_example",
+            "component_name": "rover",
+            "variable_name": "Nominal",
+            "reqs": [
+                "93f3dcb0-7e97-11f1-8473-b950cbeebb23",
+                "a88b50e0-7e97-11f1-8473-b950cbeebb23",
+                "c8ef8d60-7e97-11f1-8473-b950cbeebb23",
+                "f4980140-7e97-11f1-8473-b950cbeebb23"
+            ],
+            "dataType": "boolean",
+            "idType": "Output",
+            "moduleName": "",
+            "description": "",
+            "assignment": "",
+            "assignmentVariables": [],
+            "copilotAssignment": "",
+            "smvAssignment": "",
+            "smvAssignmentVariables": [],
+            "modeRequirement": "",
+            "modeldoc": false,
+            "modeldoc_id": "",
+            "modeldoc_vectorIndex": null,
+            "modelComponent": "",
+            "completed": true,
+            "smvCompleted": true,
+            "_id": "seams26_rover_exampleroverNominal"
+        },
+        {
+            "project": "seams26_rover_example",
+            "component_name": "rover",
+            "variable_name": "Quiescing",
+            "reqs": [
+                "0565ce00-7ebe-11f1-8473-b950cbeebb23",
+                "7aea4c10-7ebd-11f1-8473-b950cbeebb23"
+            ],
+            "dataType": "boolean",
+            "idType": "Output",
+            "moduleName": "",
+            "description": "",
+            "assignment": "",
+            "assignmentVariables": [],
+            "copilotAssignment": "",
+            "smvAssignment": "",
+            "smvAssignmentVariables": [],
+            "modeRequirement": "",
+            "modeldoc": false,
+            "modeldoc_id": "",
+            "modeldoc_vectorIndex": null,
+            "modelComponent": "",
+            "completed": true,
+            "smvCompleted": true,
+            "_id": "seams26_rover_exampleroverQuiescing"
+        },
+        {
+            "project": "seams26_rover_example",
+            "component_name": "rover",
+            "variable_name": "calculateNewRoute",
+            "reqs": [
+                "0f781510-7ebe-11f1-8473-b950cbeebb23",
+                "7aea4c10-7ebd-11f1-8473-b950cbeebb23"
+            ],
+            "dataType": "boolean",
+            "idType": "Output",
+            "moduleName": "",
+            "description": "",
+            "assignment": "",
+            "assignmentVariables": [],
+            "copilotAssignment": "",
+            "smvAssignment": "",
+            "smvAssignmentVariables": [],
+            "modeRequirement": "",
+            "modeldoc": false,
+            "modeldoc_id": "",
+            "modeldoc_vectorIndex": null,
+            "modelComponent": "",
+            "completed": true,
+            "smvCompleted": true,
+            "_id": "seams26_rover_examplerovercalculateNewRoute"
+        },
+        {
+            "project": "seams26_rover_example",
+            "component_name": "rover",
+            "variable_name": "heatPointAccessible",
+            "reqs": [
+                "0b133450-7ebe-11f1-8473-b950cbeebb23"
+            ],
+            "dataType": "boolean",
+            "idType": "Input",
+            "moduleName": "",
+            "description": "",
+            "assignment": "",
+            "assignmentVariables": [],
+            "copilotAssignment": "",
+            "smvAssignment": "",
+            "smvAssignmentVariables": [],
+            "modeRequirement": "",
+            "modeldoc": false,
+            "modeldoc_id": "",
+            "modeldoc_vectorIndex": null,
+            "modelComponent": "",
+            "completed": true,
+            "smvCompleted": true,
+            "_id": "seams26_rover_exampleroverheatPointAccessible"
+        },
+        {
+            "project": "seams26_rover_example",
+            "component_name": "rover",
+            "variable_name": "heatpointPathBlocked",
+            "reqs": [
+                "0b133450-7ebe-11f1-8473-b950cbeebb23",
+                "0f781510-7ebe-11f1-8473-b950cbeebb23",
+                "f4980140-7e97-11f1-8473-b950cbeebb23"
+            ],
+            "dataType": "boolean",
+            "idType": "Input",
+            "moduleName": "",
+            "description": "",
+            "assignment": "",
+            "assignmentVariables": [],
+            "copilotAssignment": "",
+            "smvAssignment": "",
+            "smvAssignmentVariables": [],
+            "modeRequirement": "",
+            "modeldoc": false,
+            "modeldoc_id": "",
+            "modeldoc_vectorIndex": null,
+            "modelComponent": "",
+            "completed": true,
+            "smvCompleted": true,
+            "_id": "seams26_rover_exampleroverheatpointPathBlocked"
+        },
+        {
+            "project": "seams26_rover_example",
+            "component_name": "rover",
+            "variable_name": "identifyHeatpoints",
+            "reqs": [
+                "93f3dcb0-7e97-11f1-8473-b950cbeebb23",
+                "a88b50e0-7e97-11f1-8473-b950cbeebb23",
+                "f4980140-7e97-11f1-8473-b950cbeebb23"
+            ],
+            "dataType": "boolean",
+            "idType": "Output",
+            "moduleName": "",
+            "description": "",
+            "assignment": "",
+            "assignmentVariables": [],
+            "copilotAssignment": "",
+            "smvAssignment": "",
+            "smvAssignmentVariables": [],
+            "modeRequirement": "",
+            "modeldoc": false,
+            "modeldoc_id": "",
+            "modeldoc_vectorIndex": null,
+            "modelComponent": "",
+            "completed": true,
+            "smvCompleted": true,
+            "_id": "seams26_rover_exampleroveridentifyHeatpoints"
+        },
+        {
+            "project": "seams26_rover_example",
+            "component_name": "rover",
+            "variable_name": "lowBattery",
+            "reqs": [
+                "3a17e4a0-7e94-11f1-8473-b950cbeebb23"
+            ],
+            "dataType": "boolean",
+            "idType": "Input",
+            "moduleName": "",
+            "description": "",
+            "assignment": "",
+            "assignmentVariables": [],
+            "copilotAssignment": "",
+            "smvAssignment": "",
+            "smvAssignmentVariables": [],
+            "modeRequirement": "",
+            "modeldoc": false,
+            "modeldoc_id": "",
+            "modeldoc_vectorIndex": null,
+            "modelComponent": "",
+            "completed": true,
+            "smvCompleted": true,
+            "_id": "seams26_rover_exampleroverlowBattery"
+        },
+        {
+            "project": "seams26_rover_example",
+            "component_name": "rover",
+            "variable_name": "safeDistanceFromObstacle",
+            "reqs": [
+                "0565ce00-7ebe-11f1-8473-b950cbeebb23",
+                "9ad2f720-7e95-11f1-8473-b950cbeebb23"
+            ],
+            "dataType": "boolean",
+            "idType": "Input",
+            "moduleName": "",
+            "description": "",
+            "assignment": "",
+            "assignmentVariables": [],
+            "copilotAssignment": "",
+            "smvAssignment": "",
+            "smvAssignmentVariables": [],
+            "modeRequirement": "",
+            "modeldoc": false,
+            "modeldoc_id": "",
+            "modeldoc_vectorIndex": null,
+            "modelComponent": "",
+            "completed": true,
+            "smvCompleted": true,
+            "_id": "seams26_rover_exampleroversafeDistanceFromObstacle"
+        },
+        {
+            "project": "seams26_rover_example",
+            "component_name": "rover",
+            "variable_name": "visitAllHeatpoints",
+            "reqs": [
+                "0b133450-7ebe-11f1-8473-b950cbeebb23",
+                "c8ef8d60-7e97-11f1-8473-b950cbeebb23"
+            ],
+            "dataType": "boolean",
+            "idType": "Output",
+            "moduleName": "",
+            "description": "",
+            "assignment": "",
+            "assignmentVariables": [],
+            "copilotAssignment": "",
+            "smvAssignment": "",
+            "smvAssignmentVariables": [],
+            "modeRequirement": "",
+            "modeldoc": false,
+            "modeldoc_id": "",
+            "modeldoc_vectorIndex": null,
+            "modelComponent": "",
+            "completed": true,
+            "smvCompleted": true,
+            "_id": "seams26_rover_examplerovervisitAllHeatpoints"
+        },
+        {
+            "project": "seams26_rover_example",
+            "component_name": "rover",
+            "variable_name": "visitHeatpoint",
+            "reqs": [
+                "0f781510-7ebe-11f1-8473-b950cbeebb23",
+                "7aea4c10-7ebd-11f1-8473-b950cbeebb23",
+                "a88b50e0-7e97-11f1-8473-b950cbeebb23",
+                "c8ef8d60-7e97-11f1-8473-b950cbeebb23",
+                "f4980140-7e97-11f1-8473-b950cbeebb23"
+            ],
+            "dataType": "boolean",
+            "idType": "Output",
+            "moduleName": "",
+            "description": "",
+            "assignment": "",
+            "assignmentVariables": [],
+            "copilotAssignment": "",
+            "smvAssignment": "",
+            "smvAssignmentVariables": [],
+            "modeRequirement": "",
+            "modeldoc": false,
+            "modeldoc_id": "",
+            "modeldoc_vectorIndex": null,
+            "modelComponent": "",
+            "completed": true,
+            "smvCompleted": true,
+            "_id": "seams26_rover_examplerovervisitHeatpoint"
+        }
+    ]
+}
