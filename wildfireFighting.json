@@ -1,7 +1,7 @@
 {
     "requirements": [
         {
-            "reqid": "QRC",
+            "reqid": "QRP",
             "parent_reqid": "",
             "project": "seams26_wildfire_fighting",
             "rationale": "",
@@ -80,66 +80,80 @@
             "_id": "14c12b70-8057-11f1-87a3-557ca4e73dc5"
         },
         {
-            "reqid": "QRP",
+            "reqid": "QRC",
             "parent_reqid": "",
             "project": "seams26_wildfire_fighting",
             "rationale": "",
             "comments": "",
-            "fulltext": "in Quiescing ODIN shall within 1 tick satisfy alertBlockage",
+            "fulltext": "in Quiescing whenever fireReported ODIN shall immediately satisfy if peopleCloseToFire then alertEmergency",
             "status": "",
             "semantics": {
                 "type": "nasa",
                 "scope": {
                     "type": "in"
                 },
-                "condition": "null",
+                "condition": "holding",
                 "probability": "null",
-                "timing": "within",
+                "timing": "immediately",
                 "response": "satisfaction",
                 "variables": [
                     "Quiescing",
-                    "alertBlockage"
+                    "fireReported",
+                    "peopleCloseToFire",
+                    "alertEmergency"
                 ],
                 "scope_mode": "Quiescing",
                 "scopeTextRange": [
                     0,
                     11
                 ],
+                "qualifier_word": "whenever",
+                "pre_condition": "(fireReported)",
+                "regular_condition": "(fireReported)",
+                "conditionTextRange": [
+                    13,
+                    33
+                ],
                 "component_name": "ODIN",
                 "componentTextRange": [
-                    13,
-                    16
+                    35,
+                    38
                 ],
-                "duration": "1",
                 "timingTextRange": [
-                    24,
-                    36
+                    46,
+                    56
                 ],
-                "post_condition": "(alertBlockage)",
+                "post_condition": "(peopleCloseToFire => alertEmergency)",
                 "responseTextRange": [
-                    38,
-                    58
+                    58,
+                    105
                 ],
-                "diagramVariables": "M = <b><i>Quiescing</i></b>,  n = <b><i>1</i></b>, Response = <b><i>(alertBlockage)</i></b>.",
-                "description": "ENFORCED: in every interval where <b><i>Quiescing</i></b> holds.\nTRIGGER: first point in the interval.\nREQUIRES: for every trigger, RES must hold at some point with distance <= <b><i>1</i></b> from the trigger (i.e., at trigger, trigger+1, ..., or trigger+<b><i>1</i></b>). If the interval ends sooner than trigger+<b><i>1</i></b>, then RES need not hold.",
-                "diagram": "_media/user-interface/examples/svgDiagrams/in_null_within_satisfaction.svg",
+                "diagramVariables": "M = <b><i>Quiescing</i></b>, CC = <b><i>(fireReported)</i></b>, Response = <b><i>(peopleCloseToFire => alertEmergency)</i></b>.",
+                "description": "ENFORCED: in every interval where <b><i>Quiescing</i></b> holds.\nTRIGGER: every point in the interval where <b><i>(fireReported)</i></b> is true.\nREQUIRES: for every trigger, if trigger holds then RES also holds at the same time point.",
+                "diagram": "_media/user-interface/examples/svgDiagrams/in_holding_immediately_satisfaction.svg",
                 "scope_mode_pt": "Quiescing",
                 "scope_mode_ft": "Quiescing",
                 "scope_mode_pctl": "Quiescing",
-                "post_condition_unexp_pt": "alertBlockage",
-                "post_condition_unexp_ft": "alertBlockage",
-                "post_condition_unexp_pctl": "alertBlockage",
-                "post_condition_SMV_pt": "alertBlockage",
-                "post_condition_SMV_ft": "alertBlockage",
-                "post_condition_PRISM_pctl": "alertBlockage",
-                "ft": "((LAST V ((! (Fin_Quiescing & (! LAST))) | (X ((F[<=1] alertBlockage) | (F[<1] (Lin_Quiescing | LAST)))))) & (Quiescing -> ((F[<=1] alertBlockage) | (F[<1] (Lin_Quiescing | LAST)))))",
-                "pt": "((H (Lin_Quiescing -> (Y ((((! alertBlockage) S ((! alertBlockage) & Fin_Quiescing)) -> (O[<1] Fin_Quiescing)) S ((((! alertBlockage) S ((! alertBlockage) & Fin_Quiescing)) -> (O[<1] Fin_Quiescing)) & Fin_Quiescing))))) & (((! Lin_Quiescing) S ((! Lin_Quiescing) & Fin_Quiescing)) -> ((((! alertBlockage) S ((! alertBlockage) & Fin_Quiescing)) -> (O[<1] Fin_Quiescing)) S ((((! alertBlockage) S ((! alertBlockage) & Fin_Quiescing)) -> (O[<1] Fin_Quiescing)) & Fin_Quiescing))))",
-                "pctl": "P>=1[((G ((! (Fin_Quiescing & (! LAST))) | (X (P>=1[(F<=1 alertBlockage)])))) & (Quiescing => (Lin_Quiescing | (P>=1[(F[<=1] alertBlockage)]))))]",
-                "ptExpanded": "((H (((! Quiescing) & (Y Quiescing)) -> (Y ((((! alertBlockage) S ((! alertBlockage) & (Quiescing & (Z (! Quiescing))))) -> (O[0,0] (Quiescing & (Z (! Quiescing))))) S ((((! alertBlockage) S ((! alertBlockage) & (Quiescing & (Z (! Quiescing))))) -> (O[0,0] (Quiescing & (Z (! Quiescing))))) & (Quiescing & (Z (! Quiescing)))))))) & (((! ((! Quiescing) & (Y Quiescing))) S ((! ((! Quiescing) & (Y Quiescing))) & (Quiescing & (Z (! Quiescing))))) -> ((((! alertBlockage) S ((! alertBlockage) & (Quiescing & (Z (! Quiescing))))) -> (O[0,0] (Quiescing & (Z (! Quiescing))))) S ((((! alertBlockage) S ((! alertBlockage) & (Quiescing & (Z (! Quiescing))))) -> (O[0,0] (Quiescing & (Z (! Quiescing))))) & (Quiescing & (Z (! Quiescing)))))))",
-                "CoCoSpecCode": "(H(((not (Quiescing) and YtoPre(Quiescing)) => YtoPre(SI((Quiescing and ZtoPre(not (Quiescing))),(SI((Quiescing and ZtoPre(not (Quiescing))),not (alertBlockage)) => OT(0, 0, (Quiescing and ZtoPre(not (Quiescing))))))))) and (SI((Quiescing and ZtoPre(not (Quiescing))),not ((not (Quiescing) and YtoPre(Quiescing)))) => SI((Quiescing and ZtoPre(not (Quiescing))),(SI((Quiescing and ZtoPre(not (Quiescing))),not (alertBlockage)) => OT(0, 0, (Quiescing and ZtoPre(not (Quiescing))))))))",
-                "ftExpanded": "((LAST V ((! ((((! Quiescing) & (! LAST)) & (X Quiescing)) & (! LAST))) | (X ((F[0,1] alertBlockage) | (F[0,0] (((Quiescing & (! LAST)) & (X (! Quiescing))) | LAST)))))) & (Quiescing -> ((F[0,1] alertBlockage) | (F[0,0] (((Quiescing & (! LAST)) & (X (! Quiescing))) | LAST)))))",
-                "pctlExpanded": "P>=1[((G ((! (((! Quiescing) & (X Quiescing)) & (! false))) | (X (P>=1[(F<=1 alertBlockage)])))) & (Quiescing => ((Quiescing & (X (! Quiescing))) | (P>=1[(F[<=1] alertBlockage)]))))]",
-                "ftInfAUExpanded": "((G ((! ((! Quiescing) & (X Quiescing))) | (X ((F[0,1] alertBlockage) | (F[0,0] (Quiescing & (X (! Quiescing)))))))) & (Quiescing -> ((F[0,1] alertBlockage) | (F[0,0] (Quiescing & (X (! Quiescing)))))))",
+                "regular_condition_unexp_pt": "fireReported",
+                "regular_condition_unexp_ft": "fireReported",
+                "regular_condition_unexp_pctl": "fireReported",
+                "regular_condition_SMV_pt": "fireReported",
+                "regular_condition_SMV_ft": "fireReported",
+                "regular_condition_PRISM_pctl": "fireReported",
+                "post_condition_unexp_pt": "(peopleCloseToFire -> alertEmergency)",
+                "post_condition_unexp_ft": "(peopleCloseToFire -> alertEmergency)",
+                "post_condition_unexp_pctl": "(peopleCloseToFire -> alertEmergency)",
+                "post_condition_SMV_pt": "(peopleCloseToFire -> alertEmergency)",
+                "post_condition_SMV_ft": "(peopleCloseToFire -> alertEmergency)",
+                "post_condition_PRISM_pctl": "(peopleCloseToFire -> alertEmergency)",
+                "ft": "((LAST V ((! (Fin_Quiescing & (! LAST))) | (X ((Lin_Quiescing | LAST) V (fireReported -> (peopleCloseToFire -> alertEmergency)))))) & (Quiescing -> ((Lin_Quiescing | LAST) V (fireReported -> (peopleCloseToFire -> alertEmergency)))))",
+                "pt": "((H (Lin_Quiescing -> (Y ((fireReported -> (peopleCloseToFire -> alertEmergency)) S ((fireReported -> (peopleCloseToFire -> alertEmergency)) & Fin_Quiescing))))) & (((! Lin_Quiescing) S ((! Lin_Quiescing) & Fin_Quiescing)) -> ((fireReported -> (peopleCloseToFire -> alertEmergency)) S ((fireReported -> (peopleCloseToFire -> alertEmergency)) & Fin_Quiescing))))",
+                "pctl": "P>=1[((G ((! (Fin_Quiescing & (! LAST))) | (X (Lin_Quiescing R (fireReported => (P>=1[(peopleCloseToFire -> alertEmergency)])))))) & (Quiescing => (Lin_Quiescing | (Lin_Quiescing R (fireReported => (P>=1[(peopleCloseToFire -> alertEmergency)]))))))]",
+                "ptExpanded": "((H (((! Quiescing) & (Y Quiescing)) -> (Y ((fireReported -> (peopleCloseToFire -> alertEmergency)) S ((fireReported -> (peopleCloseToFire -> alertEmergency)) & (Quiescing & (Z (! Quiescing)))))))) & (((! ((! Quiescing) & (Y Quiescing))) S ((! ((! Quiescing) & (Y Quiescing))) & (Quiescing & (Z (! Quiescing))))) -> ((fireReported -> (peopleCloseToFire -> alertEmergency)) S ((fireReported -> (peopleCloseToFire -> alertEmergency)) & (Quiescing & (Z (! Quiescing)))))))",
+                "CoCoSpecCode": "(H(((not (Quiescing) and YtoPre(Quiescing)) => YtoPre(SI((Quiescing and ZtoPre(not (Quiescing))),(fireReported => (peopleCloseToFire => alertEmergency)))))) and (SI((Quiescing and ZtoPre(not (Quiescing))),not ((not (Quiescing) and YtoPre(Quiescing)))) => SI((Quiescing and ZtoPre(not (Quiescing))),(fireReported => (peopleCloseToFire => alertEmergency)))))",
+                "ftExpanded": "((LAST V ((! ((((! Quiescing) & (! LAST)) & (X Quiescing)) & (! LAST))) | (X ((((Quiescing & (! LAST)) & (X (! Quiescing))) | LAST) V (fireReported -> (peopleCloseToFire -> alertEmergency)))))) & (Quiescing -> ((((Quiescing & (! LAST)) & (X (! Quiescing))) | LAST) V (fireReported -> (peopleCloseToFire -> alertEmergency)))))",
+                "pctlExpanded": "P>=1[((G ((! (((! Quiescing) & (X Quiescing)) & (! false))) | (X ((Quiescing & (X (! Quiescing))) R (fireReported => (P>=1[(peopleCloseToFire -> alertEmergency)])))))) & (Quiescing => ((Quiescing & (X (! Quiescing))) | ((Quiescing & (X (! Quiescing))) R (fireReported => (P>=1[(peopleCloseToFire -> alertEmergency)]))))))]",
+                "ftInfAUExpanded": "((G ((! ((! Quiescing) & (X Quiescing))) | (X ((Quiescing & (X (! Quiescing))) V (fireReported -> (peopleCloseToFire -> alertEmergency)))))) & (Quiescing -> ((Quiescing & (X (! Quiescing))) V (fireReported -> (peopleCloseToFire -> alertEmergency)))))",
                 "component": "ODIN"
             },
             "_id": "17ac1660-8057-11f1-87a3-557ca4e73dc5"
@@ -488,52 +502,59 @@
             "_id": "7a683060-8055-11f1-87a3-557ca4e73dc5"
         },
         {
-            "reqid": "MP5",
+            "reqid": "NR4",
             "parent_reqid": "",
             "project": "seams26_wildfire_fighting",
             "rationale": "",
             "comments": "",
-            "fulltext": "whenever highFrequencyOfMessages ODIN shall immediately satisfy alertNetworkOverload",
+            "fulltext": "In Nominal whenever highFrequencyOfMessages ODIN shall immediately satisfy alertNetworkOverload",
             "status": "",
             "semantics": {
                 "type": "nasa",
                 "scope": {
-                    "type": "null"
+                    "type": "in"
                 },
                 "condition": "holding",
                 "probability": "null",
                 "timing": "immediately",
                 "response": "satisfaction",
                 "variables": [
+                    "Nominal",
                     "highFrequencyOfMessages",
                     "alertNetworkOverload"
+                ],
+                "scope_mode": "Nominal",
+                "scopeTextRange": [
+                    0,
+                    9
                 ],
                 "qualifier_word": "whenever",
                 "pre_condition": "(highFrequencyOfMessages)",
                 "regular_condition": "(highFrequencyOfMessages)",
                 "conditionTextRange": [
-                    0,
-                    31
+                    11,
+                    42
                 ],
                 "component_name": "ODIN",
                 "componentTextRange": [
-                    33,
-                    36
+                    44,
+                    47
                 ],
                 "timingTextRange": [
-                    44,
-                    54
+                    55,
+                    65
                 ],
                 "post_condition": "(alertNetworkOverload)",
                 "responseTextRange": [
-                    56,
-                    83
+                    67,
+                    94
                 ],
-                "diagramVariables": "CC = <b><i>(highFrequencyOfMessages)</i></b>, Response = <b><i>(alertNetworkOverload)</i></b>.",
-                "description": "ENFORCED: in the interval defined by the entire execution.\nTRIGGER: every point in the interval where <b><i>(highFrequencyOfMessages)</i></b> is true.\nREQUIRES: for every trigger, if trigger holds then RES also holds at the same time point.",
-                "diagram": "_media/user-interface/examples/svgDiagrams/null_holding_immediately_satisfaction.svg",
-                "scope_mode_pt": "BAD_PT",
-                "scope_mode_ft": "BAD_FT",
+                "diagramVariables": "M = <b><i>Nominal</i></b>, CC = <b><i>(highFrequencyOfMessages)</i></b>, Response = <b><i>(alertNetworkOverload)</i></b>.",
+                "description": "ENFORCED: in every interval where <b><i>Nominal</i></b> holds.\nTRIGGER: every point in the interval where <b><i>(highFrequencyOfMessages)</i></b> is true.\nREQUIRES: for every trigger, if trigger holds then RES also holds at the same time point.",
+                "diagram": "_media/user-interface/examples/svgDiagrams/in_holding_immediately_satisfaction.svg",
+                "scope_mode_pt": "Nominal",
+                "scope_mode_ft": "Nominal",
+                "scope_mode_pctl": "Nominal",
                 "regular_condition_unexp_pt": "highFrequencyOfMessages",
                 "regular_condition_unexp_ft": "highFrequencyOfMessages",
                 "regular_condition_unexp_pctl": "highFrequencyOfMessages",
@@ -546,14 +567,14 @@
                 "post_condition_SMV_pt": "alertNetworkOverload",
                 "post_condition_SMV_ft": "alertNetworkOverload",
                 "post_condition_PRISM_pctl": "alertNetworkOverload",
-                "ft": "(LAST V (highFrequencyOfMessages -> alertNetworkOverload))",
-                "pt": "(H (highFrequencyOfMessages -> alertNetworkOverload))",
-                "pctl": "P>=1[(G (highFrequencyOfMessages => (P>=1[alertNetworkOverload])))]",
-                "ptExpanded": "(H (highFrequencyOfMessages -> alertNetworkOverload))",
-                "CoCoSpecCode": "H((highFrequencyOfMessages => alertNetworkOverload))",
-                "ftExpanded": "(LAST V (highFrequencyOfMessages -> alertNetworkOverload))",
-                "pctlExpanded": "P>=1[(G (highFrequencyOfMessages => (P>=1[alertNetworkOverload])))]",
-                "ftInfAUExpanded": "(G (highFrequencyOfMessages -> alertNetworkOverload))",
+                "ft": "((LAST V ((! (Fin_Nominal & (! LAST))) | (X ((Lin_Nominal | LAST) V (highFrequencyOfMessages -> alertNetworkOverload))))) & (Nominal -> ((Lin_Nominal | LAST) V (highFrequencyOfMessages -> alertNetworkOverload))))",
+                "pt": "((H (Lin_Nominal -> (Y ((highFrequencyOfMessages -> alertNetworkOverload) S ((highFrequencyOfMessages -> alertNetworkOverload) & Fin_Nominal))))) & (((! Lin_Nominal) S ((! Lin_Nominal) & Fin_Nominal)) -> ((highFrequencyOfMessages -> alertNetworkOverload) S ((highFrequencyOfMessages -> alertNetworkOverload) & Fin_Nominal))))",
+                "pctl": "P>=1[((G ((! (Fin_Nominal & (! LAST))) | (X (Lin_Nominal R (highFrequencyOfMessages => (P>=1[alertNetworkOverload])))))) & (Nominal => (Lin_Nominal | (Lin_Nominal R (highFrequencyOfMessages => (P>=1[alertNetworkOverload]))))))]",
+                "ptExpanded": "((H (((! Nominal) & (Y Nominal)) -> (Y ((highFrequencyOfMessages -> alertNetworkOverload) S ((highFrequencyOfMessages -> alertNetworkOverload) & (Nominal & (Z (! Nominal)))))))) & (((! ((! Nominal) & (Y Nominal))) S ((! ((! Nominal) & (Y Nominal))) & (Nominal & (Z (! Nominal))))) -> ((highFrequencyOfMessages -> alertNetworkOverload) S ((highFrequencyOfMessages -> alertNetworkOverload) & (Nominal & (Z (! Nominal)))))))",
+                "CoCoSpecCode": "(H(((not (Nominal) and YtoPre(Nominal)) => YtoPre(SI((Nominal and ZtoPre(not (Nominal))),(highFrequencyOfMessages => alertNetworkOverload))))) and (SI((Nominal and ZtoPre(not (Nominal))),not ((not (Nominal) and YtoPre(Nominal)))) => SI((Nominal and ZtoPre(not (Nominal))),(highFrequencyOfMessages => alertNetworkOverload))))",
+                "ftExpanded": "((LAST V ((! ((((! Nominal) & (! LAST)) & (X Nominal)) & (! LAST))) | (X ((((Nominal & (! LAST)) & (X (! Nominal))) | LAST) V (highFrequencyOfMessages -> alertNetworkOverload))))) & (Nominal -> ((((Nominal & (! LAST)) & (X (! Nominal))) | LAST) V (highFrequencyOfMessages -> alertNetworkOverload))))",
+                "pctlExpanded": "P>=1[((G ((! (((! Nominal) & (X Nominal)) & (! false))) | (X ((Nominal & (X (! Nominal))) R (highFrequencyOfMessages => (P>=1[alertNetworkOverload])))))) & (Nominal => ((Nominal & (X (! Nominal))) | ((Nominal & (X (! Nominal))) R (highFrequencyOfMessages => (P>=1[alertNetworkOverload]))))))]",
+                "ftInfAUExpanded": "((G ((! ((! Nominal) & (X Nominal))) | (X ((Nominal & (X (! Nominal))) V (highFrequencyOfMessages -> alertNetworkOverload))))) & (Nominal -> ((Nominal & (X (! Nominal))) V (highFrequencyOfMessages -> alertNetworkOverload))))",
                 "component": "ODIN"
             },
             "_id": "a2d48f40-8059-11f1-87a3-557ca4e73dc5"
@@ -636,44 +657,51 @@
             "project": "seams26_wildfire_fighting",
             "rationale": "",
             "comments": "",
-            "fulltext": "Upon fireReported ODIN shall satisfy if peopleCloseToFire then startEvacuationProtocol",
+            "fulltext": "in Nominal upon fireReported ODIN shall satisfy if peopleCloseToFire then startEvacuationProtocol",
             "status": "",
             "semantics": {
                 "type": "nasa",
                 "scope": {
-                    "type": "null"
+                    "type": "in"
                 },
                 "condition": "regular",
                 "probability": "null",
                 "timing": "null",
                 "response": "satisfaction",
                 "variables": [
+                    "Nominal",
                     "fireReported",
                     "peopleCloseToFire",
                     "startEvacuationProtocol"
+                ],
+                "scope_mode": "Nominal",
+                "scopeTextRange": [
+                    0,
+                    9
                 ],
                 "qualifier_word": "upon",
                 "pre_condition": "(fireReported)",
                 "regular_condition": "(fireReported)",
                 "conditionTextRange": [
-                    0,
-                    16
+                    11,
+                    27
                 ],
                 "component_name": "ODIN",
                 "componentTextRange": [
-                    18,
-                    21
+                    29,
+                    32
                 ],
                 "post_condition": "(peopleCloseToFire => startEvacuationProtocol)",
                 "responseTextRange": [
-                    29,
-                    85
+                    40,
+                    96
                 ],
-                "diagramVariables": "TC = <b><i>(fireReported)</i></b>, Response = <b><i>(peopleCloseToFire => startEvacuationProtocol)</i></b>.",
-                "description": "ENFORCED: in the interval defined by the entire execution.\nTRIGGER: first point in the interval if <b><i>(fireReported)</i></b> is true and any point in the interval where <b><i>(fireReported)</i></b> becomes true (from false).\nREQUIRES: for every trigger, RES must hold at some time point between (and including) the trigger and the end of the interval.",
-                "diagram": "_media/user-interface/examples/svgDiagrams/null_regular_null_satisfaction.svg",
-                "scope_mode_pt": "BAD_PT",
-                "scope_mode_ft": "BAD_FT",
+                "diagramVariables": "M = <b><i>Nominal</i></b>, TC = <b><i>(fireReported)</i></b>, Response = <b><i>(peopleCloseToFire => startEvacuationProtocol)</i></b>.",
+                "description": "ENFORCED: in every interval where <b><i>Nominal</i></b> holds.\nTRIGGER: first point in the interval if <b><i>(fireReported)</i></b> is true and any point in the interval where <b><i>(fireReported)</i></b> becomes true (from false).\nREQUIRES: for every trigger, RES must hold at some time point between (and including) the trigger and the end of the interval.",
+                "diagram": "_media/user-interface/examples/svgDiagrams/in_regular_null_satisfaction.svg",
+                "scope_mode_pt": "Nominal",
+                "scope_mode_ft": "Nominal",
+                "scope_mode_pctl": "Nominal",
                 "regular_condition_unexp_pt": "fireReported",
                 "regular_condition_unexp_ft": "fireReported",
                 "regular_condition_unexp_pctl": "fireReported",
@@ -686,14 +714,14 @@
                 "post_condition_SMV_pt": "(peopleCloseToFire -> startEvacuationProtocol)",
                 "post_condition_SMV_ft": "(peopleCloseToFire -> startEvacuationProtocol)",
                 "post_condition_PRISM_pctl": "(peopleCloseToFire -> startEvacuationProtocol)",
-                "ft": "((LAST V (((! fireReported) & ((! LAST) & (X fireReported))) -> (X ((! LAST) U (peopleCloseToFire -> startEvacuationProtocol))))) & (fireReported -> ((! LAST) U (peopleCloseToFire -> startEvacuationProtocol))))",
-                "pt": "((H (! fireReported)) | (! ((! (peopleCloseToFire -> startEvacuationProtocol)) S ((! (peopleCloseToFire -> startEvacuationProtocol)) & (fireReported & (Z (! fireReported)))))))",
-                "pctl": "P>=1[((G (((! fireReported) & (X fireReported)) => (X (P>=1[(F (peopleCloseToFire -> startEvacuationProtocol))])))) & (fireReported => (P>=1[(F (peopleCloseToFire -> startEvacuationProtocol))])))]",
-                "ptExpanded": "((H (! fireReported)) | (! ((! (peopleCloseToFire -> startEvacuationProtocol)) S ((! (peopleCloseToFire -> startEvacuationProtocol)) & (fireReported & (Z (! fireReported)))))))",
-                "CoCoSpecCode": "(H(not (fireReported)) or not (SI((fireReported and ZtoPre(not (fireReported))),not ((peopleCloseToFire => startEvacuationProtocol)))))",
-                "ftExpanded": "((LAST V (((! fireReported) & ((! LAST) & (X fireReported))) -> (X ((! LAST) U (peopleCloseToFire -> startEvacuationProtocol))))) & (fireReported -> ((! LAST) U (peopleCloseToFire -> startEvacuationProtocol))))",
-                "pctlExpanded": "P>=1[((G (((! fireReported) & (X fireReported)) => (X (P>=1[(F (peopleCloseToFire -> startEvacuationProtocol))])))) & (fireReported => (P>=1[(F (peopleCloseToFire -> startEvacuationProtocol))])))]",
-                "ftInfAUExpanded": "((G (((! fireReported) & (X fireReported)) -> (X (F (peopleCloseToFire -> startEvacuationProtocol))))) & (fireReported -> (F (peopleCloseToFire -> startEvacuationProtocol))))",
+                "ft": "((LAST V ((! (Fin_Nominal & (! LAST))) | (X (((Lin_Nominal | LAST) V (((! fireReported) & ((! LAST) & ((X fireReported) & (! (Lin_Nominal | LAST))))) -> ((X ((! (Lin_Nominal | LAST)) U (peopleCloseToFire -> startEvacuationProtocol))) & (! (Lin_Nominal | LAST))))) & (fireReported -> ((! (Lin_Nominal | LAST)) U (peopleCloseToFire -> startEvacuationProtocol))))))) & (Nominal -> (((Lin_Nominal | LAST) V (((! fireReported) & ((! LAST) & ((X fireReported) & (! (Lin_Nominal | LAST))))) -> ((X ((! (Lin_Nominal | LAST)) U (peopleCloseToFire -> startEvacuationProtocol))) & (! (Lin_Nominal | LAST))))) & (fireReported -> ((! (Lin_Nominal | LAST)) U (peopleCloseToFire -> startEvacuationProtocol))))))",
+                "pt": "((H (Lin_Nominal -> (Y (((! fireReported) S ((! fireReported) & Fin_Nominal)) | (! ((! (peopleCloseToFire -> startEvacuationProtocol)) S ((! (peopleCloseToFire -> startEvacuationProtocol)) & (fireReported & ((Y (! fireReported)) | Fin_Nominal))))))))) & (((! Lin_Nominal) S ((! Lin_Nominal) & Fin_Nominal)) -> (((! fireReported) S ((! fireReported) & Fin_Nominal)) | (! ((! (peopleCloseToFire -> startEvacuationProtocol)) S ((! (peopleCloseToFire -> startEvacuationProtocol)) & (fireReported & ((Y (! fireReported)) | Fin_Nominal))))))))",
+                "pctl": "P>=1[((G ((! (Fin_Nominal & (! LAST))) | (X ((Lin_Nominal R (((! fireReported) & ((X fireReported) & (! Lin_Nominal))) => ((X (P>=1[((! Lin_Nominal) U (peopleCloseToFire -> startEvacuationProtocol))])) & (! Lin_Nominal)))) & (fireReported => (P>=1[((! Lin_Nominal) U (peopleCloseToFire -> startEvacuationProtocol))])))))) & (Nominal => (Lin_Nominal | ((Lin_Nominal R (((! fireReported) & ((X fireReported) & (! Lin_Nominal))) => ((X (P>=1[((! Lin_Nominal) U (peopleCloseToFire -> startEvacuationProtocol))])) & (! Lin_Nominal)))) & (fireReported => (P>=1[((! Lin_Nominal) U (peopleCloseToFire -> startEvacuationProtocol))]))))))]",
+                "ptExpanded": "((H (((! Nominal) & (Y Nominal)) -> (Y (((! fireReported) S ((! fireReported) & (Nominal & (Z (! Nominal))))) | (! ((! (peopleCloseToFire -> startEvacuationProtocol)) S ((! (peopleCloseToFire -> startEvacuationProtocol)) & (fireReported & ((Y (! fireReported)) | (Nominal & (Z (! Nominal)))))))))))) & (((! ((! Nominal) & (Y Nominal))) S ((! ((! Nominal) & (Y Nominal))) & (Nominal & (Z (! Nominal))))) -> (((! fireReported) S ((! fireReported) & (Nominal & (Z (! Nominal))))) | (! ((! (peopleCloseToFire -> startEvacuationProtocol)) S ((! (peopleCloseToFire -> startEvacuationProtocol)) & (fireReported & ((Y (! fireReported)) | (Nominal & (Z (! Nominal)))))))))))",
+                "CoCoSpecCode": "(H(((not (Nominal) and YtoPre(Nominal)) => YtoPre((SI((Nominal and ZtoPre(not (Nominal))),not (fireReported)) or not (SI((fireReported and (YtoPre(not (fireReported)) or (Nominal and ZtoPre(not (Nominal))))),not ((peopleCloseToFire => startEvacuationProtocol)))))))) and (SI((Nominal and ZtoPre(not (Nominal))),not ((not (Nominal) and YtoPre(Nominal)))) => (SI((Nominal and ZtoPre(not (Nominal))),not (fireReported)) or not (SI((fireReported and (YtoPre(not (fireReported)) or (Nominal and ZtoPre(not (Nominal))))),not ((peopleCloseToFire => startEvacuationProtocol)))))))",
+                "ftExpanded": "((LAST V ((! ((((! Nominal) & (! LAST)) & (X Nominal)) & (! LAST))) | (X (((((Nominal & (! LAST)) & (X (! Nominal))) | LAST) V (((! fireReported) & ((! LAST) & ((X fireReported) & (! (((Nominal & (! LAST)) & (X (! Nominal))) | LAST))))) -> ((X ((! (((Nominal & (! LAST)) & (X (! Nominal))) | LAST)) U (peopleCloseToFire -> startEvacuationProtocol))) & (! (((Nominal & (! LAST)) & (X (! Nominal))) | LAST))))) & (fireReported -> ((! (((Nominal & (! LAST)) & (X (! Nominal))) | LAST)) U (peopleCloseToFire -> startEvacuationProtocol))))))) & (Nominal -> (((((Nominal & (! LAST)) & (X (! Nominal))) | LAST) V (((! fireReported) & ((! LAST) & ((X fireReported) & (! (((Nominal & (! LAST)) & (X (! Nominal))) | LAST))))) -> ((X ((! (((Nominal & (! LAST)) & (X (! Nominal))) | LAST)) U (peopleCloseToFire -> startEvacuationProtocol))) & (! (((Nominal & (! LAST)) & (X (! Nominal))) | LAST))))) & (fireReported -> ((! (((Nominal & (! LAST)) & (X (! Nominal))) | LAST)) U (peopleCloseToFire -> startEvacuationProtocol))))))",
+                "pctlExpanded": "P>=1[((G ((! (((! Nominal) & (X Nominal)) & (! false))) | (X (((Nominal & (X (! Nominal))) R (((! fireReported) & ((X fireReported) & (! (Nominal & (X (! Nominal)))))) => ((X (P>=1[((! (Nominal & (X (! Nominal)))) U (peopleCloseToFire -> startEvacuationProtocol))])) & (! (Nominal & (X (! Nominal))))))) & (fireReported => (P>=1[((! (Nominal & (X (! Nominal)))) U (peopleCloseToFire -> startEvacuationProtocol))])))))) & (Nominal => ((Nominal & (X (! Nominal))) | (((Nominal & (X (! Nominal))) R (((! fireReported) & ((X fireReported) & (! (Nominal & (X (! Nominal)))))) => ((X (P>=1[((! (Nominal & (X (! Nominal)))) U (peopleCloseToFire -> startEvacuationProtocol))])) & (! (Nominal & (X (! Nominal))))))) & (fireReported => (P>=1[((! (Nominal & (X (! Nominal)))) U (peopleCloseToFire -> startEvacuationProtocol))]))))))]",
+                "ftInfAUExpanded": "((G ((! ((! Nominal) & (X Nominal))) | (X (((Nominal & (X (! Nominal))) V (((! fireReported) & ((X fireReported) & (! (Nominal & (X (! Nominal)))))) -> ((X ((! (Nominal & (X (! Nominal)))) U (peopleCloseToFire -> startEvacuationProtocol))) & (! (Nominal & (X (! Nominal))))))) & (fireReported -> ((! (Nominal & (X (! Nominal)))) U (peopleCloseToFire -> startEvacuationProtocol))))))) & (Nominal -> (((Nominal & (X (! Nominal))) V (((! fireReported) & ((X fireReported) & (! (Nominal & (X (! Nominal)))))) -> ((X ((! (Nominal & (X (! Nominal)))) U (peopleCloseToFire -> startEvacuationProtocol))) & (! (Nominal & (X (! Nominal))))))) & (fireReported -> ((! (Nominal & (X (! Nominal)))) U (peopleCloseToFire -> startEvacuationProtocol))))))",
                 "component": "ODIN"
             },
             "_id": "cbfc41f0-8028-11f1-af36-6f5652dbf5ad"
@@ -704,48 +732,55 @@
             "project": "seams26_wildfire_fighting",
             "rationale": "",
             "comments": "",
-            "fulltext": "Upon startEvacuationProtocol ODIN shall within 5 ticks satisfy evacuationSuccessful",
+            "fulltext": "In Nominal upon startEvacuationProtocol ODIN shall within 5 ticks satisfy evacuationSuccessful",
             "status": "",
             "semantics": {
                 "type": "nasa",
                 "scope": {
-                    "type": "null"
+                    "type": "in"
                 },
                 "condition": "regular",
                 "probability": "null",
                 "timing": "within",
                 "response": "satisfaction",
                 "variables": [
+                    "Nominal",
                     "startEvacuationProtocol",
                     "evacuationSuccessful"
+                ],
+                "scope_mode": "Nominal",
+                "scopeTextRange": [
+                    0,
+                    9
                 ],
                 "qualifier_word": "upon",
                 "pre_condition": "(startEvacuationProtocol)",
                 "regular_condition": "(startEvacuationProtocol)",
                 "conditionTextRange": [
-                    0,
-                    27
+                    11,
+                    38
                 ],
                 "component_name": "ODIN",
                 "componentTextRange": [
-                    29,
-                    32
+                    40,
+                    43
                 ],
                 "duration": "5",
                 "timingTextRange": [
-                    40,
-                    53
+                    51,
+                    64
                 ],
                 "post_condition": "(evacuationSuccessful)",
                 "responseTextRange": [
-                    55,
-                    82
+                    66,
+                    93
                 ],
-                "diagramVariables": "TC = <b><i>(startEvacuationProtocol)</i></b>,  n = <b><i>5</i></b>, Response = <b><i>(evacuationSuccessful)</i></b>.",
-                "description": "ENFORCED: in the interval defined by the entire execution.\nTRIGGER: first point in the interval if <b><i>(startEvacuationProtocol)</i></b> is true and any point in the interval where <b><i>(startEvacuationProtocol)</i></b> becomes true (from false).\nREQUIRES: for every trigger, RES must hold at some point with distance <= <b><i>5</i></b> from the trigger (i.e., at trigger, trigger+1, ..., or trigger+<b><i>5</i></b>). If the interval ends sooner than trigger+<b><i>5</i></b>, then RES need not hold.",
-                "diagram": "_media/user-interface/examples/svgDiagrams/null_regular_within_satisfaction.svg",
-                "scope_mode_pt": "BAD_PT",
-                "scope_mode_ft": "BAD_FT",
+                "diagramVariables": "M = <b><i>Nominal</i></b>, TC = <b><i>(startEvacuationProtocol)</i></b>,  n = <b><i>5</i></b>, Response = <b><i>(evacuationSuccessful)</i></b>.",
+                "description": "ENFORCED: in every interval where <b><i>Nominal</i></b> holds.\nTRIGGER: first point in the interval if <b><i>(startEvacuationProtocol)</i></b> is true and any point in the interval where <b><i>(startEvacuationProtocol)</i></b> becomes true (from false).\nREQUIRES: for every trigger, RES must hold at some point with distance <= <b><i>5</i></b> from the trigger (i.e., at trigger, trigger+1, ..., or trigger+<b><i>5</i></b>). If the interval ends sooner than trigger+<b><i>5</i></b>, then RES need not hold.",
+                "diagram": "_media/user-interface/examples/svgDiagrams/in_regular_within_satisfaction.svg",
+                "scope_mode_pt": "Nominal",
+                "scope_mode_ft": "Nominal",
+                "scope_mode_pctl": "Nominal",
                 "regular_condition_unexp_pt": "startEvacuationProtocol",
                 "regular_condition_unexp_ft": "startEvacuationProtocol",
                 "regular_condition_unexp_pctl": "startEvacuationProtocol",
@@ -758,14 +793,14 @@
                 "post_condition_SMV_pt": "evacuationSuccessful",
                 "post_condition_SMV_ft": "evacuationSuccessful",
                 "post_condition_PRISM_pctl": "evacuationSuccessful",
-                "ft": "((LAST V (((! startEvacuationProtocol) & ((! LAST) & (X startEvacuationProtocol))) -> (X ((F[<=5] evacuationSuccessful) | (F[<5] LAST))))) & (startEvacuationProtocol -> ((F[<=5] evacuationSuccessful) | (F[<5] LAST))))",
-                "pt": "(H ((O[=5] ((startEvacuationProtocol & (Z (! startEvacuationProtocol))) & (! evacuationSuccessful))) -> (O[<5] ((Z FALSE) | evacuationSuccessful))))",
-                "pctl": "P>=1[((G (((! startEvacuationProtocol) & (X startEvacuationProtocol)) => (X (P>=1[(F<=5 evacuationSuccessful)])))) & (startEvacuationProtocol => (P>=1[(F[<=5] evacuationSuccessful)])))]",
-                "ptExpanded": "(H ((O[5,5] ((startEvacuationProtocol & (Z (! startEvacuationProtocol))) & (! evacuationSuccessful))) -> (O[0,4] ((Z FALSE) | evacuationSuccessful))))",
-                "CoCoSpecCode": "H((OT(5, 5, ((startEvacuationProtocol and ZtoPre(not (startEvacuationProtocol))) and not (evacuationSuccessful))) => OT(4, 0, (ZtoPre(false) or evacuationSuccessful))))",
-                "ftExpanded": "((LAST V (((! startEvacuationProtocol) & ((! LAST) & (X startEvacuationProtocol))) -> (X ((F[0,5] evacuationSuccessful) | (F[0,4] LAST))))) & (startEvacuationProtocol -> ((F[0,5] evacuationSuccessful) | (F[0,4] LAST))))",
-                "pctlExpanded": "P>=1[((G (((! startEvacuationProtocol) & (X startEvacuationProtocol)) => (X (P>=1[(F<=5 evacuationSuccessful)])))) & (startEvacuationProtocol => (P>=1[(F[<=5] evacuationSuccessful)])))]",
-                "ftInfAUExpanded": "((G (((! startEvacuationProtocol) & (X startEvacuationProtocol)) -> (X (F[0,5] evacuationSuccessful)))) & (startEvacuationProtocol -> (F[0,5] evacuationSuccessful)))",
+                "ft": "((LAST V ((! (Fin_Nominal & (! LAST))) | (X (((Lin_Nominal | LAST) V (((! startEvacuationProtocol) & ((! LAST) & ((X startEvacuationProtocol) & (! (Lin_Nominal | LAST))))) -> ((X ((F[<=5] evacuationSuccessful) | (F[<5] (Lin_Nominal | LAST)))) & (! (Lin_Nominal | LAST))))) & (startEvacuationProtocol -> ((F[<=5] evacuationSuccessful) | (F[<5] (Lin_Nominal | LAST)))))))) & (Nominal -> (((Lin_Nominal | LAST) V (((! startEvacuationProtocol) & ((! LAST) & ((X startEvacuationProtocol) & (! (Lin_Nominal | LAST))))) -> ((X ((F[<=5] evacuationSuccessful) | (F[<5] (Lin_Nominal | LAST)))) & (! (Lin_Nominal | LAST))))) & (startEvacuationProtocol -> ((F[<=5] evacuationSuccessful) | (F[<5] (Lin_Nominal | LAST)))))))",
+                "pt": "((H (Lin_Nominal -> (Y (((O[=5] ((startEvacuationProtocol & ((Y (! startEvacuationProtocol)) | Fin_Nominal)) & (! evacuationSuccessful))) -> (O[<5] (Fin_Nominal | evacuationSuccessful))) S (((O[=5] ((startEvacuationProtocol & ((Y (! startEvacuationProtocol)) | Fin_Nominal)) & (! evacuationSuccessful))) -> (O[<5] (Fin_Nominal | evacuationSuccessful))) & Fin_Nominal))))) & (((! Lin_Nominal) S ((! Lin_Nominal) & Fin_Nominal)) -> (((O[=5] ((startEvacuationProtocol & ((Y (! startEvacuationProtocol)) | Fin_Nominal)) & (! evacuationSuccessful))) -> (O[<5] (Fin_Nominal | evacuationSuccessful))) S (((O[=5] ((startEvacuationProtocol & ((Y (! startEvacuationProtocol)) | Fin_Nominal)) & (! evacuationSuccessful))) -> (O[<5] (Fin_Nominal | evacuationSuccessful))) & Fin_Nominal))))",
+                "pctl": "P>=1[((G ((! (Fin_Nominal & (! LAST))) | (X ((Lin_Nominal R (((! startEvacuationProtocol) & ((X startEvacuationProtocol) & (! Lin_Nominal))) => ((X (P>=1[(F<=5 evacuationSuccessful)])) & (! Lin_Nominal)))) & (startEvacuationProtocol => (P>=1[(F[<=5] evacuationSuccessful)])))))) & (Nominal => (Lin_Nominal | ((Lin_Nominal R (((! startEvacuationProtocol) & ((X startEvacuationProtocol) & (! Lin_Nominal))) => ((X (P>=1[(F[<=5] evacuationSuccessful)])) & (! Lin_Nominal)))) & (startEvacuationProtocol => (P>=1[(F[<=5] evacuationSuccessful)]))))))]",
+                "ptExpanded": "((H (((! Nominal) & (Y Nominal)) -> (Y (((O[5,5] ((startEvacuationProtocol & ((Y (! startEvacuationProtocol)) | (Nominal & (Z (! Nominal))))) & (! evacuationSuccessful))) -> (O[0,4] ((Nominal & (Z (! Nominal))) | evacuationSuccessful))) S (((O[5,5] ((startEvacuationProtocol & ((Y (! startEvacuationProtocol)) | (Nominal & (Z (! Nominal))))) & (! evacuationSuccessful))) -> (O[0,4] ((Nominal & (Z (! Nominal))) | evacuationSuccessful))) & (Nominal & (Z (! Nominal)))))))) & (((! ((! Nominal) & (Y Nominal))) S ((! ((! Nominal) & (Y Nominal))) & (Nominal & (Z (! Nominal))))) -> (((O[5,5] ((startEvacuationProtocol & ((Y (! startEvacuationProtocol)) | (Nominal & (Z (! Nominal))))) & (! evacuationSuccessful))) -> (O[0,4] ((Nominal & (Z (! Nominal))) | evacuationSuccessful))) S (((O[5,5] ((startEvacuationProtocol & ((Y (! startEvacuationProtocol)) | (Nominal & (Z (! Nominal))))) & (! evacuationSuccessful))) -> (O[0,4] ((Nominal & (Z (! Nominal))) | evacuationSuccessful))) & (Nominal & (Z (! Nominal)))))))",
+                "CoCoSpecCode": "(H(((not (Nominal) and YtoPre(Nominal)) => YtoPre(SI((Nominal and ZtoPre(not (Nominal))),(OT(5, 5, ((startEvacuationProtocol and (YtoPre(not (startEvacuationProtocol)) or (Nominal and ZtoPre(not (Nominal))))) and not (evacuationSuccessful))) => OT(4, 0, ((Nominal and ZtoPre(not (Nominal))) or evacuationSuccessful))))))) and (SI((Nominal and ZtoPre(not (Nominal))),not ((not (Nominal) and YtoPre(Nominal)))) => SI((Nominal and ZtoPre(not (Nominal))),(OT(5, 5, ((startEvacuationProtocol and (YtoPre(not (startEvacuationProtocol)) or (Nominal and ZtoPre(not (Nominal))))) and not (evacuationSuccessful))) => OT(4, 0, ((Nominal and ZtoPre(not (Nominal))) or evacuationSuccessful))))))",
+                "ftExpanded": "((LAST V ((! ((((! Nominal) & (! LAST)) & (X Nominal)) & (! LAST))) | (X (((((Nominal & (! LAST)) & (X (! Nominal))) | LAST) V (((! startEvacuationProtocol) & ((! LAST) & ((X startEvacuationProtocol) & (! (((Nominal & (! LAST)) & (X (! Nominal))) | LAST))))) -> ((X ((F[0,5] evacuationSuccessful) | (F[0,4] (((Nominal & (! LAST)) & (X (! Nominal))) | LAST)))) & (! (((Nominal & (! LAST)) & (X (! Nominal))) | LAST))))) & (startEvacuationProtocol -> ((F[0,5] evacuationSuccessful) | (F[0,4] (((Nominal & (! LAST)) & (X (! Nominal))) | LAST)))))))) & (Nominal -> (((((Nominal & (! LAST)) & (X (! Nominal))) | LAST) V (((! startEvacuationProtocol) & ((! LAST) & ((X startEvacuationProtocol) & (! (((Nominal & (! LAST)) & (X (! Nominal))) | LAST))))) -> ((X ((F[0,5] evacuationSuccessful) | (F[0,4] (((Nominal & (! LAST)) & (X (! Nominal))) | LAST)))) & (! (((Nominal & (! LAST)) & (X (! Nominal))) | LAST))))) & (startEvacuationProtocol -> ((F[0,5] evacuationSuccessful) | (F[0,4] (((Nominal & (! LAST)) & (X (! Nominal))) | LAST)))))))",
+                "pctlExpanded": "P>=1[((G ((! (((! Nominal) & (X Nominal)) & (! false))) | (X (((Nominal & (X (! Nominal))) R (((! startEvacuationProtocol) & ((X startEvacuationProtocol) & (! (Nominal & (X (! Nominal)))))) => ((X (P>=1[(F<=5 evacuationSuccessful)])) & (! (Nominal & (X (! Nominal))))))) & (startEvacuationProtocol => (P>=1[(F[<=5] evacuationSuccessful)])))))) & (Nominal => ((Nominal & (X (! Nominal))) | (((Nominal & (X (! Nominal))) R (((! startEvacuationProtocol) & ((X startEvacuationProtocol) & (! (Nominal & (X (! Nominal)))))) => ((X (P>=1[(F[<=5] evacuationSuccessful)])) & (! (Nominal & (X (! Nominal))))))) & (startEvacuationProtocol => (P>=1[(F[<=5] evacuationSuccessful)]))))))]",
+                "ftInfAUExpanded": "((G ((! ((! Nominal) & (X Nominal))) | (X (((Nominal & (X (! Nominal))) V (((! startEvacuationProtocol) & ((X startEvacuationProtocol) & (! (Nominal & (X (! Nominal)))))) -> ((X ((F[0,5] evacuationSuccessful) | (F[0,4] (Nominal & (X (! Nominal)))))) & (! (Nominal & (X (! Nominal))))))) & (startEvacuationProtocol -> ((F[0,5] evacuationSuccessful) | (F[0,4] (Nominal & (X (! Nominal)))))))))) & (Nominal -> (((Nominal & (X (! Nominal))) V (((! startEvacuationProtocol) & ((X startEvacuationProtocol) & (! (Nominal & (X (! Nominal)))))) -> ((X ((F[0,5] evacuationSuccessful) | (F[0,4] (Nominal & (X (! Nominal)))))) & (! (Nominal & (X (! Nominal))))))) & (startEvacuationProtocol -> ((F[0,5] evacuationSuccessful) | (F[0,4] (Nominal & (X (! Nominal)))))))))",
                 "component": "ODIN"
             },
             "_id": "e9f89040-8056-11f1-87a3-557ca4e73dc5"
@@ -851,7 +886,10 @@
             "variable_name": "Nominal",
             "reqs": [
                 "3e2d6060-8056-11f1-87a3-557ca4e73dc5",
-                "6dd6c310-8056-11f1-87a3-557ca4e73dc5"
+                "6dd6c310-8056-11f1-87a3-557ca4e73dc5",
+                "a2d48f40-8059-11f1-87a3-557ca4e73dc5",
+                "cbfc41f0-8028-11f1-af36-6f5652dbf5ad",
+                "e9f89040-8056-11f1-87a3-557ca4e73dc5"
             ],
             "dataType": "boolean",
             "idType": "Output",
@@ -900,34 +938,10 @@
         {
             "project": "seams26_wildfire_fighting",
             "component_name": "ODIN",
-            "variable_name": "alertBlockage",
-            "reqs": [
-                "17ac1660-8057-11f1-87a3-557ca4e73dc5"
-            ],
-            "dataType": "boolean",
-            "idType": "Output",
-            "moduleName": "",
-            "description": "",
-            "assignment": "",
-            "assignmentVariables": [],
-            "copilotAssignment": "",
-            "smvAssignment": "",
-            "smvAssignmentVariables": [],
-            "modeRequirement": "",
-            "modeldoc": false,
-            "modeldoc_id": "",
-            "modeldoc_vectorIndex": null,
-            "modelComponent": "",
-            "completed": true,
-            "smvCompleted": true,
-            "_id": "seams26_wildfire_fightingODINalertBlockage"
-        },
-        {
-            "project": "seams26_wildfire_fighting",
-            "component_name": "ODIN",
             "variable_name": "alertEmergency",
             "reqs": [
-                "14c12b70-8057-11f1-87a3-557ca4e73dc5"
+                "14c12b70-8057-11f1-87a3-557ca4e73dc5",
+                "17ac1660-8057-11f1-87a3-557ca4e73dc5"
             ],
             "dataType": "boolean",
             "idType": "Output",
@@ -1056,6 +1070,7 @@
             "component_name": "ODIN",
             "variable_name": "fireReported",
             "reqs": [
+                "17ac1660-8057-11f1-87a3-557ca4e73dc5",
                 "746b4750-8051-11f1-87a3-557ca4e73dc5",
                 "cbfc41f0-8028-11f1-af36-6f5652dbf5ad"
             ],
@@ -1133,6 +1148,7 @@
             "component_name": "ODIN",
             "variable_name": "peopleCloseToFire",
             "reqs": [
+                "17ac1660-8057-11f1-87a3-557ca4e73dc5",
                 "cbfc41f0-8028-11f1-af36-6f5652dbf5ad"
             ],
             "dataType": "boolean",

@@ -77,46 +77,46 @@
             "project": "seams26-guiding_example",
             "rationale": "",
             "comments": "",
-            "fulltext": "if openDrawer_r1 the robot_1 shall always satisfy (atNurse_r1 | atLab_r1)",
+            "fulltext": "whenever openDrawer_r1 the robot_1 shall immediately satisfy (atNurse_r1 | atLab_r1)",
             "status": "",
             "semantics": {
                 "type": "nasa",
                 "scope": {
                     "type": "null"
                 },
-                "condition": "regular",
+                "condition": "holding",
                 "probability": "null",
-                "timing": "always",
+                "timing": "immediately",
                 "response": "satisfaction",
                 "variables": [
                     "openDrawer_r1",
                     "atNurse_r1",
                     "atLab_r1"
                 ],
-                "qualifier_word": "if",
+                "qualifier_word": "whenever",
                 "pre_condition": "(openDrawer_r1)",
                 "regular_condition": "(openDrawer_r1)",
                 "conditionTextRange": [
                     0,
-                    15
+                    21
                 ],
                 "component_name": "robot_1",
                 "componentTextRange": [
-                    17,
-                    27
+                    23,
+                    33
                 ],
                 "timingTextRange": [
-                    35,
-                    40
+                    41,
+                    51
                 ],
                 "post_condition": "(( atNurse_r1 | atLab_r1 ))",
                 "responseTextRange": [
-                    42,
-                    72
+                    53,
+                    83
                 ],
-                "diagramVariables": "TC = <b><i>(openDrawer_r1)</i></b>, Response = <b><i>(( atNurse_r1 | atLab_r1 ))</i></b>.",
-                "description": "ENFORCED: in the interval defined by the entire execution.\nTRIGGER: first point in the interval if <b><i>(openDrawer_r1)</i></b> is true and any point in the interval where <b><i>(openDrawer_r1)</i></b> becomes true (from false).\nREQUIRES: for every trigger, RES must hold at all time points between (and including) the trigger and the end of the interval.",
-                "diagram": "_media/user-interface/examples/svgDiagrams/null_regular_always_satisfaction.svg",
+                "diagramVariables": "CC = <b><i>(openDrawer_r1)</i></b>, Response = <b><i>(( atNurse_r1 | atLab_r1 ))</i></b>.",
+                "description": "ENFORCED: in the interval defined by the entire execution.\nTRIGGER: every point in the interval where <b><i>(openDrawer_r1)</i></b> is true.\nREQUIRES: for every trigger, if trigger holds then RES also holds at the same time point.",
+                "diagram": "_media/user-interface/examples/svgDiagrams/null_holding_immediately_satisfaction.svg",
                 "scope_mode_pt": "BAD_PT",
                 "scope_mode_ft": "BAD_FT",
                 "regular_condition_unexp_pt": "openDrawer_r1",
@@ -131,14 +131,14 @@
                 "post_condition_SMV_pt": "(atNurse_r1 | atLab_r1)",
                 "post_condition_SMV_ft": "(atNurse_r1 | atLab_r1)",
                 "post_condition_PRISM_pctl": "(atNurse_r1 | atLab_r1)",
-                "ft": "((LAST V (((! openDrawer_r1) & ((! LAST) & (X openDrawer_r1))) -> (X (LAST V (atNurse_r1 | atLab_r1))))) & (openDrawer_r1 -> (LAST V (atNurse_r1 | atLab_r1))))",
-                "pt": "(H ((H (! openDrawer_r1)) | (atNurse_r1 | atLab_r1)))",
-                "pctl": "P>=1[((G (((! openDrawer_r1) & (X openDrawer_r1)) => (X (P>=1[(G (atNurse_r1 | atLab_r1))])))) & (openDrawer_r1 => (P>=1[(G (atNurse_r1 | atLab_r1))])))]",
-                "ptExpanded": "(H ((H (! openDrawer_r1)) | (atNurse_r1 | atLab_r1)))",
-                "CoCoSpecCode": "H((H(not (openDrawer_r1)) or (atNurse_r1 or atLab_r1)))",
-                "ftExpanded": "((LAST V (((! openDrawer_r1) & ((! LAST) & (X openDrawer_r1))) -> (X (LAST V (atNurse_r1 | atLab_r1))))) & (openDrawer_r1 -> (LAST V (atNurse_r1 | atLab_r1))))",
-                "pctlExpanded": "P>=1[((G (((! openDrawer_r1) & (X openDrawer_r1)) => (X (P>=1[(G (atNurse_r1 | atLab_r1))])))) & (openDrawer_r1 => (P>=1[(G (atNurse_r1 | atLab_r1))])))]",
-                "ftInfAUExpanded": "((G (((! openDrawer_r1) & (X openDrawer_r1)) -> (X (G (atNurse_r1 | atLab_r1))))) & (openDrawer_r1 -> (G (atNurse_r1 | atLab_r1))))",
+                "ft": "(LAST V (openDrawer_r1 -> (atNurse_r1 | atLab_r1)))",
+                "pt": "(H (openDrawer_r1 -> (atNurse_r1 | atLab_r1)))",
+                "pctl": "P>=1[(G (openDrawer_r1 => (P>=1[(atNurse_r1 | atLab_r1)])))]",
+                "ptExpanded": "(H (openDrawer_r1 -> (atNurse_r1 | atLab_r1)))",
+                "CoCoSpecCode": "H((openDrawer_r1 => (atNurse_r1 or atLab_r1)))",
+                "ftExpanded": "(LAST V (openDrawer_r1 -> (atNurse_r1 | atLab_r1)))",
+                "pctlExpanded": "P>=1[(G (openDrawer_r1 => (P>=1[(atNurse_r1 | atLab_r1)])))]",
+                "ftInfAUExpanded": "(G (openDrawer_r1 -> (atNurse_r1 | atLab_r1)))",
                 "component": "robot_1"
             },
             "_id": "2440a702-af1b-11f0-87cb-03cfe6591398"
@@ -294,16 +294,16 @@
             "project": "seams26-guiding_example",
             "rationale": "",
             "comments": "",
-            "fulltext": "if openDrawer_r1 the robot_1 shall always satisfy (atNurse_r1 | atLab_r1) | transferSample_r12",
+            "fulltext": "whenever openDrawer_r1 the robot_1 shall immediately satisfy (atNurse_r1 | atLab_r1) | transferSample_r12",
             "status": "completed",
             "semantics": {
                 "type": "nasa",
                 "scope": {
                     "type": "null"
                 },
-                "condition": "regular",
+                "condition": "holding",
                 "probability": "null",
-                "timing": "always",
+                "timing": "immediately",
                 "response": "satisfaction",
                 "variables": [
                     "openDrawer_r1",
@@ -311,30 +311,30 @@
                     "atLab_r1",
                     "transferSample_r12"
                 ],
-                "qualifier_word": "if",
+                "qualifier_word": "whenever",
                 "pre_condition": "(openDrawer_r1)",
                 "regular_condition": "(openDrawer_r1)",
                 "conditionTextRange": [
                     0,
-                    15
+                    21
                 ],
                 "component_name": "robot_1",
                 "componentTextRange": [
-                    17,
-                    27
+                    23,
+                    33
                 ],
                 "timingTextRange": [
-                    35,
-                    40
+                    41,
+                    51
                 ],
                 "post_condition": "(( atNurse_r1 | atLab_r1 ) | transferSample_r12)",
                 "responseTextRange": [
-                    42,
-                    93
+                    53,
+                    104
                 ],
-                "diagramVariables": "TC = <b><i>(openDrawer_r1)</i></b>, Response = <b><i>(( atNurse_r1 | atLab_r1 ) | transferSample_r12)</i></b>.",
-                "description": "ENFORCED: in the interval defined by the entire execution.\nTRIGGER: first point in the interval if <b><i>(openDrawer_r1)</i></b> is true and any point in the interval where <b><i>(openDrawer_r1)</i></b> becomes true (from false).\nREQUIRES: for every trigger, RES must hold at all time points between (and including) the trigger and the end of the interval.",
-                "diagram": "_media/user-interface/examples/svgDiagrams/null_regular_always_satisfaction.svg",
+                "diagramVariables": "CC = <b><i>(openDrawer_r1)</i></b>, Response = <b><i>(( atNurse_r1 | atLab_r1 ) | transferSample_r12)</i></b>.",
+                "description": "ENFORCED: in the interval defined by the entire execution.\nTRIGGER: every point in the interval where <b><i>(openDrawer_r1)</i></b> is true.\nREQUIRES: for every trigger, if trigger holds then RES also holds at the same time point.",
+                "diagram": "_media/user-interface/examples/svgDiagrams/null_holding_immediately_satisfaction.svg",
                 "scope_mode_pt": "BAD_PT",
                 "scope_mode_ft": "BAD_FT",
                 "regular_condition_unexp_pt": "openDrawer_r1",
@@ -349,14 +349,14 @@
                 "post_condition_SMV_pt": "((atNurse_r1 | atLab_r1) | transferSample_r12)",
                 "post_condition_SMV_ft": "((atNurse_r1 | atLab_r1) | transferSample_r12)",
                 "post_condition_PRISM_pctl": "((atNurse_r1 | atLab_r1) | transferSample_r12)",
-                "ft": "((LAST V (((! openDrawer_r1) & ((! LAST) & (X openDrawer_r1))) -> (X (LAST V ((atNurse_r1 | atLab_r1) | transferSample_r12))))) & (openDrawer_r1 -> (LAST V ((atNurse_r1 | atLab_r1) | transferSample_r12))))",
-                "pt": "(H ((H (! openDrawer_r1)) | ((atNurse_r1 | atLab_r1) | transferSample_r12)))",
-                "pctl": "P>=1[((G (((! openDrawer_r1) & (X openDrawer_r1)) => (X (P>=1[(G ((atNurse_r1 | atLab_r1) | transferSample_r12))])))) & (openDrawer_r1 => (P>=1[(G ((atNurse_r1 | atLab_r1) | transferSample_r12))])))]",
-                "ptExpanded": "(H ((H (! openDrawer_r1)) | ((atNurse_r1 | atLab_r1) | transferSample_r12)))",
-                "CoCoSpecCode": "H((H(not (openDrawer_r1)) or ((atNurse_r1 or atLab_r1) or transferSample_r12)))",
-                "ftExpanded": "((LAST V (((! openDrawer_r1) & ((! LAST) & (X openDrawer_r1))) -> (X (LAST V ((atNurse_r1 | atLab_r1) | transferSample_r12))))) & (openDrawer_r1 -> (LAST V ((atNurse_r1 | atLab_r1) | transferSample_r12))))",
-                "pctlExpanded": "P>=1[((G (((! openDrawer_r1) & (X openDrawer_r1)) => (X (P>=1[(G ((atNurse_r1 | atLab_r1) | transferSample_r12))])))) & (openDrawer_r1 => (P>=1[(G ((atNurse_r1 | atLab_r1) | transferSample_r12))])))]",
-                "ftInfAUExpanded": "((G (((! openDrawer_r1) & (X openDrawer_r1)) -> (X (G ((atNurse_r1 | atLab_r1) | transferSample_r12))))) & (openDrawer_r1 -> (G ((atNurse_r1 | atLab_r1) | transferSample_r12))))",
+                "ft": "(LAST V (openDrawer_r1 -> ((atNurse_r1 | atLab_r1) | transferSample_r12)))",
+                "pt": "(H (openDrawer_r1 -> ((atNurse_r1 | atLab_r1) | transferSample_r12)))",
+                "pctl": "P>=1[(G (openDrawer_r1 => (P>=1[((atNurse_r1 | atLab_r1) | transferSample_r12)])))]",
+                "ptExpanded": "(H (openDrawer_r1 -> ((atNurse_r1 | atLab_r1) | transferSample_r12)))",
+                "CoCoSpecCode": "H((openDrawer_r1 => ((atNurse_r1 or atLab_r1) or transferSample_r12)))",
+                "ftExpanded": "(LAST V (openDrawer_r1 -> ((atNurse_r1 | atLab_r1) | transferSample_r12)))",
+                "pctlExpanded": "P>=1[(G (openDrawer_r1 => (P>=1[((atNurse_r1 | atLab_r1) | transferSample_r12)])))]",
+                "ftInfAUExpanded": "(G (openDrawer_r1 -> ((atNurse_r1 | atLab_r1) | transferSample_r12)))",
                 "component": "robot_1"
             },
             "_id": "2440a708-af1b-11f0-87cb-03cfe6591398"
@@ -367,14 +367,14 @@
             "project": "seams26-guiding_example",
             "rationale": "",
             "comments": "",
-            "fulltext": "when hasSample_r2 the robot_2 shall until atLab_r2 satisfy if gotoLab_r2 then transferSample_r12",
+            "fulltext": "whenever hasSample_r2 the robot_2 shall until atLab_r2 satisfy if gotoLab_r2 then transferSample_r12",
             "status": "completed",
             "semantics": {
                 "type": "nasa",
                 "scope": {
                     "type": "null"
                 },
-                "condition": "regular",
+                "condition": "holding",
                 "probability": "null",
                 "timing": "until",
                 "response": "satisfaction",
@@ -384,31 +384,31 @@
                     "gotoLab_r2",
                     "transferSample_r12"
                 ],
-                "qualifier_word": "when",
+                "qualifier_word": "whenever",
                 "pre_condition": "(hasSample_r2)",
                 "regular_condition": "(hasSample_r2)",
                 "conditionTextRange": [
                     0,
-                    16
+                    20
                 ],
                 "component_name": "robot_2",
                 "componentTextRange": [
-                    18,
-                    28
+                    22,
+                    32
                 ],
                 "stop_condition": "(atLab_r2)",
                 "timingTextRange": [
-                    36,
-                    49
+                    40,
+                    53
                 ],
                 "post_condition": "(gotoLab_r2 => transferSample_r12)",
                 "responseTextRange": [
-                    51,
-                    95
+                    55,
+                    99
                 ],
-                "diagramVariables": "TC = <b><i>(hasSample_r2)</i></b>, SC = <b><i>(atLab_r2)</i></b>, Response = <b><i>(gotoLab_r2 => transferSample_r12)</i></b>.",
-                "description": "ENFORCED: in the interval defined by the entire execution.\nTRIGGER: first point in the interval if <b><i>(hasSample_r2)</i></b> is true and any point in the interval where <b><i>(hasSample_r2)</i></b> becomes true (from false).\nREQUIRES: for every trigger, RES must remain true until (but not necessarily including) the point where the stop condition holds, or to the end of the interval. If the stop condition never occurs, RES must hold until the end of the scope, or forever.  If the stop condition holds at the trigger, the requirement is satisfied.",
-                "diagram": "_media/user-interface/examples/svgDiagrams/null_regular_until_satisfaction.svg",
+                "diagramVariables": "CC = <b><i>(hasSample_r2)</i></b>, SC = <b><i>(atLab_r2)</i></b>, Response = <b><i>(gotoLab_r2 => transferSample_r12)</i></b>.",
+                "description": "ENFORCED: in the interval defined by the entire execution.\nTRIGGER: every point in the interval where <b><i>(hasSample_r2)</i></b> is true.\nREQUIRES: for every trigger, RES must remain true until (but not necessarily including) the point where the stop condition holds, or to the end of the interval. If the stop condition never occurs, RES must hold until the end of the scope, or forever.  If the stop condition holds at the trigger, the requirement is satisfied.",
+                "diagram": "_media/user-interface/examples/svgDiagrams/null_holding_until_satisfaction.svg",
                 "scope_mode_pt": "BAD_PT",
                 "scope_mode_ft": "BAD_FT",
                 "regular_condition_unexp_pt": "hasSample_r2",
@@ -428,14 +428,14 @@
                 "stop_condition_PRISM_pctl": "atLab_r2",
                 "stop_condition_SMV_pt": "atLab_r2",
                 "stop_condition_SMV_ft": "atLab_r2",
-                "ft": "((LAST V (((! hasSample_r2) & ((! LAST) & (X hasSample_r2))) -> (X ((atLab_r2 V ((gotoLab_r2 -> transferSample_r12) | atLab_r2)) | (LAST V (gotoLab_r2 -> transferSample_r12)))))) & (hasSample_r2 -> ((atLab_r2 V ((gotoLab_r2 -> transferSample_r12) | atLab_r2)) | (LAST V (gotoLab_r2 -> transferSample_r12)))))",
-                "pt": "(H ((H (! hasSample_r2)) | (((! atLab_r2) S ((! atLab_r2) & (hasSample_r2 & (Z (! hasSample_r2))))) -> (gotoLab_r2 -> transferSample_r12))))",
-                "pctl": "P>=1[((G (((! hasSample_r2) & (X hasSample_r2)) => (X (P>=1[((undefined R ((gotoLab_r2 -> transferSample_r12) | undefined)) | (LAST R (gotoLab_r2 -> transferSample_r12)))])))) & (hasSample_r2 => (P>=1[((undefined R ((gotoLab_r2 -> transferSample_r12) | undefined)) | (LAST R (gotoLab_r2 -> transferSample_r12)))])))]",
-                "ptExpanded": "(H ((H (! hasSample_r2)) | (((! atLab_r2) S ((! atLab_r2) & (hasSample_r2 & (Z (! hasSample_r2))))) -> (gotoLab_r2 -> transferSample_r12))))",
-                "CoCoSpecCode": "H((H(not (hasSample_r2)) or (SI((hasSample_r2 and ZtoPre(not (hasSample_r2))),not (atLab_r2)) => (gotoLab_r2 => transferSample_r12))))",
-                "ftExpanded": "((LAST V (((! hasSample_r2) & ((! LAST) & (X hasSample_r2))) -> (X ((atLab_r2 V ((gotoLab_r2 -> transferSample_r12) | atLab_r2)) | (LAST V (gotoLab_r2 -> transferSample_r12)))))) & (hasSample_r2 -> ((atLab_r2 V ((gotoLab_r2 -> transferSample_r12) | atLab_r2)) | (LAST V (gotoLab_r2 -> transferSample_r12)))))",
-                "pctlExpanded": "P>=1[((G (((! hasSample_r2) & (X hasSample_r2)) => (X (P>=1[((atLab_r2 R ((gotoLab_r2 -> transferSample_r12) | atLab_r2)) | (false R (gotoLab_r2 -> transferSample_r12)))])))) & (hasSample_r2 => (P>=1[((atLab_r2 R ((gotoLab_r2 -> transferSample_r12) | atLab_r2)) | (false R (gotoLab_r2 -> transferSample_r12)))])))]",
-                "ftInfAUExpanded": "((G (((! hasSample_r2) & (X hasSample_r2)) -> (X (atLab_r2 V ((gotoLab_r2 -> transferSample_r12) | atLab_r2))))) & (hasSample_r2 -> (atLab_r2 V ((gotoLab_r2 -> transferSample_r12) | atLab_r2))))",
+                "ft": "(LAST V (hasSample_r2 -> ((atLab_r2 V ((gotoLab_r2 -> transferSample_r12) | atLab_r2)) | (LAST V (gotoLab_r2 -> transferSample_r12)))))",
+                "pt": "(H ((H (! hasSample_r2)) | (((! atLab_r2) S ((! atLab_r2) & hasSample_r2)) -> (gotoLab_r2 -> transferSample_r12))))",
+                "pctl": "P>=1[(G (hasSample_r2 => (P>=1[((undefined R ((gotoLab_r2 -> transferSample_r12) | undefined)) | (LAST R (gotoLab_r2 -> transferSample_r12)))])))]",
+                "ptExpanded": "(H ((H (! hasSample_r2)) | (((! atLab_r2) S ((! atLab_r2) & hasSample_r2)) -> (gotoLab_r2 -> transferSample_r12))))",
+                "CoCoSpecCode": "H((H(not (hasSample_r2)) or (SI(hasSample_r2,not (atLab_r2)) => (gotoLab_r2 => transferSample_r12))))",
+                "ftExpanded": "(LAST V (hasSample_r2 -> ((atLab_r2 V ((gotoLab_r2 -> transferSample_r12) | atLab_r2)) | (LAST V (gotoLab_r2 -> transferSample_r12)))))",
+                "pctlExpanded": "P>=1[(G (hasSample_r2 => (P>=1[((atLab_r2 R ((gotoLab_r2 -> transferSample_r12) | atLab_r2)) | (false R (gotoLab_r2 -> transferSample_r12)))])))]",
+                "ftInfAUExpanded": "(G (hasSample_r2 -> (atLab_r2 V ((gotoLab_r2 -> transferSample_r12) | atLab_r2))))",
                 "component": "robot_2"
             },
             "_id": "2440a709-af1b-11f0-87cb-03cfe6591398"

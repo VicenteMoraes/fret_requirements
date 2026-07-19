@@ -6,7 +6,7 @@
             "project": "seams26_rover_example",
             "rationale": "",
             "comments": "",
-            "fulltext": "in Quiescing rover shall immediately satisfy safeDistanceFromObstacle",
+            "fulltext": "in Quiescing rover shall immediately satisfy safeDistanceFromObstacle & calculateNewRoute",
             "status": "",
             "semantics": {
                 "type": "nasa",
@@ -19,7 +19,8 @@
                 "response": "satisfaction",
                 "variables": [
                     "Quiescing",
-                    "safeDistanceFromObstacle"
+                    "safeDistanceFromObstacle",
+                    "calculateNewRoute"
                 ],
                 "scope_mode": "Quiescing",
                 "scopeTextRange": [
@@ -35,31 +36,31 @@
                     25,
                     35
                 ],
-                "post_condition": "(safeDistanceFromObstacle)",
+                "post_condition": "(safeDistanceFromObstacle & calculateNewRoute)",
                 "responseTextRange": [
                     37,
-                    68
+                    88
                 ],
-                "diagramVariables": "M = <b><i>Quiescing</i></b>, Response = <b><i>(safeDistanceFromObstacle)</i></b>.",
+                "diagramVariables": "M = <b><i>Quiescing</i></b>, Response = <b><i>(safeDistanceFromObstacle & calculateNewRoute)</i></b>.",
                 "description": "ENFORCED: in every interval where <b><i>Quiescing</i></b> holds.\nTRIGGER: first point in the interval.\nREQUIRES: for every trigger, if trigger holds then RES also holds at the same time point.",
                 "diagram": "_media/user-interface/examples/svgDiagrams/in_null_immediately_satisfaction.svg",
                 "scope_mode_pt": "Quiescing",
                 "scope_mode_ft": "Quiescing",
                 "scope_mode_pctl": "Quiescing",
-                "post_condition_unexp_pt": "safeDistanceFromObstacle",
-                "post_condition_unexp_ft": "safeDistanceFromObstacle",
-                "post_condition_unexp_pctl": "safeDistanceFromObstacle",
-                "post_condition_SMV_pt": "safeDistanceFromObstacle",
-                "post_condition_SMV_ft": "safeDistanceFromObstacle",
-                "post_condition_PRISM_pctl": "safeDistanceFromObstacle",
-                "ft": "((LAST V ((! (Fin_Quiescing & (! LAST))) | (X safeDistanceFromObstacle))) & (Quiescing -> safeDistanceFromObstacle))",
-                "pt": "(H (Fin_Quiescing -> safeDistanceFromObstacle))",
-                "pctl": "P>=1[((G ((! (Fin_Quiescing & (! LAST))) | (X (P>=1[safeDistanceFromObstacle])))) & (Quiescing => (Lin_Quiescing | (P>=1[safeDistanceFromObstacle]))))]",
-                "ptExpanded": "(H ((Quiescing & (Z (! Quiescing))) -> safeDistanceFromObstacle))",
-                "CoCoSpecCode": "H(((Quiescing and ZtoPre(not (Quiescing))) => safeDistanceFromObstacle))",
-                "ftExpanded": "((LAST V ((! ((((! Quiescing) & (! LAST)) & (X Quiescing)) & (! LAST))) | (X safeDistanceFromObstacle))) & (Quiescing -> safeDistanceFromObstacle))",
-                "pctlExpanded": "P>=1[((G ((! (((! Quiescing) & (X Quiescing)) & (! false))) | (X (P>=1[safeDistanceFromObstacle])))) & (Quiescing => ((Quiescing & (X (! Quiescing))) | (P>=1[safeDistanceFromObstacle]))))]",
-                "ftInfAUExpanded": "((G ((! ((! Quiescing) & (X Quiescing))) | (X safeDistanceFromObstacle))) & (Quiescing -> safeDistanceFromObstacle))",
+                "post_condition_unexp_pt": "(safeDistanceFromObstacle & calculateNewRoute)",
+                "post_condition_unexp_ft": "(safeDistanceFromObstacle & calculateNewRoute)",
+                "post_condition_unexp_pctl": "(safeDistanceFromObstacle & calculateNewRoute)",
+                "post_condition_SMV_pt": "(safeDistanceFromObstacle & calculateNewRoute)",
+                "post_condition_SMV_ft": "(safeDistanceFromObstacle & calculateNewRoute)",
+                "post_condition_PRISM_pctl": "(safeDistanceFromObstacle & calculateNewRoute)",
+                "ft": "((LAST V ((! (Fin_Quiescing & (! LAST))) | (X (safeDistanceFromObstacle & calculateNewRoute)))) & (Quiescing -> (safeDistanceFromObstacle & calculateNewRoute)))",
+                "pt": "(H (Fin_Quiescing -> (safeDistanceFromObstacle & calculateNewRoute)))",
+                "pctl": "P>=1[((G ((! (Fin_Quiescing & (! LAST))) | (X (P>=1[(safeDistanceFromObstacle & calculateNewRoute)])))) & (Quiescing => (Lin_Quiescing | (P>=1[(safeDistanceFromObstacle & calculateNewRoute)]))))]",
+                "ptExpanded": "(H ((Quiescing & (Z (! Quiescing))) -> (safeDistanceFromObstacle & calculateNewRoute)))",
+                "CoCoSpecCode": "H(((Quiescing and ZtoPre(not (Quiescing))) => (safeDistanceFromObstacle and calculateNewRoute)))",
+                "ftExpanded": "((LAST V ((! ((((! Quiescing) & (! LAST)) & (X Quiescing)) & (! LAST))) | (X (safeDistanceFromObstacle & calculateNewRoute)))) & (Quiescing -> (safeDistanceFromObstacle & calculateNewRoute)))",
+                "pctlExpanded": "P>=1[((G ((! (((! Quiescing) & (X Quiescing)) & (! false))) | (X (P>=1[(safeDistanceFromObstacle & calculateNewRoute)])))) & (Quiescing => ((Quiescing & (X (! Quiescing))) | (P>=1[(safeDistanceFromObstacle & calculateNewRoute)]))))]",
+                "ftInfAUExpanded": "((G ((! ((! Quiescing) & (X Quiescing))) | (X (safeDistanceFromObstacle & calculateNewRoute)))) & (Quiescing -> (safeDistanceFromObstacle & calculateNewRoute)))",
                 "component": "rover"
             },
             "_id": "0565ce00-7ebe-11f1-8473-b950cbeebb23"
@@ -268,7 +269,7 @@
             "project": "seams26_rover_example",
             "rationale": "Relaxes the time to complete the heatpoints if an obstacle is detected",
             "comments": "",
-            "fulltext": "in Quiescing rover shall within 5 ticks satisfy calculateNewRoute & visitHeatpoint",
+            "fulltext": "in Quiescing rover shall before calculateNewRoute satisfy identifyHeatpoint",
             "status": "",
             "semantics": {
                 "type": "nasa",
@@ -277,12 +278,12 @@
                 },
                 "condition": "null",
                 "probability": "null",
-                "timing": "within",
+                "timing": "before",
                 "response": "satisfaction",
                 "variables": [
                     "Quiescing",
                     "calculateNewRoute",
-                    "visitHeatpoint"
+                    "identifyHeatpoint"
                 ],
                 "scope_mode": "Quiescing",
                 "scopeTextRange": [
@@ -294,36 +295,41 @@
                     13,
                     17
                 ],
-                "duration": "5",
+                "stop_condition": "(calculateNewRoute)",
                 "timingTextRange": [
                     25,
-                    38
+                    48
                 ],
-                "post_condition": "(calculateNewRoute & visitHeatpoint)",
+                "post_condition": "(identifyHeatpoint)",
                 "responseTextRange": [
-                    40,
-                    81
+                    50,
+                    74
                 ],
-                "diagramVariables": "M = <b><i>Quiescing</i></b>,  n = <b><i>5</i></b>, Response = <b><i>(calculateNewRoute & visitHeatpoint)</i></b>.",
-                "description": "ENFORCED: in every interval where <b><i>Quiescing</i></b> holds.\nTRIGGER: first point in the interval.\nREQUIRES: for every trigger, RES must hold at some point with distance <= <b><i>5</i></b> from the trigger (i.e., at trigger, trigger+1, ..., or trigger+<b><i>5</i></b>). If the interval ends sooner than trigger+<b><i>5</i></b>, then RES need not hold.",
-                "diagram": "_media/user-interface/examples/svgDiagrams/in_null_within_satisfaction.svg",
+                "diagramVariables": "M = <b><i>Quiescing</i></b>, SC = <b><i>(calculateNewRoute)</i></b>, Response = <b><i>(identifyHeatpoint)</i></b>.",
+                "description": "ENFORCED: in every interval where <b><i>Quiescing</i></b> holds.\nTRIGGER: first point in the interval.\nREQUIRES: for every trigger, RES must hold at least once strictly before the state where the stop condition holds. If the stop condition never occurs in the interval, RES does not need to hold. If the stop condition holds at the trigger, the requirement is not satisfied.",
+                "diagram": "_media/user-interface/examples/svgDiagrams/in_null_before_satisfaction.svg",
                 "scope_mode_pt": "Quiescing",
                 "scope_mode_ft": "Quiescing",
                 "scope_mode_pctl": "Quiescing",
-                "post_condition_unexp_pt": "(calculateNewRoute & visitHeatpoint)",
-                "post_condition_unexp_ft": "(calculateNewRoute & visitHeatpoint)",
-                "post_condition_unexp_pctl": "(calculateNewRoute & visitHeatpoint)",
-                "post_condition_SMV_pt": "(calculateNewRoute & visitHeatpoint)",
-                "post_condition_SMV_ft": "(calculateNewRoute & visitHeatpoint)",
-                "post_condition_PRISM_pctl": "(calculateNewRoute & visitHeatpoint)",
-                "ft": "((LAST V ((! (Fin_Quiescing & (! LAST))) | (X ((F[<=5] (calculateNewRoute & visitHeatpoint)) | (F[<5] (Lin_Quiescing | LAST)))))) & (Quiescing -> ((F[<=5] (calculateNewRoute & visitHeatpoint)) | (F[<5] (Lin_Quiescing | LAST)))))",
-                "pt": "((H (Lin_Quiescing -> (Y ((((! (calculateNewRoute & visitHeatpoint)) S ((! (calculateNewRoute & visitHeatpoint)) & Fin_Quiescing)) -> (O[<5] Fin_Quiescing)) S ((((! (calculateNewRoute & visitHeatpoint)) S ((! (calculateNewRoute & visitHeatpoint)) & Fin_Quiescing)) -> (O[<5] Fin_Quiescing)) & Fin_Quiescing))))) & (((! Lin_Quiescing) S ((! Lin_Quiescing) & Fin_Quiescing)) -> ((((! (calculateNewRoute & visitHeatpoint)) S ((! (calculateNewRoute & visitHeatpoint)) & Fin_Quiescing)) -> (O[<5] Fin_Quiescing)) S ((((! (calculateNewRoute & visitHeatpoint)) S ((! (calculateNewRoute & visitHeatpoint)) & Fin_Quiescing)) -> (O[<5] Fin_Quiescing)) & Fin_Quiescing))))",
-                "pctl": "P>=1[((G ((! (Fin_Quiescing & (! LAST))) | (X (P>=1[(F<=5 (calculateNewRoute & visitHeatpoint))])))) & (Quiescing => (Lin_Quiescing | (P>=1[(F[<=5] (calculateNewRoute & visitHeatpoint))]))))]",
-                "ptExpanded": "((H (((! Quiescing) & (Y Quiescing)) -> (Y ((((! (calculateNewRoute & visitHeatpoint)) S ((! (calculateNewRoute & visitHeatpoint)) & (Quiescing & (Z (! Quiescing))))) -> (O[0,4] (Quiescing & (Z (! Quiescing))))) S ((((! (calculateNewRoute & visitHeatpoint)) S ((! (calculateNewRoute & visitHeatpoint)) & (Quiescing & (Z (! Quiescing))))) -> (O[0,4] (Quiescing & (Z (! Quiescing))))) & (Quiescing & (Z (! Quiescing)))))))) & (((! ((! Quiescing) & (Y Quiescing))) S ((! ((! Quiescing) & (Y Quiescing))) & (Quiescing & (Z (! Quiescing))))) -> ((((! (calculateNewRoute & visitHeatpoint)) S ((! (calculateNewRoute & visitHeatpoint)) & (Quiescing & (Z (! Quiescing))))) -> (O[0,4] (Quiescing & (Z (! Quiescing))))) S ((((! (calculateNewRoute & visitHeatpoint)) S ((! (calculateNewRoute & visitHeatpoint)) & (Quiescing & (Z (! Quiescing))))) -> (O[0,4] (Quiescing & (Z (! Quiescing))))) & (Quiescing & (Z (! Quiescing)))))))",
-                "CoCoSpecCode": "(H(((not (Quiescing) and YtoPre(Quiescing)) => YtoPre(SI((Quiescing and ZtoPre(not (Quiescing))),(SI((Quiescing and ZtoPre(not (Quiescing))),not ((calculateNewRoute and visitHeatpoint))) => OT(4, 0, (Quiescing and ZtoPre(not (Quiescing))))))))) and (SI((Quiescing and ZtoPre(not (Quiescing))),not ((not (Quiescing) and YtoPre(Quiescing)))) => SI((Quiescing and ZtoPre(not (Quiescing))),(SI((Quiescing and ZtoPre(not (Quiescing))),not ((calculateNewRoute and visitHeatpoint))) => OT(4, 0, (Quiescing and ZtoPre(not (Quiescing))))))))",
-                "ftExpanded": "((LAST V ((! ((((! Quiescing) & (! LAST)) & (X Quiescing)) & (! LAST))) | (X ((F[0,5] (calculateNewRoute & visitHeatpoint)) | (F[0,4] (((Quiescing & (! LAST)) & (X (! Quiescing))) | LAST)))))) & (Quiescing -> ((F[0,5] (calculateNewRoute & visitHeatpoint)) | (F[0,4] (((Quiescing & (! LAST)) & (X (! Quiescing))) | LAST)))))",
-                "pctlExpanded": "P>=1[((G ((! (((! Quiescing) & (X Quiescing)) & (! false))) | (X (P>=1[(F<=5 (calculateNewRoute & visitHeatpoint))])))) & (Quiescing => ((Quiescing & (X (! Quiescing))) | (P>=1[(F[<=5] (calculateNewRoute & visitHeatpoint))]))))]",
-                "ftInfAUExpanded": "((G ((! ((! Quiescing) & (X Quiescing))) | (X ((F[0,5] (calculateNewRoute & visitHeatpoint)) | (F[0,4] (Quiescing & (X (! Quiescing)))))))) & (Quiescing -> ((F[0,5] (calculateNewRoute & visitHeatpoint)) | (F[0,4] (Quiescing & (X (! Quiescing)))))))",
+                "post_condition_unexp_pt": "identifyHeatpoint",
+                "post_condition_unexp_ft": "identifyHeatpoint",
+                "post_condition_unexp_pctl": "identifyHeatpoint",
+                "post_condition_SMV_pt": "identifyHeatpoint",
+                "post_condition_SMV_ft": "identifyHeatpoint",
+                "post_condition_PRISM_pctl": "identifyHeatpoint",
+                "stop_condition_unexp_pt": "calculateNewRoute",
+                "stop_condition_unexp_ft": "calculateNewRoute",
+                "stop_condition_PRISM_pctl": "calculateNewRoute",
+                "stop_condition_SMV_pt": "calculateNewRoute",
+                "stop_condition_SMV_ft": "calculateNewRoute",
+                "ft": "((LAST V ((! (Fin_Quiescing & (! LAST))) | (X (! (((! ((! calculateNewRoute) & (identifyHeatpoint | (Lin_Quiescing | LAST)))) & (! (Lin_Quiescing | LAST))) U calculateNewRoute))))) & (Quiescing -> (! (((! ((! calculateNewRoute) & (identifyHeatpoint | (Lin_Quiescing | LAST)))) & (! (Lin_Quiescing | LAST))) U calculateNewRoute))))",
+                "pt": "((H (Lin_Quiescing -> (Y ((calculateNewRoute -> ((! Fin_Quiescing) & (Y (! ((! identifyHeatpoint) S ((! identifyHeatpoint) & Fin_Quiescing)))))) S ((calculateNewRoute -> ((! Fin_Quiescing) & (Y (! ((! identifyHeatpoint) S ((! identifyHeatpoint) & Fin_Quiescing)))))) & Fin_Quiescing))))) & (((! Lin_Quiescing) S ((! Lin_Quiescing) & Fin_Quiescing)) -> ((calculateNewRoute -> ((! Fin_Quiescing) & (Y (! ((! identifyHeatpoint) S ((! identifyHeatpoint) & Fin_Quiescing)))))) S ((calculateNewRoute -> ((! Fin_Quiescing) & (Y (! ((! identifyHeatpoint) S ((! identifyHeatpoint) & Fin_Quiescing)))))) & Fin_Quiescing))))",
+                "pctl": "P>=1[((G ((! (Fin_Quiescing & (! LAST))) | (X (P>=1[(! (((! ((! undefined) & (identifyHeatpoint | Lin_Quiescing))) & (! Lin_Quiescing)) U undefined))])))) & (Quiescing => (Lin_Quiescing | (P>=1[(! (((! ((! undefined) & (identifyHeatpoint | Lin_Quiescing))) & (! Lin_Quiescing)) U undefined))]))))]",
+                "ptExpanded": "((H (((! Quiescing) & (Y Quiescing)) -> (Y ((calculateNewRoute -> ((! (Quiescing & (Z (! Quiescing)))) & (Y (! ((! identifyHeatpoint) S ((! identifyHeatpoint) & (Quiescing & (Z (! Quiescing))))))))) S ((calculateNewRoute -> ((! (Quiescing & (Z (! Quiescing)))) & (Y (! ((! identifyHeatpoint) S ((! identifyHeatpoint) & (Quiescing & (Z (! Quiescing))))))))) & (Quiescing & (Z (! Quiescing)))))))) & (((! ((! Quiescing) & (Y Quiescing))) S ((! ((! Quiescing) & (Y Quiescing))) & (Quiescing & (Z (! Quiescing))))) -> ((calculateNewRoute -> ((! (Quiescing & (Z (! Quiescing)))) & (Y (! ((! identifyHeatpoint) S ((! identifyHeatpoint) & (Quiescing & (Z (! Quiescing))))))))) S ((calculateNewRoute -> ((! (Quiescing & (Z (! Quiescing)))) & (Y (! ((! identifyHeatpoint) S ((! identifyHeatpoint) & (Quiescing & (Z (! Quiescing))))))))) & (Quiescing & (Z (! Quiescing)))))))",
+                "CoCoSpecCode": "(H(((not (Quiescing) and YtoPre(Quiescing)) => YtoPre(SI((Quiescing and ZtoPre(not (Quiescing))),(calculateNewRoute => (not ((Quiescing and ZtoPre(not (Quiescing)))) and YtoPre(not (SI((Quiescing and ZtoPre(not (Quiescing))),not (identifyHeatpoint)))))))))) and (SI((Quiescing and ZtoPre(not (Quiescing))),not ((not (Quiescing) and YtoPre(Quiescing)))) => SI((Quiescing and ZtoPre(not (Quiescing))),(calculateNewRoute => (not ((Quiescing and ZtoPre(not (Quiescing)))) and YtoPre(not (SI((Quiescing and ZtoPre(not (Quiescing))),not (identifyHeatpoint)))))))))",
+                "ftExpanded": "((LAST V ((! ((((! Quiescing) & (! LAST)) & (X Quiescing)) & (! LAST))) | (X (! (((! ((! calculateNewRoute) & (identifyHeatpoint | (((Quiescing & (! LAST)) & (X (! Quiescing))) | LAST)))) & (! (((Quiescing & (! LAST)) & (X (! Quiescing))) | LAST))) U calculateNewRoute))))) & (Quiescing -> (! (((! ((! calculateNewRoute) & (identifyHeatpoint | (((Quiescing & (! LAST)) & (X (! Quiescing))) | LAST)))) & (! (((Quiescing & (! LAST)) & (X (! Quiescing))) | LAST))) U calculateNewRoute))))",
+                "pctlExpanded": "P>=1[((G ((! (((! Quiescing) & (X Quiescing)) & (! false))) | (X (P>=1[(! (((! ((! calculateNewRoute) & (identifyHeatpoint | (Quiescing & (X (! Quiescing)))))) & (! (Quiescing & (X (! Quiescing))))) U calculateNewRoute))])))) & (Quiescing => ((Quiescing & (X (! Quiescing))) | (P>=1[(! (((! ((! calculateNewRoute) & (identifyHeatpoint | (Quiescing & (X (! Quiescing)))))) & (! (Quiescing & (X (! Quiescing))))) U calculateNewRoute))]))))]",
+                "ftInfAUExpanded": "((G ((! ((! Quiescing) & (X Quiescing))) | (X (! (((! ((! calculateNewRoute) & (identifyHeatpoint | (Quiescing & (X (! Quiescing)))))) & (! (Quiescing & (X (! Quiescing))))) U calculateNewRoute))))) & (Quiescing -> (! (((! ((! calculateNewRoute) & (identifyHeatpoint | (Quiescing & (X (! Quiescing)))))) & (! (Quiescing & (X (! Quiescing))))) U calculateNewRoute))))",
                 "component": "rover"
             },
             "_id": "7aea4c10-7ebd-11f1-8473-b950cbeebb23"
@@ -747,6 +753,7 @@
             "component_name": "rover",
             "variable_name": "calculateNewRoute",
             "reqs": [
+                "0565ce00-7ebe-11f1-8473-b950cbeebb23",
                 "0f781510-7ebe-11f1-8473-b950cbeebb23",
                 "7aea4c10-7ebd-11f1-8473-b950cbeebb23"
             ],
@@ -819,6 +826,26 @@
             "completed": true,
             "smvCompleted": true,
             "_id": "seams26_rover_exampleroverheatpointPathBlocked"
+        },
+        {
+            "project": "seams26_rover_example",
+            "component_name": "rover",
+            "variable_name": "identifyHeatpoint",
+            "reqs": [
+                "7aea4c10-7ebd-11f1-8473-b950cbeebb23"
+            ],
+            "dataType": "",
+            "idType": "",
+            "moduleName": "",
+            "description": "",
+            "assignment": "",
+            "copilotAssignment": "",
+            "modeRequirement": "",
+            "modeldoc": false,
+            "modelComponent": "",
+            "modeldoc_id": "",
+            "completed": false,
+            "_id": "seams26_rover_exampleroveridentifyHeatpoint"
         },
         {
             "project": "seams26_rover_example",
@@ -930,7 +957,6 @@
             "variable_name": "visitHeatpoint",
             "reqs": [
                 "0f781510-7ebe-11f1-8473-b950cbeebb23",
-                "7aea4c10-7ebd-11f1-8473-b950cbeebb23",
                 "a88b50e0-7e97-11f1-8473-b950cbeebb23",
                 "c8ef8d60-7e97-11f1-8473-b950cbeebb23",
                 "f4980140-7e97-11f1-8473-b950cbeebb23"
