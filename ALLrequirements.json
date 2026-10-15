@@ -1,0 +1,3038 @@
+{
+    "requirements": [
+        {
+            "reqid": "QRP",
+            "parent_reqid": "",
+            "project": "seams26_rover_example",
+            "rationale": "",
+            "comments": "",
+            "fulltext": "in Quiescing rover shall immediately satisfy safeDistanceFromObstacle & calculateNewRoute",
+            "status": "",
+            "semantics": {
+                "type": "nasa",
+                "scope": {
+                    "type": "in"
+                },
+                "condition": "null",
+                "probability": "null",
+                "timing": "immediately",
+                "response": "satisfaction",
+                "variables": [
+                    "Quiescing",
+                    "safeDistanceFromObstacle",
+                    "calculateNewRoute"
+                ],
+                "scope_mode": "Quiescing",
+                "scopeTextRange": [
+                    0,
+                    11
+                ],
+                "component_name": "rover",
+                "componentTextRange": [
+                    13,
+                    17
+                ],
+                "timingTextRange": [
+                    25,
+                    35
+                ],
+                "post_condition": "(safeDistanceFromObstacle & calculateNewRoute)",
+                "responseTextRange": [
+                    37,
+                    88
+                ],
+                "diagramVariables": "M = <b><i>Quiescing</i></b>, Response = <b><i>(safeDistanceFromObstacle & calculateNewRoute)</i></b>.",
+                "description": "ENFORCED: in every interval where <b><i>Quiescing</i></b> holds.\nTRIGGER: first point in the interval.\nREQUIRES: for every trigger, if trigger holds then RES also holds at the same time point.",
+                "diagram": "_media/user-interface/examples/svgDiagrams/in_null_immediately_satisfaction.svg",
+                "scope_mode_pt": "Quiescing",
+                "scope_mode_ft": "Quiescing",
+                "scope_mode_pctl": "Quiescing",
+                "post_condition_unexp_pt": "(safeDistanceFromObstacle & calculateNewRoute)",
+                "post_condition_unexp_ft": "(safeDistanceFromObstacle & calculateNewRoute)",
+                "post_condition_unexp_pctl": "(safeDistanceFromObstacle & calculateNewRoute)",
+                "post_condition_SMV_pt": "(safeDistanceFromObstacle & calculateNewRoute)",
+                "post_condition_SMV_ft": "(safeDistanceFromObstacle & calculateNewRoute)",
+                "post_condition_PRISM_pctl": "(safeDistanceFromObstacle & calculateNewRoute)",
+                "ft": "((LAST V ((! (Fin_Quiescing & (! LAST))) | (X (safeDistanceFromObstacle & calculateNewRoute)))) & (Quiescing -> (safeDistanceFromObstacle & calculateNewRoute)))",
+                "pt": "(H (Fin_Quiescing -> (safeDistanceFromObstacle & calculateNewRoute)))",
+                "pctl": "P>=1[((G ((! (Fin_Quiescing & (! LAST))) | (X (P>=1[(safeDistanceFromObstacle & calculateNewRoute)])))) & (Quiescing => (Lin_Quiescing | (P>=1[(safeDistanceFromObstacle & calculateNewRoute)]))))]",
+                "ptExpanded": "(H ((Quiescing & (Z (! Quiescing))) -> (safeDistanceFromObstacle & calculateNewRoute)))",
+                "CoCoSpecCode": "H(((Quiescing and ZtoPre(not (Quiescing))) => (safeDistanceFromObstacle and calculateNewRoute)))",
+                "ftExpanded": "((LAST V ((! ((((! Quiescing) & (! LAST)) & (X Quiescing)) & (! LAST))) | (X (safeDistanceFromObstacle & calculateNewRoute)))) & (Quiescing -> (safeDistanceFromObstacle & calculateNewRoute)))",
+                "pctlExpanded": "P>=1[((G ((! (((! Quiescing) & (X Quiescing)) & (! false))) | (X (P>=1[(safeDistanceFromObstacle & calculateNewRoute)])))) & (Quiescing => ((Quiescing & (X (! Quiescing))) | (P>=1[(safeDistanceFromObstacle & calculateNewRoute)]))))]",
+                "ftInfAUExpanded": "((G ((! ((! Quiescing) & (X Quiescing))) | (X (safeDistanceFromObstacle & calculateNewRoute)))) & (Quiescing -> (safeDistanceFromObstacle & calculateNewRoute)))",
+                "component": "rover"
+            },
+            "_id": "0565ce00-7ebe-11f1-8473-b950cbeebb23"
+        },
+        {
+            "reqid": "AR",
+            "parent_reqid": "",
+            "project": "seams26_rover_example",
+            "rationale": "",
+            "comments": "",
+            "fulltext": "whenever heatpointPathBlocked the rover shall within 10 ticks satisfy if heatPointAccessible then visitAllHeatpoints",
+            "status": "",
+            "semantics": {
+                "type": "nasa",
+                "scope": {
+                    "type": "null"
+                },
+                "condition": "holding",
+                "probability": "null",
+                "timing": "within",
+                "response": "satisfaction",
+                "variables": [
+                    "heatpointPathBlocked",
+                    "heatPointAccessible",
+                    "visitAllHeatpoints"
+                ],
+                "qualifier_word": "whenever",
+                "pre_condition": "(heatpointPathBlocked)",
+                "regular_condition": "(heatpointPathBlocked)",
+                "conditionTextRange": [
+                    0,
+                    28
+                ],
+                "component_name": "rover",
+                "componentTextRange": [
+                    30,
+                    38
+                ],
+                "duration": "10",
+                "timingTextRange": [
+                    46,
+                    60
+                ],
+                "post_condition": "(heatPointAccessible => visitAllHeatpoints)",
+                "responseTextRange": [
+                    62,
+                    115
+                ],
+                "diagramVariables": "CC = <b><i>(heatpointPathBlocked)</i></b>,  n = <b><i>10</i></b>, Response = <b><i>(heatPointAccessible => visitAllHeatpoints)</i></b>.",
+                "description": "ENFORCED: in the interval defined by the entire execution.\nTRIGGER: every point in the interval where <b><i>(heatpointPathBlocked)</i></b> is true.\nREQUIRES: for every trigger, RES must hold at some point with distance <= <b><i>10</i></b> from the trigger (i.e., at trigger, trigger+1, ..., or trigger+<b><i>10</i></b>). If the interval ends sooner than trigger+<b><i>10</i></b>, then RES need not hold.",
+                "diagram": "_media/user-interface/examples/svgDiagrams/null_holding_within_satisfaction.svg",
+                "scope_mode_pt": "BAD_PT",
+                "scope_mode_ft": "BAD_FT",
+                "regular_condition_unexp_pt": "heatpointPathBlocked",
+                "regular_condition_unexp_ft": "heatpointPathBlocked",
+                "regular_condition_unexp_pctl": "heatpointPathBlocked",
+                "regular_condition_SMV_pt": "heatpointPathBlocked",
+                "regular_condition_SMV_ft": "heatpointPathBlocked",
+                "regular_condition_PRISM_pctl": "heatpointPathBlocked",
+                "post_condition_unexp_pt": "(heatPointAccessible -> visitAllHeatpoints)",
+                "post_condition_unexp_ft": "(heatPointAccessible -> visitAllHeatpoints)",
+                "post_condition_unexp_pctl": "(heatPointAccessible -> visitAllHeatpoints)",
+                "post_condition_SMV_pt": "(heatPointAccessible -> visitAllHeatpoints)",
+                "post_condition_SMV_ft": "(heatPointAccessible -> visitAllHeatpoints)",
+                "post_condition_PRISM_pctl": "(heatPointAccessible -> visitAllHeatpoints)",
+                "ft": "(LAST V (heatpointPathBlocked -> ((F[<=10] (heatPointAccessible -> visitAllHeatpoints)) | (F[<10] LAST))))",
+                "pt": "(H ((O[=10] (heatpointPathBlocked & (! (heatPointAccessible -> visitAllHeatpoints)))) -> (O[<10] ((Z FALSE) | (heatPointAccessible -> visitAllHeatpoints)))))",
+                "pctl": "P>=1[(G (heatpointPathBlocked => (P>=1[(F<=10 (heatPointAccessible -> visitAllHeatpoints))])))]",
+                "ptExpanded": "(H ((O[10,10] (heatpointPathBlocked & (! (heatPointAccessible -> visitAllHeatpoints)))) -> (O[0,9] ((Z FALSE) | (heatPointAccessible -> visitAllHeatpoints)))))",
+                "CoCoSpecCode": "H((OT(10, 10, (heatpointPathBlocked and not ((heatPointAccessible => visitAllHeatpoints)))) => OT(9, 0, (ZtoPre(false) or (heatPointAccessible => visitAllHeatpoints)))))",
+                "ftExpanded": "(LAST V (heatpointPathBlocked -> ((F[0,10] (heatPointAccessible -> visitAllHeatpoints)) | (F[0,9] LAST))))",
+                "pctlExpanded": "P>=1[(G (heatpointPathBlocked => (P>=1[(F<=10 (heatPointAccessible -> visitAllHeatpoints))])))]",
+                "ftInfAUExpanded": "(G (heatpointPathBlocked -> (F[0,10] (heatPointAccessible -> visitAllHeatpoints))))",
+                "component": "rover"
+            },
+            "_id": "0b133450-7ebe-11f1-8473-b950cbeebb23"
+        },
+        {
+            "reqid": "RC",
+            "parent_reqid": "",
+            "project": "seams26_rover_example",
+            "rationale": "",
+            "comments": "",
+            "fulltext": "whenever calculateNewRoute & heatpointPathBlocked the rover shall satisfy visitHeatpoint",
+            "status": "",
+            "semantics": {
+                "type": "nasa",
+                "scope": {
+                    "type": "null"
+                },
+                "condition": "holding",
+                "probability": "null",
+                "timing": "null",
+                "response": "satisfaction",
+                "variables": [
+                    "calculateNewRoute",
+                    "heatpointPathBlocked",
+                    "visitHeatpoint"
+                ],
+                "qualifier_word": "whenever",
+                "pre_condition": "(calculateNewRoute & heatpointPathBlocked)",
+                "regular_condition": "(calculateNewRoute & heatpointPathBlocked)",
+                "conditionTextRange": [
+                    0,
+                    48
+                ],
+                "component_name": "rover",
+                "componentTextRange": [
+                    50,
+                    58
+                ],
+                "post_condition": "(visitHeatpoint)",
+                "responseTextRange": [
+                    66,
+                    87
+                ],
+                "diagramVariables": "CC = <b><i>(calculateNewRoute & heatpointPathBlocked)</i></b>, Response = <b><i>(visitHeatpoint)</i></b>.",
+                "description": "ENFORCED: in the interval defined by the entire execution.\nTRIGGER: every point in the interval where <b><i>(calculateNewRoute & heatpointPathBlocked)</i></b> is true.\nREQUIRES: for every trigger, RES must hold at some time point between (and including) the trigger and the end of the interval.",
+                "diagram": "_media/user-interface/examples/svgDiagrams/null_holding_null_satisfaction.svg",
+                "scope_mode_pt": "BAD_PT",
+                "scope_mode_ft": "BAD_FT",
+                "regular_condition_unexp_pt": "(calculateNewRoute & heatpointPathBlocked)",
+                "regular_condition_unexp_ft": "(calculateNewRoute & heatpointPathBlocked)",
+                "regular_condition_unexp_pctl": "(calculateNewRoute & heatpointPathBlocked)",
+                "regular_condition_SMV_pt": "(calculateNewRoute & heatpointPathBlocked)",
+                "regular_condition_SMV_ft": "(calculateNewRoute & heatpointPathBlocked)",
+                "regular_condition_PRISM_pctl": "(calculateNewRoute & heatpointPathBlocked)",
+                "post_condition_unexp_pt": "visitHeatpoint",
+                "post_condition_unexp_ft": "visitHeatpoint",
+                "post_condition_unexp_pctl": "visitHeatpoint",
+                "post_condition_SMV_pt": "visitHeatpoint",
+                "post_condition_SMV_ft": "visitHeatpoint",
+                "post_condition_PRISM_pctl": "visitHeatpoint",
+                "ft": "(LAST V ((calculateNewRoute & heatpointPathBlocked) -> ((! LAST) U visitHeatpoint)))",
+                "pt": "((H (! (calculateNewRoute & heatpointPathBlocked))) | (! ((! visitHeatpoint) S ((! visitHeatpoint) & (calculateNewRoute & heatpointPathBlocked)))))",
+                "pctl": "P>=1[(G ((calculateNewRoute & heatpointPathBlocked) => (P>=1[(F visitHeatpoint)])))]",
+                "ptExpanded": "((H (! (calculateNewRoute & heatpointPathBlocked))) | (! ((! visitHeatpoint) S ((! visitHeatpoint) & (calculateNewRoute & heatpointPathBlocked)))))",
+                "CoCoSpecCode": "(H(not ((calculateNewRoute and heatpointPathBlocked))) or not (SI((calculateNewRoute and heatpointPathBlocked),not (visitHeatpoint))))",
+                "ftExpanded": "(LAST V ((calculateNewRoute & heatpointPathBlocked) -> ((! LAST) U visitHeatpoint)))",
+                "pctlExpanded": "P>=1[(G ((calculateNewRoute & heatpointPathBlocked) => (P>=1[(F visitHeatpoint)])))]",
+                "ftInfAUExpanded": "(G ((calculateNewRoute & heatpointPathBlocked) -> (F visitHeatpoint)))",
+                "component": "rover"
+            },
+            "_id": "0f781510-7ebe-11f1-8473-b950cbeebb23"
+        },
+        {
+            "reqid": "QRP",
+            "parent_reqid": "",
+            "project": "seams26_wildfire_fighting",
+            "rationale": "",
+            "comments": "",
+            "fulltext": "in Quiescing whenever highFrequencyOfMessages ODIN shall immediately satisfy alertNetworkOverload & alertEmergency",
+            "status": "",
+            "semantics": {
+                "type": "nasa",
+                "scope": {
+                    "type": "in"
+                },
+                "condition": "holding",
+                "probability": "null",
+                "timing": "immediately",
+                "response": "satisfaction",
+                "variables": [
+                    "Quiescing",
+                    "highFrequencyOfMessages",
+                    "alertNetworkOverload",
+                    "alertEmergency"
+                ],
+                "scope_mode": "Quiescing",
+                "scopeTextRange": [
+                    0,
+                    11
+                ],
+                "qualifier_word": "whenever",
+                "pre_condition": "(highFrequencyOfMessages)",
+                "regular_condition": "(highFrequencyOfMessages)",
+                "conditionTextRange": [
+                    13,
+                    44
+                ],
+                "component_name": "ODIN",
+                "componentTextRange": [
+                    46,
+                    49
+                ],
+                "timingTextRange": [
+                    57,
+                    67
+                ],
+                "post_condition": "(alertNetworkOverload & alertEmergency)",
+                "responseTextRange": [
+                    69,
+                    113
+                ],
+                "diagramVariables": "M = <b><i>Quiescing</i></b>, CC = <b><i>(highFrequencyOfMessages)</i></b>, Response = <b><i>(alertNetworkOverload & alertEmergency)</i></b>.",
+                "description": "ENFORCED: in every interval where <b><i>Quiescing</i></b> holds.\nTRIGGER: every point in the interval where <b><i>(highFrequencyOfMessages)</i></b> is true.\nREQUIRES: for every trigger, if trigger holds then RES also holds at the same time point.",
+                "diagram": "_media/user-interface/examples/svgDiagrams/in_holding_immediately_satisfaction.svg",
+                "scope_mode_pt": "Quiescing",
+                "scope_mode_ft": "Quiescing",
+                "scope_mode_pctl": "Quiescing",
+                "regular_condition_unexp_pt": "highFrequencyOfMessages",
+                "regular_condition_unexp_ft": "highFrequencyOfMessages",
+                "regular_condition_unexp_pctl": "highFrequencyOfMessages",
+                "regular_condition_SMV_pt": "highFrequencyOfMessages",
+                "regular_condition_SMV_ft": "highFrequencyOfMessages",
+                "regular_condition_PRISM_pctl": "highFrequencyOfMessages",
+                "post_condition_unexp_pt": "(alertNetworkOverload & alertEmergency)",
+                "post_condition_unexp_ft": "(alertNetworkOverload & alertEmergency)",
+                "post_condition_unexp_pctl": "(alertNetworkOverload & alertEmergency)",
+                "post_condition_SMV_pt": "(alertNetworkOverload & alertEmergency)",
+                "post_condition_SMV_ft": "(alertNetworkOverload & alertEmergency)",
+                "post_condition_PRISM_pctl": "(alertNetworkOverload & alertEmergency)",
+                "ft": "((LAST V ((! (Fin_Quiescing & (! LAST))) | (X ((Lin_Quiescing | LAST) V (highFrequencyOfMessages -> (alertNetworkOverload & alertEmergency)))))) & (Quiescing -> ((Lin_Quiescing | LAST) V (highFrequencyOfMessages -> (alertNetworkOverload & alertEmergency)))))",
+                "pt": "((H (Lin_Quiescing -> (Y ((highFrequencyOfMessages -> (alertNetworkOverload & alertEmergency)) S ((highFrequencyOfMessages -> (alertNetworkOverload & alertEmergency)) & Fin_Quiescing))))) & (((! Lin_Quiescing) S ((! Lin_Quiescing) & Fin_Quiescing)) -> ((highFrequencyOfMessages -> (alertNetworkOverload & alertEmergency)) S ((highFrequencyOfMessages -> (alertNetworkOverload & alertEmergency)) & Fin_Quiescing))))",
+                "pctl": "P>=1[((G ((! (Fin_Quiescing & (! LAST))) | (X (Lin_Quiescing R (highFrequencyOfMessages => (P>=1[(alertNetworkOverload & alertEmergency)])))))) & (Quiescing => (Lin_Quiescing | (Lin_Quiescing R (highFrequencyOfMessages => (P>=1[(alertNetworkOverload & alertEmergency)]))))))]",
+                "ptExpanded": "((H (((! Quiescing) & (Y Quiescing)) -> (Y ((highFrequencyOfMessages -> (alertNetworkOverload & alertEmergency)) S ((highFrequencyOfMessages -> (alertNetworkOverload & alertEmergency)) & (Quiescing & (Z (! Quiescing)))))))) & (((! ((! Quiescing) & (Y Quiescing))) S ((! ((! Quiescing) & (Y Quiescing))) & (Quiescing & (Z (! Quiescing))))) -> ((highFrequencyOfMessages -> (alertNetworkOverload & alertEmergency)) S ((highFrequencyOfMessages -> (alertNetworkOverload & alertEmergency)) & (Quiescing & (Z (! Quiescing)))))))",
+                "CoCoSpecCode": "(H(((not (Quiescing) and YtoPre(Quiescing)) => YtoPre(SI((Quiescing and ZtoPre(not (Quiescing))),(highFrequencyOfMessages => (alertNetworkOverload and alertEmergency)))))) and (SI((Quiescing and ZtoPre(not (Quiescing))),not ((not (Quiescing) and YtoPre(Quiescing)))) => SI((Quiescing and ZtoPre(not (Quiescing))),(highFrequencyOfMessages => (alertNetworkOverload and alertEmergency)))))",
+                "ftExpanded": "((LAST V ((! ((((! Quiescing) & (! LAST)) & (X Quiescing)) & (! LAST))) | (X ((((Quiescing & (! LAST)) & (X (! Quiescing))) | LAST) V (highFrequencyOfMessages -> (alertNetworkOverload & alertEmergency)))))) & (Quiescing -> ((((Quiescing & (! LAST)) & (X (! Quiescing))) | LAST) V (highFrequencyOfMessages -> (alertNetworkOverload & alertEmergency)))))",
+                "pctlExpanded": "P>=1[((G ((! (((! Quiescing) & (X Quiescing)) & (! false))) | (X ((Quiescing & (X (! Quiescing))) R (highFrequencyOfMessages => (P>=1[(alertNetworkOverload & alertEmergency)])))))) & (Quiescing => ((Quiescing & (X (! Quiescing))) | ((Quiescing & (X (! Quiescing))) R (highFrequencyOfMessages => (P>=1[(alertNetworkOverload & alertEmergency)]))))))]",
+                "ftInfAUExpanded": "((G ((! ((! Quiescing) & (X Quiescing))) | (X ((Quiescing & (X (! Quiescing))) V (highFrequencyOfMessages -> (alertNetworkOverload & alertEmergency)))))) & (Quiescing -> ((Quiescing & (X (! Quiescing))) V (highFrequencyOfMessages -> (alertNetworkOverload & alertEmergency)))))",
+                "component": "ODIN"
+            },
+            "_id": "14c12b70-8057-11f1-87a3-557ca4e73dc5"
+        },
+        {
+            "reqid": "QRC",
+            "parent_reqid": "",
+            "project": "seams26_wildfire_fighting",
+            "rationale": "",
+            "comments": "",
+            "fulltext": "in Quiescing whenever fireReported ODIN shall immediately satisfy if peopleCloseToFire then alertEmergency",
+            "status": "",
+            "semantics": {
+                "type": "nasa",
+                "scope": {
+                    "type": "in"
+                },
+                "condition": "holding",
+                "probability": "null",
+                "timing": "immediately",
+                "response": "satisfaction",
+                "variables": [
+                    "Quiescing",
+                    "fireReported",
+                    "peopleCloseToFire",
+                    "alertEmergency"
+                ],
+                "scope_mode": "Quiescing",
+                "scopeTextRange": [
+                    0,
+                    11
+                ],
+                "qualifier_word": "whenever",
+                "pre_condition": "(fireReported)",
+                "regular_condition": "(fireReported)",
+                "conditionTextRange": [
+                    13,
+                    33
+                ],
+                "component_name": "ODIN",
+                "componentTextRange": [
+                    35,
+                    38
+                ],
+                "timingTextRange": [
+                    46,
+                    56
+                ],
+                "post_condition": "(peopleCloseToFire => alertEmergency)",
+                "responseTextRange": [
+                    58,
+                    105
+                ],
+                "diagramVariables": "M = <b><i>Quiescing</i></b>, CC = <b><i>(fireReported)</i></b>, Response = <b><i>(peopleCloseToFire => alertEmergency)</i></b>.",
+                "description": "ENFORCED: in every interval where <b><i>Quiescing</i></b> holds.\nTRIGGER: every point in the interval where <b><i>(fireReported)</i></b> is true.\nREQUIRES: for every trigger, if trigger holds then RES also holds at the same time point.",
+                "diagram": "_media/user-interface/examples/svgDiagrams/in_holding_immediately_satisfaction.svg",
+                "scope_mode_pt": "Quiescing",
+                "scope_mode_ft": "Quiescing",
+                "scope_mode_pctl": "Quiescing",
+                "regular_condition_unexp_pt": "fireReported",
+                "regular_condition_unexp_ft": "fireReported",
+                "regular_condition_unexp_pctl": "fireReported",
+                "regular_condition_SMV_pt": "fireReported",
+                "regular_condition_SMV_ft": "fireReported",
+                "regular_condition_PRISM_pctl": "fireReported",
+                "post_condition_unexp_pt": "(peopleCloseToFire -> alertEmergency)",
+                "post_condition_unexp_ft": "(peopleCloseToFire -> alertEmergency)",
+                "post_condition_unexp_pctl": "(peopleCloseToFire -> alertEmergency)",
+                "post_condition_SMV_pt": "(peopleCloseToFire -> alertEmergency)",
+                "post_condition_SMV_ft": "(peopleCloseToFire -> alertEmergency)",
+                "post_condition_PRISM_pctl": "(peopleCloseToFire -> alertEmergency)",
+                "ft": "((LAST V ((! (Fin_Quiescing & (! LAST))) | (X ((Lin_Quiescing | LAST) V (fireReported -> (peopleCloseToFire -> alertEmergency)))))) & (Quiescing -> ((Lin_Quiescing | LAST) V (fireReported -> (peopleCloseToFire -> alertEmergency)))))",
+                "pt": "((H (Lin_Quiescing -> (Y ((fireReported -> (peopleCloseToFire -> alertEmergency)) S ((fireReported -> (peopleCloseToFire -> alertEmergency)) & Fin_Quiescing))))) & (((! Lin_Quiescing) S ((! Lin_Quiescing) & Fin_Quiescing)) -> ((fireReported -> (peopleCloseToFire -> alertEmergency)) S ((fireReported -> (peopleCloseToFire -> alertEmergency)) & Fin_Quiescing))))",
+                "pctl": "P>=1[((G ((! (Fin_Quiescing & (! LAST))) | (X (Lin_Quiescing R (fireReported => (P>=1[(peopleCloseToFire -> alertEmergency)])))))) & (Quiescing => (Lin_Quiescing | (Lin_Quiescing R (fireReported => (P>=1[(peopleCloseToFire -> alertEmergency)]))))))]",
+                "ptExpanded": "((H (((! Quiescing) & (Y Quiescing)) -> (Y ((fireReported -> (peopleCloseToFire -> alertEmergency)) S ((fireReported -> (peopleCloseToFire -> alertEmergency)) & (Quiescing & (Z (! Quiescing)))))))) & (((! ((! Quiescing) & (Y Quiescing))) S ((! ((! Quiescing) & (Y Quiescing))) & (Quiescing & (Z (! Quiescing))))) -> ((fireReported -> (peopleCloseToFire -> alertEmergency)) S ((fireReported -> (peopleCloseToFire -> alertEmergency)) & (Quiescing & (Z (! Quiescing)))))))",
+                "CoCoSpecCode": "(H(((not (Quiescing) and YtoPre(Quiescing)) => YtoPre(SI((Quiescing and ZtoPre(not (Quiescing))),(fireReported => (peopleCloseToFire => alertEmergency)))))) and (SI((Quiescing and ZtoPre(not (Quiescing))),not ((not (Quiescing) and YtoPre(Quiescing)))) => SI((Quiescing and ZtoPre(not (Quiescing))),(fireReported => (peopleCloseToFire => alertEmergency)))))",
+                "ftExpanded": "((LAST V ((! ((((! Quiescing) & (! LAST)) & (X Quiescing)) & (! LAST))) | (X ((((Quiescing & (! LAST)) & (X (! Quiescing))) | LAST) V (fireReported -> (peopleCloseToFire -> alertEmergency)))))) & (Quiescing -> ((((Quiescing & (! LAST)) & (X (! Quiescing))) | LAST) V (fireReported -> (peopleCloseToFire -> alertEmergency)))))",
+                "pctlExpanded": "P>=1[((G ((! (((! Quiescing) & (X Quiescing)) & (! false))) | (X ((Quiescing & (X (! Quiescing))) R (fireReported => (P>=1[(peopleCloseToFire -> alertEmergency)])))))) & (Quiescing => ((Quiescing & (X (! Quiescing))) | ((Quiescing & (X (! Quiescing))) R (fireReported => (P>=1[(peopleCloseToFire -> alertEmergency)]))))))]",
+                "ftInfAUExpanded": "((G ((! ((! Quiescing) & (X Quiescing))) | (X ((Quiescing & (X (! Quiescing))) V (fireReported -> (peopleCloseToFire -> alertEmergency)))))) & (Quiescing -> ((Quiescing & (X (! Quiescing))) V (fireReported -> (peopleCloseToFire -> alertEmergency)))))",
+                "component": "ODIN"
+            },
+            "_id": "17ac1660-8057-11f1-87a3-557ca4e73dc5"
+        },
+        {
+            "reqid": "MI1",
+            "parent_reqid": "",
+            "project": "seams26-guiding_example",
+            "rationale": "",
+            "comments": "",
+            "fulltext": "whenever openDrawer_r1 the robot_1 shall within 5 ticks satisfy !openDrawer_r1",
+            "status": "completed",
+            "semantics": {
+                "type": "nasa",
+                "scope": {
+                    "type": "null"
+                },
+                "condition": "holding",
+                "probability": "null",
+                "timing": "within",
+                "response": "satisfaction",
+                "variables": [
+                    "openDrawer_r1"
+                ],
+                "qualifier_word": "whenever",
+                "pre_condition": "(openDrawer_r1)",
+                "regular_condition": "(openDrawer_r1)",
+                "conditionTextRange": [
+                    0,
+                    21
+                ],
+                "component_name": "robot_1",
+                "componentTextRange": [
+                    23,
+                    33
+                ],
+                "duration": "5",
+                "timingTextRange": [
+                    41,
+                    54
+                ],
+                "post_condition": "(! openDrawer_r1)",
+                "responseTextRange": [
+                    56,
+                    77
+                ],
+                "diagramVariables": "CC = <b><i>(openDrawer_r1)</i></b>,  n = <b><i>5</i></b>, Response = <b><i>(! openDrawer_r1)</i></b>.",
+                "description": "ENFORCED: in the interval defined by the entire execution.\nTRIGGER: every point in the interval where <b><i>(openDrawer_r1)</i></b> is true.\nREQUIRES: for every trigger, RES must hold at some point with distance <= <b><i>5</i></b> from the trigger (i.e., at trigger, trigger+1, ..., or trigger+<b><i>5</i></b>). If the interval ends sooner than trigger+<b><i>5</i></b>, then RES need not hold.",
+                "diagram": "_media/user-interface/examples/svgDiagrams/null_holding_within_satisfaction.svg",
+                "scope_mode_pt": "BAD_PT",
+                "scope_mode_ft": "BAD_FT",
+                "regular_condition_unexp_pt": "openDrawer_r1",
+                "regular_condition_unexp_ft": "openDrawer_r1",
+                "regular_condition_unexp_pctl": "openDrawer_r1",
+                "regular_condition_SMV_pt": "openDrawer_r1",
+                "regular_condition_SMV_ft": "openDrawer_r1",
+                "regular_condition_PRISM_pctl": "openDrawer_r1",
+                "post_condition_unexp_pt": "(! openDrawer_r1)",
+                "post_condition_unexp_ft": "(! openDrawer_r1)",
+                "post_condition_unexp_pctl": "(! openDrawer_r1)",
+                "post_condition_SMV_pt": "(! openDrawer_r1)",
+                "post_condition_SMV_ft": "(! openDrawer_r1)",
+                "post_condition_PRISM_pctl": "(! openDrawer_r1)",
+                "ft": "(LAST V (openDrawer_r1 -> ((F[<=5] (! openDrawer_r1)) | (F[<5] LAST))))",
+                "pt": "(H ((O[=5] (openDrawer_r1 & (! (! openDrawer_r1)))) -> (O[<5] ((Z FALSE) | (! openDrawer_r1)))))",
+                "pctl": "P>=1[(G (openDrawer_r1 => (P>=1[(F<=5 (! openDrawer_r1))])))]",
+                "ptExpanded": "(H ((O[5,5] openDrawer_r1) -> (O[0,4] ((Z FALSE) | (! openDrawer_r1)))))",
+                "CoCoSpecCode": "H((OT(5, 5, openDrawer_r1) => OT(4, 0, (ZtoPre(false) or not (openDrawer_r1)))))",
+                "ftExpanded": "(LAST V (openDrawer_r1 -> ((F[0,5] (! openDrawer_r1)) | (F[0,4] LAST))))",
+                "pctlExpanded": "P>=1[(G (openDrawer_r1 => (P>=1[(F<=5 (! openDrawer_r1))])))]",
+                "ftInfAUExpanded": "(G (openDrawer_r1 -> (F[0,5] (! openDrawer_r1))))",
+                "component": "robot_1"
+            },
+            "_id": "2440a700-af1b-11f0-87cb-03cfe6591398"
+        },
+        {
+            "reqid": "NR_Assumption",
+            "parent_reqid": "",
+            "project": "seams26-guiding_example",
+            "rationale": "",
+            "comments": "",
+            "fulltext": "whenever openDrawer_r1 the robot_1 shall immediately satisfy (atNurse_r1 | atLab_r1)",
+            "status": "",
+            "semantics": {
+                "type": "nasa",
+                "scope": {
+                    "type": "null"
+                },
+                "condition": "holding",
+                "probability": "null",
+                "timing": "immediately",
+                "response": "satisfaction",
+                "variables": [
+                    "openDrawer_r1",
+                    "atNurse_r1",
+                    "atLab_r1"
+                ],
+                "qualifier_word": "whenever",
+                "pre_condition": "(openDrawer_r1)",
+                "regular_condition": "(openDrawer_r1)",
+                "conditionTextRange": [
+                    0,
+                    21
+                ],
+                "component_name": "robot_1",
+                "componentTextRange": [
+                    23,
+                    33
+                ],
+                "timingTextRange": [
+                    41,
+                    51
+                ],
+                "post_condition": "(( atNurse_r1 | atLab_r1 ))",
+                "responseTextRange": [
+                    53,
+                    83
+                ],
+                "diagramVariables": "CC = <b><i>(openDrawer_r1)</i></b>, Response = <b><i>(( atNurse_r1 | atLab_r1 ))</i></b>.",
+                "description": "SCOPE: in the interval defined by the entire execution.<br>TRIGGER: every point in the interval where <b><i>(openDrawer_r1)</i></b> is true.<br>REQUIRED BEHAVIOR: for every trigger, if trigger holds then <b><i>(( atNurse_r1 | atLab_r1 ))</i></b> also holds at the same time point.",
+                "probabilistic_description": "SCOPE: in the interval defined by the entire execution.<br>TRIGGER: every point in the interval where <b><i>(openDrawer_r1)</i></b> is true.<br>REQUIRED BEHAVIOR: for every trigger, with probability >=1, if trigger holds then <b><i>(( atNurse_r1 | atLab_r1 ))</i></b> also holds at the same time point.",
+                "diagram": "_media/user-interface/examples/svgDiagrams/null_holding_immediately_satisfaction.svg",
+                "scope_mode_pt": "BAD_PT",
+                "scope_mode_ft": "BAD_FT",
+                "regular_condition_unexp_pt": "openDrawer_r1",
+                "regular_condition_unexp_ft": "openDrawer_r1",
+                "regular_condition_unexp_pctl": "openDrawer_r1",
+                "regular_condition_SMV_pt": "openDrawer_r1",
+                "regular_condition_SMV_ft": "openDrawer_r1",
+                "regular_condition_MLTL_ft": "openDrawer_r1",
+                "regular_condition_PRISM_pctl": "openDrawer_r1",
+                "post_condition_unexp_pt": "(atNurse_r1 | atLab_r1)",
+                "post_condition_unexp_ft": "(atNurse_r1 | atLab_r1)",
+                "post_condition_unexp_pctl": "(atNurse_r1 | atLab_r1)",
+                "post_condition_SMV_pt": "(atNurse_r1 | atLab_r1)",
+                "post_condition_SMV_ft": "(atNurse_r1 | atLab_r1)",
+                "post_condition_MLTL_ft": "(atNurse_r1 | atLab_r1)",
+                "post_condition_PRISM_pctl": "(atNurse_r1 | atLab_r1)",
+                "ft": "(LAST V (openDrawer_r1 -> (atNurse_r1 | atLab_r1)))",
+                "pt": "(H (openDrawer_r1 -> (atNurse_r1 | atLab_r1)))",
+                "pctl": "P>=1[(G (openDrawer_r1 => (P>=1[(atNurse_r1 | atLab_r1)])))]",
+                "ptExpanded": "(H (openDrawer_r1 -> (atNurse_r1 | atLab_r1)))",
+                "CoCoSpecCode": "H((openDrawer_r1 => (atNurse_r1 or atLab_r1)))",
+                "ftExpanded": "(LAST V (openDrawer_r1 -> (atNurse_r1 | atLab_r1)))",
+                "pctlExpanded": "P>=1[(G (openDrawer_r1 => (P>=1[(atNurse_r1 | atLab_r1)])))]",
+                "ftInfAUExpanded": "(G (openDrawer_r1 -> (atNurse_r1 | atLab_r1)))",
+                "mltlExpanded": "(G[0,M] (p0 -> p1))",
+                "WESTMapping": "p0: openDrawer_r1<br/>p1: (atNurse_r1 | atLab_r1)",
+                "R2U2Code": "(openDrawer_r1 -> (atNurse_r1 || atLab_r1))",
+                "component": "robot_1"
+            },
+            "_id": "2440a702-af1b-11f0-87cb-03cfe6591398"
+        },
+        {
+            "reqid": "MI2_Assumption",
+            "parent_reqid": "",
+            "project": "seams26-guiding_example",
+            "rationale": "",
+            "comments": "",
+            "fulltext": "whenever gotoLab_r1 the robot_1  shall within 20 ticks satisfy atLab_r1",
+            "status": "completed",
+            "semantics": {
+                "type": "nasa",
+                "scope": {
+                    "type": "null"
+                },
+                "condition": "holding",
+                "probability": "null",
+                "timing": "within",
+                "response": "satisfaction",
+                "variables": [
+                    "gotoLab_r1",
+                    "atLab_r1"
+                ],
+                "qualifier_word": "whenever",
+                "pre_condition": "(gotoLab_r1)",
+                "regular_condition": "(gotoLab_r1)",
+                "conditionTextRange": [
+                    0,
+                    18
+                ],
+                "component_name": "robot_1",
+                "componentTextRange": [
+                    20,
+                    30
+                ],
+                "duration": "20",
+                "timingTextRange": [
+                    39,
+                    53
+                ],
+                "post_condition": "(atLab_r1)",
+                "responseTextRange": [
+                    55,
+                    70
+                ],
+                "diagramVariables": "CC = <b><i>(gotoLab_r1)</i></b>,  n = <b><i>20</i></b>, Response = <b><i>(atLab_r1)</i></b>.",
+                "description": "SCOPE: in the interval defined by the entire execution.<br>TRIGGER: every point in the interval where <b><i>(gotoLab_r1)</i></b> is true.<br>REQUIRED BEHAVIOR: for every trigger, <b><i>(atLab_r1)</i></b> must hold at some point with distance <= <b><i>20</i></b> from the trigger (i.e., at trigger, trigger+1, ..., or trigger+<b><i>20</i></b>). If the interval ends sooner than trigger+<b><i>20</i></b>, then <b><i>(atLab_r1)</i></b> need not hold.",
+                "probabilistic_description": "SCOPE: in the interval defined by the entire execution.<br>TRIGGER: every point in the interval where <b><i>(gotoLab_r1)</i></b> is true.<br>REQUIRED BEHAVIOR: for every trigger, with probability >=1, <b><i>(atLab_r1)</i></b> must hold at some point with distance <= <b><i>20</i></b> from the trigger (i.e., at trigger, trigger+1, ..., or trigger+<b><i>20</i></b>). If the interval ends sooner than trigger+<b><i>20</i></b>, then <b><i>(atLab_r1)</i></b> need not hold.",
+                "diagram": "_media/user-interface/examples/svgDiagrams/null_holding_within_satisfaction.svg",
+                "scope_mode_pt": "BAD_PT",
+                "scope_mode_ft": "BAD_FT",
+                "regular_condition_unexp_pt": "gotoLab_r1",
+                "regular_condition_unexp_ft": "gotoLab_r1",
+                "regular_condition_unexp_pctl": "gotoLab_r1",
+                "regular_condition_SMV_pt": "gotoLab_r1",
+                "regular_condition_SMV_ft": "gotoLab_r1",
+                "regular_condition_MLTL_ft": "gotoLab_r1",
+                "regular_condition_PRISM_pctl": "gotoLab_r1",
+                "post_condition_unexp_pt": "atLab_r1",
+                "post_condition_unexp_ft": "atLab_r1",
+                "post_condition_unexp_pctl": "atLab_r1",
+                "post_condition_SMV_pt": "atLab_r1",
+                "post_condition_SMV_ft": "atLab_r1",
+                "post_condition_MLTL_ft": "atLab_r1",
+                "post_condition_PRISM_pctl": "atLab_r1",
+                "ft": "(LAST V (gotoLab_r1 -> ((F[<=20] atLab_r1) | (F[<20] LAST))))",
+                "pt": "(H ((O[=20] (gotoLab_r1 & (! atLab_r1))) -> (O[<20] ((Z FALSE) | atLab_r1))))",
+                "pctl": "P>=1[(G (gotoLab_r1 => (P>=1[(F<=20 atLab_r1)])))]",
+                "ptExpanded": "(H ((O[20,20] (gotoLab_r1 & (! atLab_r1))) -> (O[0,19] ((Z FALSE) | atLab_r1))))",
+                "CoCoSpecCode": "H((OT(20, 20, (gotoLab_r1 and not (atLab_r1))) => OT(19, 0, (ZtoPre(false) or atLab_r1))))",
+                "ftExpanded": "(LAST V (gotoLab_r1 -> ((F[0,20] atLab_r1) | (F[0,19] LAST))))",
+                "pctlExpanded": "P>=1[(G (gotoLab_r1 => (P>=1[(F<=20 atLab_r1)])))]",
+                "ftInfAUExpanded": "(G (gotoLab_r1 -> (F[0,20] atLab_r1)))",
+                "mltlExpanded": "(G[0,M] (p0 -> (F[0,20] p1)))",
+                "WESTMapping": "p0: gotoLab_r1<br/>p1: atLab_r1",
+                "R2U2Code": "(gotoLab_r1 -> (F[0,20] atLab_r1))",
+                "component": "robot_1"
+            },
+            "_id": "2440a703-af1b-11f0-87cb-03cfe6591398"
+        },
+        {
+            "reqid": "AR",
+            "parent_reqid": "",
+            "project": "seams26-guiding_example",
+            "rationale": "",
+            "comments": "",
+            "fulltext": "whenever navigationError_r1 the robot_2 shall within 10 ticks satisfy if gotoLab_r2 then transferSample_r12",
+            "status": "completed",
+            "semantics": {
+                "type": "nasa",
+                "scope": {
+                    "type": "null"
+                },
+                "condition": "holding",
+                "probability": "null",
+                "timing": "within",
+                "response": "satisfaction",
+                "variables": [
+                    "navigationError_r1",
+                    "gotoLab_r2",
+                    "transferSample_r12"
+                ],
+                "qualifier_word": "whenever",
+                "pre_condition": "(navigationError_r1)",
+                "regular_condition": "(navigationError_r1)",
+                "conditionTextRange": [
+                    0,
+                    26
+                ],
+                "component_name": "robot_2",
+                "componentTextRange": [
+                    28,
+                    38
+                ],
+                "duration": "10",
+                "timingTextRange": [
+                    46,
+                    60
+                ],
+                "post_condition": "(gotoLab_r2 => transferSample_r12)",
+                "responseTextRange": [
+                    62,
+                    106
+                ],
+                "diagramVariables": "CC = <b><i>(navigationError_r1)</i></b>,  n = <b><i>10</i></b>, Response = <b><i>(gotoLab_r2 => transferSample_r12)</i></b>.",
+                "description": "ENFORCED: in the interval defined by the entire execution.\nTRIGGER: every point in the interval where <b><i>(navigationError_r1)</i></b> is true.\nREQUIRES: for every trigger, RES must hold at some point with distance <= <b><i>10</i></b> from the trigger (i.e., at trigger, trigger+1, ..., or trigger+<b><i>10</i></b>). If the interval ends sooner than trigger+<b><i>10</i></b>, then RES need not hold.",
+                "diagram": "_media/user-interface/examples/svgDiagrams/null_holding_within_satisfaction.svg",
+                "scope_mode_pt": "BAD_PT",
+                "scope_mode_ft": "BAD_FT",
+                "regular_condition_unexp_pt": "navigationError_r1",
+                "regular_condition_unexp_ft": "navigationError_r1",
+                "regular_condition_unexp_pctl": "navigationError_r1",
+                "regular_condition_SMV_pt": "navigationError_r1",
+                "regular_condition_SMV_ft": "navigationError_r1",
+                "regular_condition_PRISM_pctl": "navigationError_r1",
+                "post_condition_unexp_pt": "(gotoLab_r2 -> transferSample_r12)",
+                "post_condition_unexp_ft": "(gotoLab_r2 -> transferSample_r12)",
+                "post_condition_unexp_pctl": "(gotoLab_r2 -> transferSample_r12)",
+                "post_condition_SMV_pt": "(gotoLab_r2 -> transferSample_r12)",
+                "post_condition_SMV_ft": "(gotoLab_r2 -> transferSample_r12)",
+                "post_condition_PRISM_pctl": "(gotoLab_r2 -> transferSample_r12)",
+                "ft": "(LAST V (navigationError_r1 -> ((F[<=10] (gotoLab_r2 -> transferSample_r12)) | (F[<10] LAST))))",
+                "pt": "(H ((O[=10] (navigationError_r1 & (! (gotoLab_r2 -> transferSample_r12)))) -> (O[<10] ((Z FALSE) | (gotoLab_r2 -> transferSample_r12)))))",
+                "pctl": "P>=1[(G (navigationError_r1 => (P>=1[(F<=10 (gotoLab_r2 -> transferSample_r12))])))]",
+                "ptExpanded": "(H ((O[10,10] (navigationError_r1 & (! (gotoLab_r2 -> transferSample_r12)))) -> (O[0,9] ((Z FALSE) | (gotoLab_r2 -> transferSample_r12)))))",
+                "CoCoSpecCode": "H((OT(10, 10, (navigationError_r1 and not ((gotoLab_r2 => transferSample_r12)))) => OT(9, 0, (ZtoPre(false) or (gotoLab_r2 => transferSample_r12)))))",
+                "ftExpanded": "(LAST V (navigationError_r1 -> ((F[0,10] (gotoLab_r2 -> transferSample_r12)) | (F[0,9] LAST))))",
+                "pctlExpanded": "P>=1[(G (navigationError_r1 => (P>=1[(F<=10 (gotoLab_r2 -> transferSample_r12))])))]",
+                "ftInfAUExpanded": "(G (navigationError_r1 -> (F[0,10] (gotoLab_r2 -> transferSample_r12))))",
+                "component": "robot_2"
+            },
+            "_id": "2440a705-af1b-11f0-87cb-03cfe6591398"
+        },
+        {
+            "reqid": "QRC_Assumption",
+            "parent_reqid": "",
+            "project": "seams26-guiding_example",
+            "rationale": "",
+            "comments": "",
+            "fulltext": "whenever openDrawer_r1 the robot_1 shall immediately satisfy (atNurse_r1 | atLab_r1) | transferSample_r12",
+            "status": "completed",
+            "semantics": {
+                "type": "nasa",
+                "scope": {
+                    "type": "null"
+                },
+                "condition": "holding",
+                "probability": "null",
+                "timing": "immediately",
+                "response": "satisfaction",
+                "variables": [
+                    "openDrawer_r1",
+                    "atNurse_r1",
+                    "atLab_r1",
+                    "transferSample_r12"
+                ],
+                "qualifier_word": "whenever",
+                "pre_condition": "(openDrawer_r1)",
+                "regular_condition": "(openDrawer_r1)",
+                "conditionTextRange": [
+                    0,
+                    21
+                ],
+                "component_name": "robot_1",
+                "componentTextRange": [
+                    23,
+                    33
+                ],
+                "timingTextRange": [
+                    41,
+                    51
+                ],
+                "post_condition": "(( atNurse_r1 | atLab_r1 ) | transferSample_r12)",
+                "responseTextRange": [
+                    53,
+                    104
+                ],
+                "diagramVariables": "CC = <b><i>(openDrawer_r1)</i></b>, Response = <b><i>(( atNurse_r1 | atLab_r1 ) | transferSample_r12)</i></b>.",
+                "description": "SCOPE: in the interval defined by the entire execution.<br>TRIGGER: every point in the interval where <b><i>(openDrawer_r1)</i></b> is true.<br>REQUIRED BEHAVIOR: for every trigger, if trigger holds then <b><i>(( atNurse_r1 | atLab_r1 ) | transferSample_r12)</i></b> also holds at the same time point.",
+                "probabilistic_description": "SCOPE: in the interval defined by the entire execution.<br>TRIGGER: every point in the interval where <b><i>(openDrawer_r1)</i></b> is true.<br>REQUIRED BEHAVIOR: for every trigger, with probability >=1, if trigger holds then <b><i>(( atNurse_r1 | atLab_r1 ) | transferSample_r12)</i></b> also holds at the same time point.",
+                "diagram": "_media/user-interface/examples/svgDiagrams/null_holding_immediately_satisfaction.svg",
+                "scope_mode_pt": "BAD_PT",
+                "scope_mode_ft": "BAD_FT",
+                "regular_condition_unexp_pt": "openDrawer_r1",
+                "regular_condition_unexp_ft": "openDrawer_r1",
+                "regular_condition_unexp_pctl": "openDrawer_r1",
+                "regular_condition_SMV_pt": "openDrawer_r1",
+                "regular_condition_SMV_ft": "openDrawer_r1",
+                "regular_condition_MLTL_ft": "openDrawer_r1",
+                "regular_condition_PRISM_pctl": "openDrawer_r1",
+                "post_condition_unexp_pt": "((atNurse_r1 | atLab_r1) | transferSample_r12)",
+                "post_condition_unexp_ft": "((atNurse_r1 | atLab_r1) | transferSample_r12)",
+                "post_condition_unexp_pctl": "((atNurse_r1 | atLab_r1) | transferSample_r12)",
+                "post_condition_SMV_pt": "((atNurse_r1 | atLab_r1) | transferSample_r12)",
+                "post_condition_SMV_ft": "((atNurse_r1 | atLab_r1) | transferSample_r12)",
+                "post_condition_MLTL_ft": "((atNurse_r1 | atLab_r1) | transferSample_r12)",
+                "post_condition_PRISM_pctl": "((atNurse_r1 | atLab_r1) | transferSample_r12)",
+                "ft": "(LAST V (openDrawer_r1 -> ((atNurse_r1 | atLab_r1) | transferSample_r12)))",
+                "pt": "(H (openDrawer_r1 -> ((atNurse_r1 | atLab_r1) | transferSample_r12)))",
+                "pctl": "P>=1[(G (openDrawer_r1 => (P>=1[((atNurse_r1 | atLab_r1) | transferSample_r12)])))]",
+                "ptExpanded": "(H (openDrawer_r1 -> ((atNurse_r1 | atLab_r1) | transferSample_r12)))",
+                "CoCoSpecCode": "H((openDrawer_r1 => ((atNurse_r1 or atLab_r1) or transferSample_r12)))",
+                "ftExpanded": "(LAST V (openDrawer_r1 -> ((atNurse_r1 | atLab_r1) | transferSample_r12)))",
+                "pctlExpanded": "P>=1[(G (openDrawer_r1 => (P>=1[((atNurse_r1 | atLab_r1) | transferSample_r12)])))]",
+                "ftInfAUExpanded": "(G (openDrawer_r1 -> ((atNurse_r1 | atLab_r1) | transferSample_r12)))",
+                "mltlExpanded": "(G[0,M] (p0 -> p1))",
+                "WESTMapping": "p0: openDrawer_r1<br/>p1: ((atNurse_r1 | atLab_r1) | transferSample_r12)",
+                "R2U2Code": "(openDrawer_r1 -> ((atNurse_r1 || atLab_r1) || transferSample_r12))",
+                "component": "robot_1"
+            },
+            "_id": "2440a708-af1b-11f0-87cb-03cfe6591398"
+        },
+        {
+            "reqid": "QRP",
+            "parent_reqid": "",
+            "project": "seams26-guiding_example",
+            "rationale": "",
+            "comments": "",
+            "fulltext": "whenever hasSample_r2 the robot_2 shall until atLab_r2 satisfy if gotoLab_r2 then transferSample_r12",
+            "status": "completed",
+            "semantics": {
+                "type": "nasa",
+                "scope": {
+                    "type": "null"
+                },
+                "condition": "holding",
+                "probability": "null",
+                "timing": "until",
+                "response": "satisfaction",
+                "variables": [
+                    "hasSample_r2",
+                    "atLab_r2",
+                    "gotoLab_r2",
+                    "transferSample_r12"
+                ],
+                "qualifier_word": "whenever",
+                "pre_condition": "(hasSample_r2)",
+                "regular_condition": "(hasSample_r2)",
+                "conditionTextRange": [
+                    0,
+                    20
+                ],
+                "component_name": "robot_2",
+                "componentTextRange": [
+                    22,
+                    32
+                ],
+                "stop_condition": "(atLab_r2)",
+                "timingTextRange": [
+                    40,
+                    53
+                ],
+                "post_condition": "(gotoLab_r2 => transferSample_r12)",
+                "responseTextRange": [
+                    55,
+                    99
+                ],
+                "diagramVariables": "CC = <b><i>(hasSample_r2)</i></b>, SC = <b><i>(atLab_r2)</i></b>, Response = <b><i>(gotoLab_r2 => transferSample_r12)</i></b>.",
+                "description": "ENFORCED: in the interval defined by the entire execution.\nTRIGGER: every point in the interval where <b><i>(hasSample_r2)</i></b> is true.\nREQUIRES: for every trigger, RES must remain true until (but not necessarily including) the point where the stop condition holds, or to the end of the interval. If the stop condition never occurs, RES must hold until the end of the scope, or forever.  If the stop condition holds at the trigger, the requirement is satisfied.",
+                "diagram": "_media/user-interface/examples/svgDiagrams/null_holding_until_satisfaction.svg",
+                "scope_mode_pt": "BAD_PT",
+                "scope_mode_ft": "BAD_FT",
+                "regular_condition_unexp_pt": "hasSample_r2",
+                "regular_condition_unexp_ft": "hasSample_r2",
+                "regular_condition_unexp_pctl": "hasSample_r2",
+                "regular_condition_SMV_pt": "hasSample_r2",
+                "regular_condition_SMV_ft": "hasSample_r2",
+                "regular_condition_PRISM_pctl": "hasSample_r2",
+                "post_condition_unexp_pt": "(gotoLab_r2 -> transferSample_r12)",
+                "post_condition_unexp_ft": "(gotoLab_r2 -> transferSample_r12)",
+                "post_condition_unexp_pctl": "(gotoLab_r2 -> transferSample_r12)",
+                "post_condition_SMV_pt": "(gotoLab_r2 -> transferSample_r12)",
+                "post_condition_SMV_ft": "(gotoLab_r2 -> transferSample_r12)",
+                "post_condition_PRISM_pctl": "(gotoLab_r2 -> transferSample_r12)",
+                "stop_condition_unexp_pt": "atLab_r2",
+                "stop_condition_unexp_ft": "atLab_r2",
+                "stop_condition_PRISM_pctl": "atLab_r2",
+                "stop_condition_SMV_pt": "atLab_r2",
+                "stop_condition_SMV_ft": "atLab_r2",
+                "ft": "(LAST V (hasSample_r2 -> ((atLab_r2 V ((gotoLab_r2 -> transferSample_r12) | atLab_r2)) | (LAST V (gotoLab_r2 -> transferSample_r12)))))",
+                "pt": "(H ((H (! hasSample_r2)) | (((! atLab_r2) S ((! atLab_r2) & hasSample_r2)) -> (gotoLab_r2 -> transferSample_r12))))",
+                "pctl": "P>=1[(G (hasSample_r2 => (P>=1[((undefined R ((gotoLab_r2 -> transferSample_r12) | undefined)) | (LAST R (gotoLab_r2 -> transferSample_r12)))])))]",
+                "ptExpanded": "(H ((H (! hasSample_r2)) | (((! atLab_r2) S ((! atLab_r2) & hasSample_r2)) -> (gotoLab_r2 -> transferSample_r12))))",
+                "CoCoSpecCode": "H((H(not (hasSample_r2)) or (SI(hasSample_r2,not (atLab_r2)) => (gotoLab_r2 => transferSample_r12))))",
+                "ftExpanded": "(LAST V (hasSample_r2 -> ((atLab_r2 V ((gotoLab_r2 -> transferSample_r12) | atLab_r2)) | (LAST V (gotoLab_r2 -> transferSample_r12)))))",
+                "pctlExpanded": "P>=1[(G (hasSample_r2 => (P>=1[((atLab_r2 R ((gotoLab_r2 -> transferSample_r12) | atLab_r2)) | (false R (gotoLab_r2 -> transferSample_r12)))])))]",
+                "ftInfAUExpanded": "(G (hasSample_r2 -> (atLab_r2 V ((gotoLab_r2 -> transferSample_r12) | atLab_r2))))",
+                "component": "robot_2"
+            },
+            "_id": "2440a709-af1b-11f0-87cb-03cfe6591398"
+        },
+        {
+            "reqid": "MP1_Assumption",
+            "parent_reqid": "",
+            "project": "seams26_rover_example",
+            "rationale": "R1",
+            "comments": "Rover shall not run out of battery",
+            "fulltext": "rover shall always satisfy !lowBattery",
+            "status": "",
+            "semantics": {
+                "type": "nasa",
+                "scope": {
+                    "type": "null"
+                },
+                "condition": "null",
+                "probability": "null",
+                "timing": "always",
+                "response": "satisfaction",
+                "variables": [
+                    "lowBattery"
+                ],
+                "component_name": "rover",
+                "componentTextRange": [
+                    0,
+                    4
+                ],
+                "timingTextRange": [
+                    12,
+                    17
+                ],
+                "post_condition": "(! lowBattery)",
+                "responseTextRange": [
+                    19,
+                    37
+                ],
+                "diagramVariables": "Response = <b><i>(! lowBattery)</i></b>.",
+                "description": "SCOPE: in the interval defined by the entire execution.<br>TRIGGER: first point in the interval.<br>REQUIRED BEHAVIOR: for every trigger, <b><i>(! lowBattery)</i></b> must hold at all time points between (and including) the trigger and the end of the interval.",
+                "probabilistic_description": "SCOPE: in the interval defined by the entire execution.<br>TRIGGER: first point in the interval.<br>REQUIRED BEHAVIOR: for every trigger, with probability >=1, <b><i>(! lowBattery)</i></b> must hold at all time points between (and including) the trigger and the end of the interval.",
+                "diagram": "_media/user-interface/examples/svgDiagrams/null_null_always_satisfaction.svg",
+                "scope_mode_pt": "BAD_PT",
+                "scope_mode_ft": "BAD_FT",
+                "post_condition_unexp_pt": "(! lowBattery)",
+                "post_condition_unexp_ft": "(! lowBattery)",
+                "post_condition_unexp_pctl": "(! lowBattery)",
+                "post_condition_SMV_pt": "(! lowBattery)",
+                "post_condition_SMV_ft": "(! lowBattery)",
+                "post_condition_MLTL_ft": "(! lowBattery)",
+                "post_condition_PRISM_pctl": "(! lowBattery)",
+                "ft": "(LAST V (! lowBattery))",
+                "pt": "(H (! lowBattery))",
+                "pctl": "(P>=1[(G (! lowBattery))])",
+                "ptExpanded": "(H (! lowBattery))",
+                "CoCoSpecCode": "H(not (lowBattery))",
+                "ftExpanded": "(LAST V (! lowBattery))",
+                "pctlExpanded": "(P>=1[(G (! lowBattery))])",
+                "ftInfAUExpanded": "(G (! lowBattery))",
+                "mltlExpanded": "(G[0,M] p0)",
+                "WESTMapping": "p0: (! lowBattery)",
+                "R2U2Code": "(! lowBattery)",
+                "component": "rover"
+            },
+            "_id": "3a17e4a0-7e94-11f1-8473-b950cbeebb23"
+        },
+        {
+            "reqid": "NR2",
+            "parent_reqid": "",
+            "project": "seams26_wildfire_fighting",
+            "rationale": "Units may not get surrounded (entrapped) by the fire",
+            "comments": "",
+            "fulltext": "In Nominal upon unitEntrapped ODIN shall within 3 ticks satisfy sendEntrapmentNotification",
+            "status": "",
+            "semantics": {
+                "type": "nasa",
+                "scope": {
+                    "type": "in"
+                },
+                "condition": "regular",
+                "probability": "null",
+                "timing": "within",
+                "response": "satisfaction",
+                "variables": [
+                    "Nominal",
+                    "unitEntrapped",
+                    "sendEntrapmentNotification"
+                ],
+                "scope_mode": "Nominal",
+                "scopeTextRange": [
+                    0,
+                    9
+                ],
+                "qualifier_word": "upon",
+                "pre_condition": "(unitEntrapped)",
+                "regular_condition": "(unitEntrapped)",
+                "conditionTextRange": [
+                    11,
+                    28
+                ],
+                "component_name": "ODIN",
+                "componentTextRange": [
+                    30,
+                    33
+                ],
+                "duration": "3",
+                "timingTextRange": [
+                    41,
+                    54
+                ],
+                "post_condition": "(sendEntrapmentNotification)",
+                "responseTextRange": [
+                    56,
+                    89
+                ],
+                "diagramVariables": "M = <b><i>Nominal</i></b>, TC = <b><i>(unitEntrapped)</i></b>,  n = <b><i>3</i></b>, Response = <b><i>(sendEntrapmentNotification)</i></b>.",
+                "description": "ENFORCED: in every interval where <b><i>Nominal</i></b> holds.\nTRIGGER: first point in the interval if <b><i>(unitEntrapped)</i></b> is true and any point in the interval where <b><i>(unitEntrapped)</i></b> becomes true (from false).\nREQUIRES: for every trigger, RES must hold at some point with distance <= <b><i>3</i></b> from the trigger (i.e., at trigger, trigger+1, ..., or trigger+<b><i>3</i></b>). If the interval ends sooner than trigger+<b><i>3</i></b>, then RES need not hold.",
+                "diagram": "_media/user-interface/examples/svgDiagrams/in_regular_within_satisfaction.svg",
+                "scope_mode_pt": "Nominal",
+                "scope_mode_ft": "Nominal",
+                "scope_mode_pctl": "Nominal",
+                "regular_condition_unexp_pt": "unitEntrapped",
+                "regular_condition_unexp_ft": "unitEntrapped",
+                "regular_condition_unexp_pctl": "unitEntrapped",
+                "regular_condition_SMV_pt": "unitEntrapped",
+                "regular_condition_SMV_ft": "unitEntrapped",
+                "regular_condition_PRISM_pctl": "unitEntrapped",
+                "post_condition_unexp_pt": "sendEntrapmentNotification",
+                "post_condition_unexp_ft": "sendEntrapmentNotification",
+                "post_condition_unexp_pctl": "sendEntrapmentNotification",
+                "post_condition_SMV_pt": "sendEntrapmentNotification",
+                "post_condition_SMV_ft": "sendEntrapmentNotification",
+                "post_condition_PRISM_pctl": "sendEntrapmentNotification",
+                "ft": "((LAST V ((! (Fin_Nominal & (! LAST))) | (X (((Lin_Nominal | LAST) V (((! unitEntrapped) & ((! LAST) & ((X unitEntrapped) & (! (Lin_Nominal | LAST))))) -> ((X ((F[<=3] sendEntrapmentNotification) | (F[<3] (Lin_Nominal | LAST)))) & (! (Lin_Nominal | LAST))))) & (unitEntrapped -> ((F[<=3] sendEntrapmentNotification) | (F[<3] (Lin_Nominal | LAST)))))))) & (Nominal -> (((Lin_Nominal | LAST) V (((! unitEntrapped) & ((! LAST) & ((X unitEntrapped) & (! (Lin_Nominal | LAST))))) -> ((X ((F[<=3] sendEntrapmentNotification) | (F[<3] (Lin_Nominal | LAST)))) & (! (Lin_Nominal | LAST))))) & (unitEntrapped -> ((F[<=3] sendEntrapmentNotification) | (F[<3] (Lin_Nominal | LAST)))))))",
+                "pt": "((H (Lin_Nominal -> (Y (((O[=3] ((unitEntrapped & ((Y (! unitEntrapped)) | Fin_Nominal)) & (! sendEntrapmentNotification))) -> (O[<3] (Fin_Nominal | sendEntrapmentNotification))) S (((O[=3] ((unitEntrapped & ((Y (! unitEntrapped)) | Fin_Nominal)) & (! sendEntrapmentNotification))) -> (O[<3] (Fin_Nominal | sendEntrapmentNotification))) & Fin_Nominal))))) & (((! Lin_Nominal) S ((! Lin_Nominal) & Fin_Nominal)) -> (((O[=3] ((unitEntrapped & ((Y (! unitEntrapped)) | Fin_Nominal)) & (! sendEntrapmentNotification))) -> (O[<3] (Fin_Nominal | sendEntrapmentNotification))) S (((O[=3] ((unitEntrapped & ((Y (! unitEntrapped)) | Fin_Nominal)) & (! sendEntrapmentNotification))) -> (O[<3] (Fin_Nominal | sendEntrapmentNotification))) & Fin_Nominal))))",
+                "pctl": "P>=1[((G ((! (Fin_Nominal & (! LAST))) | (X ((Lin_Nominal R (((! unitEntrapped) & ((X unitEntrapped) & (! Lin_Nominal))) => ((X (P>=1[(F<=3 sendEntrapmentNotification)])) & (! Lin_Nominal)))) & (unitEntrapped => (P>=1[(F[<=3] sendEntrapmentNotification)])))))) & (Nominal => (Lin_Nominal | ((Lin_Nominal R (((! unitEntrapped) & ((X unitEntrapped) & (! Lin_Nominal))) => ((X (P>=1[(F[<=3] sendEntrapmentNotification)])) & (! Lin_Nominal)))) & (unitEntrapped => (P>=1[(F[<=3] sendEntrapmentNotification)]))))))]",
+                "ptExpanded": "((H (((! Nominal) & (Y Nominal)) -> (Y (((O[3,3] ((unitEntrapped & ((Y (! unitEntrapped)) | (Nominal & (Z (! Nominal))))) & (! sendEntrapmentNotification))) -> (O[0,2] ((Nominal & (Z (! Nominal))) | sendEntrapmentNotification))) S (((O[3,3] ((unitEntrapped & ((Y (! unitEntrapped)) | (Nominal & (Z (! Nominal))))) & (! sendEntrapmentNotification))) -> (O[0,2] ((Nominal & (Z (! Nominal))) | sendEntrapmentNotification))) & (Nominal & (Z (! Nominal)))))))) & (((! ((! Nominal) & (Y Nominal))) S ((! ((! Nominal) & (Y Nominal))) & (Nominal & (Z (! Nominal))))) -> (((O[3,3] ((unitEntrapped & ((Y (! unitEntrapped)) | (Nominal & (Z (! Nominal))))) & (! sendEntrapmentNotification))) -> (O[0,2] ((Nominal & (Z (! Nominal))) | sendEntrapmentNotification))) S (((O[3,3] ((unitEntrapped & ((Y (! unitEntrapped)) | (Nominal & (Z (! Nominal))))) & (! sendEntrapmentNotification))) -> (O[0,2] ((Nominal & (Z (! Nominal))) | sendEntrapmentNotification))) & (Nominal & (Z (! Nominal)))))))",
+                "CoCoSpecCode": "(H(((not (Nominal) and YtoPre(Nominal)) => YtoPre(SI((Nominal and ZtoPre(not (Nominal))),(OT(3, 3, ((unitEntrapped and (YtoPre(not (unitEntrapped)) or (Nominal and ZtoPre(not (Nominal))))) and not (sendEntrapmentNotification))) => OT(2, 0, ((Nominal and ZtoPre(not (Nominal))) or sendEntrapmentNotification))))))) and (SI((Nominal and ZtoPre(not (Nominal))),not ((not (Nominal) and YtoPre(Nominal)))) => SI((Nominal and ZtoPre(not (Nominal))),(OT(3, 3, ((unitEntrapped and (YtoPre(not (unitEntrapped)) or (Nominal and ZtoPre(not (Nominal))))) and not (sendEntrapmentNotification))) => OT(2, 0, ((Nominal and ZtoPre(not (Nominal))) or sendEntrapmentNotification))))))",
+                "ftExpanded": "((LAST V ((! ((((! Nominal) & (! LAST)) & (X Nominal)) & (! LAST))) | (X (((((Nominal & (! LAST)) & (X (! Nominal))) | LAST) V (((! unitEntrapped) & ((! LAST) & ((X unitEntrapped) & (! (((Nominal & (! LAST)) & (X (! Nominal))) | LAST))))) -> ((X ((F[0,3] sendEntrapmentNotification) | (F[0,2] (((Nominal & (! LAST)) & (X (! Nominal))) | LAST)))) & (! (((Nominal & (! LAST)) & (X (! Nominal))) | LAST))))) & (unitEntrapped -> ((F[0,3] sendEntrapmentNotification) | (F[0,2] (((Nominal & (! LAST)) & (X (! Nominal))) | LAST)))))))) & (Nominal -> (((((Nominal & (! LAST)) & (X (! Nominal))) | LAST) V (((! unitEntrapped) & ((! LAST) & ((X unitEntrapped) & (! (((Nominal & (! LAST)) & (X (! Nominal))) | LAST))))) -> ((X ((F[0,3] sendEntrapmentNotification) | (F[0,2] (((Nominal & (! LAST)) & (X (! Nominal))) | LAST)))) & (! (((Nominal & (! LAST)) & (X (! Nominal))) | LAST))))) & (unitEntrapped -> ((F[0,3] sendEntrapmentNotification) | (F[0,2] (((Nominal & (! LAST)) & (X (! Nominal))) | LAST)))))))",
+                "pctlExpanded": "P>=1[((G ((! (((! Nominal) & (X Nominal)) & (! false))) | (X (((Nominal & (X (! Nominal))) R (((! unitEntrapped) & ((X unitEntrapped) & (! (Nominal & (X (! Nominal)))))) => ((X (P>=1[(F<=3 sendEntrapmentNotification)])) & (! (Nominal & (X (! Nominal))))))) & (unitEntrapped => (P>=1[(F[<=3] sendEntrapmentNotification)])))))) & (Nominal => ((Nominal & (X (! Nominal))) | (((Nominal & (X (! Nominal))) R (((! unitEntrapped) & ((X unitEntrapped) & (! (Nominal & (X (! Nominal)))))) => ((X (P>=1[(F[<=3] sendEntrapmentNotification)])) & (! (Nominal & (X (! Nominal))))))) & (unitEntrapped => (P>=1[(F[<=3] sendEntrapmentNotification)]))))))]",
+                "ftInfAUExpanded": "((G ((! ((! Nominal) & (X Nominal))) | (X (((Nominal & (X (! Nominal))) V (((! unitEntrapped) & ((X unitEntrapped) & (! (Nominal & (X (! Nominal)))))) -> ((X ((F[0,3] sendEntrapmentNotification) | (F[0,2] (Nominal & (X (! Nominal)))))) & (! (Nominal & (X (! Nominal))))))) & (unitEntrapped -> ((F[0,3] sendEntrapmentNotification) | (F[0,2] (Nominal & (X (! Nominal)))))))))) & (Nominal -> (((Nominal & (X (! Nominal))) V (((! unitEntrapped) & ((X unitEntrapped) & (! (Nominal & (X (! Nominal)))))) -> ((X ((F[0,3] sendEntrapmentNotification) | (F[0,2] (Nominal & (X (! Nominal)))))) & (! (Nominal & (X (! Nominal))))))) & (unitEntrapped -> ((F[0,3] sendEntrapmentNotification) | (F[0,2] (Nominal & (X (! Nominal)))))))))",
+                "component": "ODIN"
+            },
+            "_id": "3e2d6060-8056-11f1-87a3-557ca4e73dc5"
+        },
+        {
+            "reqid": "MP4_Assumption",
+            "parent_reqid": "",
+            "project": "seams26_wildfire_fighting",
+            "rationale": "",
+            "comments": "",
+            "fulltext": "fireUnits shall always satisfy safeDistanceFromFire",
+            "status": "",
+            "semantics": {
+                "type": "nasa",
+                "scope": {
+                    "type": "null"
+                },
+                "condition": "null",
+                "probability": "null",
+                "timing": "always",
+                "response": "satisfaction",
+                "variables": [
+                    "safeDistanceFromFire"
+                ],
+                "component_name": "fireUnits",
+                "componentTextRange": [
+                    0,
+                    8
+                ],
+                "timingTextRange": [
+                    16,
+                    21
+                ],
+                "post_condition": "(safeDistanceFromFire)",
+                "responseTextRange": [
+                    23,
+                    50
+                ],
+                "diagramVariables": "Response = <b><i>(safeDistanceFromFire)</i></b>.",
+                "description": "SCOPE: in the interval defined by the entire execution.<br>TRIGGER: first point in the interval.<br>REQUIRED BEHAVIOR: for every trigger, <b><i>(safeDistanceFromFire)</i></b> must hold at all time points between (and including) the trigger and the end of the interval.",
+                "probabilistic_description": "SCOPE: in the interval defined by the entire execution.<br>TRIGGER: first point in the interval.<br>REQUIRED BEHAVIOR: for every trigger, with probability >=1, <b><i>(safeDistanceFromFire)</i></b> must hold at all time points between (and including) the trigger and the end of the interval.",
+                "diagram": "_media/user-interface/examples/svgDiagrams/null_null_always_satisfaction.svg",
+                "scope_mode_pt": "BAD_PT",
+                "scope_mode_ft": "BAD_FT",
+                "post_condition_unexp_pt": "safeDistanceFromFire",
+                "post_condition_unexp_ft": "safeDistanceFromFire",
+                "post_condition_unexp_pctl": "safeDistanceFromFire",
+                "post_condition_SMV_pt": "safeDistanceFromFire",
+                "post_condition_SMV_ft": "safeDistanceFromFire",
+                "post_condition_MLTL_ft": "safeDistanceFromFire",
+                "post_condition_PRISM_pctl": "safeDistanceFromFire",
+                "ft": "(LAST V safeDistanceFromFire)",
+                "pt": "(H safeDistanceFromFire)",
+                "pctl": "(P>=1[(G safeDistanceFromFire)])",
+                "ptExpanded": "(H safeDistanceFromFire)",
+                "CoCoSpecCode": "H(safeDistanceFromFire)",
+                "ftExpanded": "(LAST V safeDistanceFromFire)",
+                "pctlExpanded": "(P>=1[(G safeDistanceFromFire)])",
+                "ftInfAUExpanded": "(G safeDistanceFromFire)",
+                "mltlExpanded": "(G[0,M] p0)",
+                "WESTMapping": "p0: safeDistanceFromFire",
+                "R2U2Code": "safeDistanceFromFire",
+                "component": "fireUnits"
+            },
+            "_id": "54be5aa0-8056-11f1-87a3-557ca4e73dc5"
+        },
+        {
+            "reqid": "UC",
+            "parent_reqid": "",
+            "project": "seams26_wildfire_fighting",
+            "rationale": "Escape Route is blocked",
+            "comments": "",
+            "fulltext": "in Nominal whenever escapeRouteBlocked ODIN shall never satisfy evacuationSuccessful",
+            "status": "",
+            "semantics": {
+                "type": "nasa",
+                "scope": {
+                    "type": "in"
+                },
+                "condition": "holding",
+                "probability": "null",
+                "timing": "never",
+                "response": "satisfaction",
+                "variables": [
+                    "Nominal",
+                    "escapeRouteBlocked",
+                    "evacuationSuccessful"
+                ],
+                "scope_mode": "Nominal",
+                "scopeTextRange": [
+                    0,
+                    9
+                ],
+                "qualifier_word": "whenever",
+                "pre_condition": "(escapeRouteBlocked)",
+                "regular_condition": "(escapeRouteBlocked)",
+                "conditionTextRange": [
+                    11,
+                    37
+                ],
+                "component_name": "ODIN",
+                "componentTextRange": [
+                    39,
+                    42
+                ],
+                "timingTextRange": [
+                    50,
+                    54
+                ],
+                "post_condition": "(evacuationSuccessful)",
+                "responseTextRange": [
+                    56,
+                    83
+                ],
+                "diagramVariables": "M = <b><i>Nominal</i></b>, CC = <b><i>(escapeRouteBlocked)</i></b>, Response = <b><i>(evacuationSuccessful)</i></b>.",
+                "description": "ENFORCED: in every interval where <b><i>Nominal</i></b> holds.\nTRIGGER: every point in the interval where <b><i>(escapeRouteBlocked)</i></b> is true.\nREQUIRES: for every trigger, RES must be false at all time points between (and including) the trigger and the end of the interval.",
+                "diagram": "_media/user-interface/examples/svgDiagrams/in_holding_never_satisfaction.svg",
+                "scope_mode_pt": "Nominal",
+                "scope_mode_ft": "Nominal",
+                "scope_mode_pctl": "Nominal",
+                "regular_condition_unexp_pt": "escapeRouteBlocked",
+                "regular_condition_unexp_ft": "escapeRouteBlocked",
+                "regular_condition_unexp_pctl": "escapeRouteBlocked",
+                "regular_condition_SMV_pt": "escapeRouteBlocked",
+                "regular_condition_SMV_ft": "escapeRouteBlocked",
+                "regular_condition_PRISM_pctl": "escapeRouteBlocked",
+                "post_condition_unexp_pt": "evacuationSuccessful",
+                "post_condition_unexp_ft": "evacuationSuccessful",
+                "post_condition_unexp_pctl": "evacuationSuccessful",
+                "post_condition_SMV_pt": "evacuationSuccessful",
+                "post_condition_SMV_ft": "evacuationSuccessful",
+                "post_condition_PRISM_pctl": "evacuationSuccessful",
+                "ft": "((LAST V ((! (Fin_Nominal & (! LAST))) | (X ((Lin_Nominal | LAST) V (escapeRouteBlocked -> ((Lin_Nominal | LAST) V (! evacuationSuccessful))))))) & (Nominal -> ((Lin_Nominal | LAST) V (escapeRouteBlocked -> ((Lin_Nominal | LAST) V (! evacuationSuccessful))))))",
+                "pt": "((H (Lin_Nominal -> (Y ((((! escapeRouteBlocked) S ((! escapeRouteBlocked) & Fin_Nominal)) | (! evacuationSuccessful)) S ((((! escapeRouteBlocked) S ((! escapeRouteBlocked) & Fin_Nominal)) | (! evacuationSuccessful)) & Fin_Nominal))))) & (((! Lin_Nominal) S ((! Lin_Nominal) & Fin_Nominal)) -> ((((! escapeRouteBlocked) S ((! escapeRouteBlocked) & Fin_Nominal)) | (! evacuationSuccessful)) S ((((! escapeRouteBlocked) S ((! escapeRouteBlocked) & Fin_Nominal)) | (! evacuationSuccessful)) & Fin_Nominal))))",
+                "pctl": "P>=1[((G ((! (Fin_Nominal & (! LAST))) | (X (Lin_Nominal R (escapeRouteBlocked => (P>=1[(Lin_Nominal R (! evacuationSuccessful))])))))) & (Nominal => (Lin_Nominal | (Lin_Nominal R (escapeRouteBlocked => (P>=1[(Lin_Nominal R (! evacuationSuccessful))]))))))]",
+                "ptExpanded": "((H (((! Nominal) & (Y Nominal)) -> (Y ((((! escapeRouteBlocked) S ((! escapeRouteBlocked) & (Nominal & (Z (! Nominal))))) | (! evacuationSuccessful)) S ((((! escapeRouteBlocked) S ((! escapeRouteBlocked) & (Nominal & (Z (! Nominal))))) | (! evacuationSuccessful)) & (Nominal & (Z (! Nominal)))))))) & (((! ((! Nominal) & (Y Nominal))) S ((! ((! Nominal) & (Y Nominal))) & (Nominal & (Z (! Nominal))))) -> ((((! escapeRouteBlocked) S ((! escapeRouteBlocked) & (Nominal & (Z (! Nominal))))) | (! evacuationSuccessful)) S ((((! escapeRouteBlocked) S ((! escapeRouteBlocked) & (Nominal & (Z (! Nominal))))) | (! evacuationSuccessful)) & (Nominal & (Z (! Nominal)))))))",
+                "CoCoSpecCode": "(H(((not (Nominal) and YtoPre(Nominal)) => YtoPre(SI((Nominal and ZtoPre(not (Nominal))),(SI((Nominal and ZtoPre(not (Nominal))),not (escapeRouteBlocked)) or not (evacuationSuccessful)))))) and (SI((Nominal and ZtoPre(not (Nominal))),not ((not (Nominal) and YtoPre(Nominal)))) => SI((Nominal and ZtoPre(not (Nominal))),(SI((Nominal and ZtoPre(not (Nominal))),not (escapeRouteBlocked)) or not (evacuationSuccessful)))))",
+                "ftExpanded": "((LAST V ((! ((((! Nominal) & (! LAST)) & (X Nominal)) & (! LAST))) | (X ((((Nominal & (! LAST)) & (X (! Nominal))) | LAST) V (escapeRouteBlocked -> ((((Nominal & (! LAST)) & (X (! Nominal))) | LAST) V (! evacuationSuccessful))))))) & (Nominal -> ((((Nominal & (! LAST)) & (X (! Nominal))) | LAST) V (escapeRouteBlocked -> ((((Nominal & (! LAST)) & (X (! Nominal))) | LAST) V (! evacuationSuccessful))))))",
+                "pctlExpanded": "P>=1[((G ((! (((! Nominal) & (X Nominal)) & (! false))) | (X ((Nominal & (X (! Nominal))) R (escapeRouteBlocked => (P>=1[((Nominal & (X (! Nominal))) R (! evacuationSuccessful))])))))) & (Nominal => ((Nominal & (X (! Nominal))) | ((Nominal & (X (! Nominal))) R (escapeRouteBlocked => (P>=1[((Nominal & (X (! Nominal))) R (! evacuationSuccessful))]))))))]",
+                "ftInfAUExpanded": "((G ((! ((! Nominal) & (X Nominal))) | (X ((Nominal & (X (! Nominal))) V (escapeRouteBlocked -> ((Nominal & (X (! Nominal))) V (! evacuationSuccessful))))))) & (Nominal -> ((Nominal & (X (! Nominal))) V (escapeRouteBlocked -> ((Nominal & (X (! Nominal))) V (! evacuationSuccessful))))))",
+                "component": "ODIN"
+            },
+            "_id": "6dd6c310-8056-11f1-87a3-557ca4e73dc5"
+        },
+        {
+            "reqid": "MP2",
+            "parent_reqid": "",
+            "project": "seams26_wildfire_fighting",
+            "rationale": "",
+            "comments": "",
+            "fulltext": "Upon fireReported ODIN shall within 5 ticks satisfy noFireCommand",
+            "status": "",
+            "semantics": {
+                "type": "nasa",
+                "scope": {
+                    "type": "null"
+                },
+                "condition": "regular",
+                "probability": "null",
+                "timing": "within",
+                "response": "satisfaction",
+                "variables": [
+                    "fireReported",
+                    "noFireCommand"
+                ],
+                "qualifier_word": "upon",
+                "pre_condition": "(fireReported)",
+                "regular_condition": "(fireReported)",
+                "conditionTextRange": [
+                    0,
+                    16
+                ],
+                "component_name": "ODIN",
+                "componentTextRange": [
+                    18,
+                    21
+                ],
+                "duration": "5",
+                "timingTextRange": [
+                    29,
+                    42
+                ],
+                "post_condition": "(noFireCommand)",
+                "responseTextRange": [
+                    44,
+                    64
+                ],
+                "diagramVariables": "TC = <b><i>(fireReported)</i></b>,  n = <b><i>5</i></b>, Response = <b><i>(noFireCommand)</i></b>.",
+                "description": "ENFORCED: in the interval defined by the entire execution.\nTRIGGER: first point in the interval if <b><i>(fireReported)</i></b> is true and any point in the interval where <b><i>(fireReported)</i></b> becomes true (from false).\nREQUIRES: for every trigger, RES must hold at some point with distance <= <b><i>5</i></b> from the trigger (i.e., at trigger, trigger+1, ..., or trigger+<b><i>5</i></b>). If the interval ends sooner than trigger+<b><i>5</i></b>, then RES need not hold.",
+                "diagram": "_media/user-interface/examples/svgDiagrams/null_regular_within_satisfaction.svg",
+                "scope_mode_pt": "BAD_PT",
+                "scope_mode_ft": "BAD_FT",
+                "regular_condition_unexp_pt": "fireReported",
+                "regular_condition_unexp_ft": "fireReported",
+                "regular_condition_unexp_pctl": "fireReported",
+                "regular_condition_SMV_pt": "fireReported",
+                "regular_condition_SMV_ft": "fireReported",
+                "regular_condition_PRISM_pctl": "fireReported",
+                "post_condition_unexp_pt": "noFireCommand",
+                "post_condition_unexp_ft": "noFireCommand",
+                "post_condition_unexp_pctl": "noFireCommand",
+                "post_condition_SMV_pt": "noFireCommand",
+                "post_condition_SMV_ft": "noFireCommand",
+                "post_condition_PRISM_pctl": "noFireCommand",
+                "ft": "((LAST V (((! fireReported) & ((! LAST) & (X fireReported))) -> (X ((F[<=5] noFireCommand) | (F[<5] LAST))))) & (fireReported -> ((F[<=5] noFireCommand) | (F[<5] LAST))))",
+                "pt": "(H ((O[=5] ((fireReported & (Z (! fireReported))) & (! noFireCommand))) -> (O[<5] ((Z FALSE) | noFireCommand))))",
+                "pctl": "P>=1[((G (((! fireReported) & (X fireReported)) => (X (P>=1[(F<=5 noFireCommand)])))) & (fireReported => (P>=1[(F[<=5] noFireCommand)])))]",
+                "ptExpanded": "(H ((O[5,5] ((fireReported & (Z (! fireReported))) & (! noFireCommand))) -> (O[0,4] ((Z FALSE) | noFireCommand))))",
+                "CoCoSpecCode": "H((OT(5, 5, ((fireReported and ZtoPre(not (fireReported))) and not (noFireCommand))) => OT(4, 0, (ZtoPre(false) or noFireCommand))))",
+                "ftExpanded": "((LAST V (((! fireReported) & ((! LAST) & (X fireReported))) -> (X ((F[0,5] noFireCommand) | (F[0,4] LAST))))) & (fireReported -> ((F[0,5] noFireCommand) | (F[0,4] LAST))))",
+                "pctlExpanded": "P>=1[((G (((! fireReported) & (X fireReported)) => (X (P>=1[(F<=5 noFireCommand)])))) & (fireReported => (P>=1[(F[<=5] noFireCommand)])))]",
+                "ftInfAUExpanded": "((G (((! fireReported) & (X fireReported)) -> (X (F[0,5] noFireCommand)))) & (fireReported -> (F[0,5] noFireCommand)))",
+                "component": "ODIN"
+            },
+            "_id": "746b4750-8051-11f1-87a3-557ca4e73dc5"
+        },
+        {
+            "reqid": "MP3_Assumption",
+            "parent_reqid": "",
+            "project": "seams26_wildfire_fighting",
+            "rationale": "",
+            "comments": "",
+            "fulltext": "vehicle shall always satisfy hasEnoughBatteryToReturn",
+            "status": "",
+            "semantics": {
+                "type": "nasa",
+                "scope": {
+                    "type": "null"
+                },
+                "condition": "null",
+                "probability": "null",
+                "timing": "always",
+                "response": "satisfaction",
+                "variables": [
+                    "hasEnoughBatteryToReturn"
+                ],
+                "component_name": "vehicle",
+                "componentTextRange": [
+                    0,
+                    6
+                ],
+                "timingTextRange": [
+                    14,
+                    19
+                ],
+                "post_condition": "(hasEnoughBatteryToReturn)",
+                "responseTextRange": [
+                    21,
+                    52
+                ],
+                "diagramVariables": "Response = <b><i>(hasEnoughBatteryToReturn)</i></b>.",
+                "description": "SCOPE: in the interval defined by the entire execution.<br>TRIGGER: first point in the interval.<br>REQUIRED BEHAVIOR: for every trigger, <b><i>(hasEnoughBatteryToReturn)</i></b> must hold at all time points between (and including) the trigger and the end of the interval.",
+                "probabilistic_description": "SCOPE: in the interval defined by the entire execution.<br>TRIGGER: first point in the interval.<br>REQUIRED BEHAVIOR: for every trigger, with probability >=1, <b><i>(hasEnoughBatteryToReturn)</i></b> must hold at all time points between (and including) the trigger and the end of the interval.",
+                "diagram": "_media/user-interface/examples/svgDiagrams/null_null_always_satisfaction.svg",
+                "scope_mode_pt": "BAD_PT",
+                "scope_mode_ft": "BAD_FT",
+                "post_condition_unexp_pt": "hasEnoughBatteryToReturn",
+                "post_condition_unexp_ft": "hasEnoughBatteryToReturn",
+                "post_condition_unexp_pctl": "hasEnoughBatteryToReturn",
+                "post_condition_SMV_pt": "hasEnoughBatteryToReturn",
+                "post_condition_SMV_ft": "hasEnoughBatteryToReturn",
+                "post_condition_MLTL_ft": "hasEnoughBatteryToReturn",
+                "post_condition_PRISM_pctl": "hasEnoughBatteryToReturn",
+                "ft": "(LAST V hasEnoughBatteryToReturn)",
+                "pt": "(H hasEnoughBatteryToReturn)",
+                "pctl": "(P>=1[(G hasEnoughBatteryToReturn)])",
+                "ptExpanded": "(H hasEnoughBatteryToReturn)",
+                "CoCoSpecCode": "H(hasEnoughBatteryToReturn)",
+                "ftExpanded": "(LAST V hasEnoughBatteryToReturn)",
+                "pctlExpanded": "(P>=1[(G hasEnoughBatteryToReturn)])",
+                "ftInfAUExpanded": "(G hasEnoughBatteryToReturn)",
+                "mltlExpanded": "(G[0,M] p0)",
+                "WESTMapping": "p0: hasEnoughBatteryToReturn",
+                "R2U2Code": "hasEnoughBatteryToReturn",
+                "component": "vehicle"
+            },
+            "_id": "7a683060-8055-11f1-87a3-557ca4e73dc5"
+        },
+        {
+            "reqid": "QRC",
+            "parent_reqid": "",
+            "project": "seams26_rover_example",
+            "rationale": "Relaxes the time to complete the heatpoints if an obstacle is detected",
+            "comments": "",
+            "fulltext": "in Quiescing rover shall before calculateNewRoute satisfy identifyHeatpoint",
+            "status": "",
+            "semantics": {
+                "type": "nasa",
+                "scope": {
+                    "type": "in"
+                },
+                "condition": "null",
+                "probability": "null",
+                "timing": "before",
+                "response": "satisfaction",
+                "variables": [
+                    "Quiescing",
+                    "calculateNewRoute",
+                    "identifyHeatpoint"
+                ],
+                "scope_mode": "Quiescing",
+                "scopeTextRange": [
+                    0,
+                    11
+                ],
+                "component_name": "rover",
+                "componentTextRange": [
+                    13,
+                    17
+                ],
+                "stop_condition": "(calculateNewRoute)",
+                "timingTextRange": [
+                    25,
+                    48
+                ],
+                "post_condition": "(identifyHeatpoint)",
+                "responseTextRange": [
+                    50,
+                    74
+                ],
+                "diagramVariables": "M = <b><i>Quiescing</i></b>, SC = <b><i>(calculateNewRoute)</i></b>, Response = <b><i>(identifyHeatpoint)</i></b>.",
+                "description": "ENFORCED: in every interval where <b><i>Quiescing</i></b> holds.\nTRIGGER: first point in the interval.\nREQUIRES: for every trigger, RES must hold at least once strictly before the state where the stop condition holds. If the stop condition never occurs in the interval, RES does not need to hold. If the stop condition holds at the trigger, the requirement is not satisfied.",
+                "diagram": "_media/user-interface/examples/svgDiagrams/in_null_before_satisfaction.svg",
+                "scope_mode_pt": "Quiescing",
+                "scope_mode_ft": "Quiescing",
+                "scope_mode_pctl": "Quiescing",
+                "post_condition_unexp_pt": "identifyHeatpoint",
+                "post_condition_unexp_ft": "identifyHeatpoint",
+                "post_condition_unexp_pctl": "identifyHeatpoint",
+                "post_condition_SMV_pt": "identifyHeatpoint",
+                "post_condition_SMV_ft": "identifyHeatpoint",
+                "post_condition_PRISM_pctl": "identifyHeatpoint",
+                "stop_condition_unexp_pt": "calculateNewRoute",
+                "stop_condition_unexp_ft": "calculateNewRoute",
+                "stop_condition_PRISM_pctl": "calculateNewRoute",
+                "stop_condition_SMV_pt": "calculateNewRoute",
+                "stop_condition_SMV_ft": "calculateNewRoute",
+                "ft": "((LAST V ((! (Fin_Quiescing & (! LAST))) | (X (! (((! ((! calculateNewRoute) & (identifyHeatpoint | (Lin_Quiescing | LAST)))) & (! (Lin_Quiescing | LAST))) U calculateNewRoute))))) & (Quiescing -> (! (((! ((! calculateNewRoute) & (identifyHeatpoint | (Lin_Quiescing | LAST)))) & (! (Lin_Quiescing | LAST))) U calculateNewRoute))))",
+                "pt": "((H (Lin_Quiescing -> (Y ((calculateNewRoute -> ((! Fin_Quiescing) & (Y (! ((! identifyHeatpoint) S ((! identifyHeatpoint) & Fin_Quiescing)))))) S ((calculateNewRoute -> ((! Fin_Quiescing) & (Y (! ((! identifyHeatpoint) S ((! identifyHeatpoint) & Fin_Quiescing)))))) & Fin_Quiescing))))) & (((! Lin_Quiescing) S ((! Lin_Quiescing) & Fin_Quiescing)) -> ((calculateNewRoute -> ((! Fin_Quiescing) & (Y (! ((! identifyHeatpoint) S ((! identifyHeatpoint) & Fin_Quiescing)))))) S ((calculateNewRoute -> ((! Fin_Quiescing) & (Y (! ((! identifyHeatpoint) S ((! identifyHeatpoint) & Fin_Quiescing)))))) & Fin_Quiescing))))",
+                "pctl": "P>=1[((G ((! (Fin_Quiescing & (! LAST))) | (X (P>=1[(! (((! ((! undefined) & (identifyHeatpoint | Lin_Quiescing))) & (! Lin_Quiescing)) U undefined))])))) & (Quiescing => (Lin_Quiescing | (P>=1[(! (((! ((! undefined) & (identifyHeatpoint | Lin_Quiescing))) & (! Lin_Quiescing)) U undefined))]))))]",
+                "ptExpanded": "((H (((! Quiescing) & (Y Quiescing)) -> (Y ((calculateNewRoute -> ((! (Quiescing & (Z (! Quiescing)))) & (Y (! ((! identifyHeatpoint) S ((! identifyHeatpoint) & (Quiescing & (Z (! Quiescing))))))))) S ((calculateNewRoute -> ((! (Quiescing & (Z (! Quiescing)))) & (Y (! ((! identifyHeatpoint) S ((! identifyHeatpoint) & (Quiescing & (Z (! Quiescing))))))))) & (Quiescing & (Z (! Quiescing)))))))) & (((! ((! Quiescing) & (Y Quiescing))) S ((! ((! Quiescing) & (Y Quiescing))) & (Quiescing & (Z (! Quiescing))))) -> ((calculateNewRoute -> ((! (Quiescing & (Z (! Quiescing)))) & (Y (! ((! identifyHeatpoint) S ((! identifyHeatpoint) & (Quiescing & (Z (! Quiescing))))))))) S ((calculateNewRoute -> ((! (Quiescing & (Z (! Quiescing)))) & (Y (! ((! identifyHeatpoint) S ((! identifyHeatpoint) & (Quiescing & (Z (! Quiescing))))))))) & (Quiescing & (Z (! Quiescing)))))))",
+                "CoCoSpecCode": "(H(((not (Quiescing) and YtoPre(Quiescing)) => YtoPre(SI((Quiescing and ZtoPre(not (Quiescing))),(calculateNewRoute => (not ((Quiescing and ZtoPre(not (Quiescing)))) and YtoPre(not (SI((Quiescing and ZtoPre(not (Quiescing))),not (identifyHeatpoint)))))))))) and (SI((Quiescing and ZtoPre(not (Quiescing))),not ((not (Quiescing) and YtoPre(Quiescing)))) => SI((Quiescing and ZtoPre(not (Quiescing))),(calculateNewRoute => (not ((Quiescing and ZtoPre(not (Quiescing)))) and YtoPre(not (SI((Quiescing and ZtoPre(not (Quiescing))),not (identifyHeatpoint)))))))))",
+                "ftExpanded": "((LAST V ((! ((((! Quiescing) & (! LAST)) & (X Quiescing)) & (! LAST))) | (X (! (((! ((! calculateNewRoute) & (identifyHeatpoint | (((Quiescing & (! LAST)) & (X (! Quiescing))) | LAST)))) & (! (((Quiescing & (! LAST)) & (X (! Quiescing))) | LAST))) U calculateNewRoute))))) & (Quiescing -> (! (((! ((! calculateNewRoute) & (identifyHeatpoint | (((Quiescing & (! LAST)) & (X (! Quiescing))) | LAST)))) & (! (((Quiescing & (! LAST)) & (X (! Quiescing))) | LAST))) U calculateNewRoute))))",
+                "pctlExpanded": "P>=1[((G ((! (((! Quiescing) & (X Quiescing)) & (! false))) | (X (P>=1[(! (((! ((! calculateNewRoute) & (identifyHeatpoint | (Quiescing & (X (! Quiescing)))))) & (! (Quiescing & (X (! Quiescing))))) U calculateNewRoute))])))) & (Quiescing => ((Quiescing & (X (! Quiescing))) | (P>=1[(! (((! ((! calculateNewRoute) & (identifyHeatpoint | (Quiescing & (X (! Quiescing)))))) & (! (Quiescing & (X (! Quiescing))))) U calculateNewRoute))]))))]",
+                "ftInfAUExpanded": "((G ((! ((! Quiescing) & (X Quiescing))) | (X (! (((! ((! calculateNewRoute) & (identifyHeatpoint | (Quiescing & (X (! Quiescing)))))) & (! (Quiescing & (X (! Quiescing))))) U calculateNewRoute))))) & (Quiescing -> (! (((! ((! calculateNewRoute) & (identifyHeatpoint | (Quiescing & (X (! Quiescing)))))) & (! (Quiescing & (X (! Quiescing))))) U calculateNewRoute))))",
+                "component": "rover"
+            },
+            "_id": "7aea4c10-7ebd-11f1-8473-b950cbeebb23"
+        },
+        {
+            "reqid": "NR1_Assumption",
+            "parent_reqid": "",
+            "project": "seams26_rover_example",
+            "rationale": "",
+            "comments": "R3.1: All heatpoints shall be correctly identified",
+            "fulltext": "in Nominal the rover shall immediately satisfy identifyHeatpoints",
+            "status": "",
+            "semantics": {
+                "type": "nasa",
+                "scope": {
+                    "type": "in"
+                },
+                "condition": "null",
+                "probability": "null",
+                "timing": "immediately",
+                "response": "satisfaction",
+                "variables": [
+                    "Nominal",
+                    "identifyHeatpoints"
+                ],
+                "scope_mode": "Nominal",
+                "scopeTextRange": [
+                    0,
+                    9
+                ],
+                "component_name": "rover",
+                "componentTextRange": [
+                    11,
+                    19
+                ],
+                "timingTextRange": [
+                    27,
+                    37
+                ],
+                "post_condition": "(identifyHeatpoints)",
+                "responseTextRange": [
+                    39,
+                    64
+                ],
+                "diagramVariables": "M = <b><i>Nominal</i></b>, Response = <b><i>(identifyHeatpoints)</i></b>.",
+                "description": "SCOPE: in every interval where <b><i>Nominal</i></b> holds.<br>TRIGGER: first point in the interval.<br>REQUIRED BEHAVIOR: for every trigger, if trigger holds then <b><i>(identifyHeatpoints)</i></b> also holds at the same time point.",
+                "probabilistic_description": "SCOPE: in every interval where <b><i>Nominal</i></b> holds.<br>TRIGGER: first point in the interval.<br>REQUIRED BEHAVIOR: for every trigger, with probability >=1, if trigger holds then <b><i>(identifyHeatpoints)</i></b> also holds at the same time point.",
+                "diagram": "_media/user-interface/examples/svgDiagrams/in_null_immediately_satisfaction.svg",
+                "scope_mode_pt": "Nominal",
+                "scope_mode_ft": "Nominal",
+                "scope_mode_pctl": "Nominal",
+                "post_condition_unexp_pt": "identifyHeatpoints",
+                "post_condition_unexp_ft": "identifyHeatpoints",
+                "post_condition_unexp_pctl": "identifyHeatpoints",
+                "post_condition_SMV_pt": "identifyHeatpoints",
+                "post_condition_SMV_ft": "identifyHeatpoints",
+                "post_condition_MLTL_ft": "identifyHeatpoints",
+                "post_condition_PRISM_pctl": "identifyHeatpoints",
+                "ft": "((LAST V ((! (Fin_Nominal & (! LAST))) | (X identifyHeatpoints))) & (Nominal -> identifyHeatpoints))",
+                "pt": "(H (Fin_Nominal -> identifyHeatpoints))",
+                "pctl": "P>=1[((G ((! (Fin_Nominal & (! LAST))) | (X (P>=1[identifyHeatpoints])))) & (Nominal => (Lin_Nominal | (P>=1[identifyHeatpoints]))))]",
+                "ptExpanded": "(H ((Nominal & (Z (! Nominal))) -> identifyHeatpoints))",
+                "CoCoSpecCode": "H(((Nominal and ZtoPre(not (Nominal))) => identifyHeatpoints))",
+                "ftExpanded": "((LAST V ((! ((((! Nominal) & (! LAST)) & (X Nominal)) & (! LAST))) | (X identifyHeatpoints))) & (Nominal -> identifyHeatpoints))",
+                "pctlExpanded": "P>=1[((G ((! (((! Nominal) & (X Nominal)) & (! false))) | (X (P>=1[identifyHeatpoints])))) & (Nominal => ((Nominal & (X (! Nominal))) | (P>=1[identifyHeatpoints]))))]",
+                "ftInfAUExpanded": "((G ((! ((! Nominal) & (X Nominal))) | (X identifyHeatpoints))) & (Nominal -> identifyHeatpoints))",
+                "mltlExpanded": "((G[0,M] (((! p0) & (F[1,1] p0)) -> (F[1,1] p1))) & (p0 -> p1))",
+                "WESTMapping": "p0: Nominal<br/>p1: identifyHeatpoints",
+                "R2U2Code": "((((! Nominal) && (F[1,1] Nominal)) -> (F[1,1] identifyHeatpoints)) && (((TAU == 0) && Nominal) -> identifyHeatpoints))",
+                "component": "rover"
+            },
+            "_id": "93f3dcb0-7e97-11f1-8473-b950cbeebb23"
+        },
+        {
+            "reqid": "MP2_Assumption",
+            "parent_reqid": "",
+            "project": "seams26_rover_example",
+            "rationale": "",
+            "comments": "",
+            "fulltext": "rover shall always satisfy safeDistanceFromObstacle",
+            "status": "",
+            "semantics": {
+                "type": "nasa",
+                "scope": {
+                    "type": "null"
+                },
+                "condition": "null",
+                "probability": "null",
+                "timing": "always",
+                "response": "satisfaction",
+                "variables": [
+                    "safeDistanceFromObstacle"
+                ],
+                "component_name": "rover",
+                "componentTextRange": [
+                    0,
+                    4
+                ],
+                "timingTextRange": [
+                    12,
+                    17
+                ],
+                "post_condition": "(safeDistanceFromObstacle)",
+                "responseTextRange": [
+                    19,
+                    50
+                ],
+                "diagramVariables": "Response = <b><i>(safeDistanceFromObstacle)</i></b>.",
+                "description": "SCOPE: in the interval defined by the entire execution.<br>TRIGGER: first point in the interval.<br>REQUIRED BEHAVIOR: for every trigger, <b><i>(safeDistanceFromObstacle)</i></b> must hold at all time points between (and including) the trigger and the end of the interval.",
+                "probabilistic_description": "SCOPE: in the interval defined by the entire execution.<br>TRIGGER: first point in the interval.<br>REQUIRED BEHAVIOR: for every trigger, with probability >=1, <b><i>(safeDistanceFromObstacle)</i></b> must hold at all time points between (and including) the trigger and the end of the interval.",
+                "diagram": "_media/user-interface/examples/svgDiagrams/null_null_always_satisfaction.svg",
+                "scope_mode_pt": "BAD_PT",
+                "scope_mode_ft": "BAD_FT",
+                "post_condition_unexp_pt": "safeDistanceFromObstacle",
+                "post_condition_unexp_ft": "safeDistanceFromObstacle",
+                "post_condition_unexp_pctl": "safeDistanceFromObstacle",
+                "post_condition_SMV_pt": "safeDistanceFromObstacle",
+                "post_condition_SMV_ft": "safeDistanceFromObstacle",
+                "post_condition_MLTL_ft": "safeDistanceFromObstacle",
+                "post_condition_PRISM_pctl": "safeDistanceFromObstacle",
+                "ft": "(LAST V safeDistanceFromObstacle)",
+                "pt": "(H safeDistanceFromObstacle)",
+                "pctl": "(P>=1[(G safeDistanceFromObstacle)])",
+                "ptExpanded": "(H safeDistanceFromObstacle)",
+                "CoCoSpecCode": "H(safeDistanceFromObstacle)",
+                "ftExpanded": "(LAST V safeDistanceFromObstacle)",
+                "pctlExpanded": "(P>=1[(G safeDistanceFromObstacle)])",
+                "ftInfAUExpanded": "(G safeDistanceFromObstacle)",
+                "mltlExpanded": "(G[0,M] p0)",
+                "WESTMapping": "p0: safeDistanceFromObstacle",
+                "R2U2Code": "safeDistanceFromObstacle",
+                "component": "rover"
+            },
+            "_id": "9ad2f720-7e95-11f1-8473-b950cbeebb23"
+        },
+        {
+            "reqid": "NR4",
+            "parent_reqid": "",
+            "project": "seams26_wildfire_fighting",
+            "rationale": "",
+            "comments": "",
+            "fulltext": "In Nominal whenever highFrequencyOfMessages ODIN shall immediately satisfy alertNetworkOverload",
+            "status": "",
+            "semantics": {
+                "type": "nasa",
+                "scope": {
+                    "type": "in"
+                },
+                "condition": "holding",
+                "probability": "null",
+                "timing": "immediately",
+                "response": "satisfaction",
+                "variables": [
+                    "Nominal",
+                    "highFrequencyOfMessages",
+                    "alertNetworkOverload"
+                ],
+                "scope_mode": "Nominal",
+                "scopeTextRange": [
+                    0,
+                    9
+                ],
+                "qualifier_word": "whenever",
+                "pre_condition": "(highFrequencyOfMessages)",
+                "regular_condition": "(highFrequencyOfMessages)",
+                "conditionTextRange": [
+                    11,
+                    42
+                ],
+                "component_name": "ODIN",
+                "componentTextRange": [
+                    44,
+                    47
+                ],
+                "timingTextRange": [
+                    55,
+                    65
+                ],
+                "post_condition": "(alertNetworkOverload)",
+                "responseTextRange": [
+                    67,
+                    94
+                ],
+                "diagramVariables": "M = <b><i>Nominal</i></b>, CC = <b><i>(highFrequencyOfMessages)</i></b>, Response = <b><i>(alertNetworkOverload)</i></b>.",
+                "description": "ENFORCED: in every interval where <b><i>Nominal</i></b> holds.\nTRIGGER: every point in the interval where <b><i>(highFrequencyOfMessages)</i></b> is true.\nREQUIRES: for every trigger, if trigger holds then RES also holds at the same time point.",
+                "diagram": "_media/user-interface/examples/svgDiagrams/in_holding_immediately_satisfaction.svg",
+                "scope_mode_pt": "Nominal",
+                "scope_mode_ft": "Nominal",
+                "scope_mode_pctl": "Nominal",
+                "regular_condition_unexp_pt": "highFrequencyOfMessages",
+                "regular_condition_unexp_ft": "highFrequencyOfMessages",
+                "regular_condition_unexp_pctl": "highFrequencyOfMessages",
+                "regular_condition_SMV_pt": "highFrequencyOfMessages",
+                "regular_condition_SMV_ft": "highFrequencyOfMessages",
+                "regular_condition_PRISM_pctl": "highFrequencyOfMessages",
+                "post_condition_unexp_pt": "alertNetworkOverload",
+                "post_condition_unexp_ft": "alertNetworkOverload",
+                "post_condition_unexp_pctl": "alertNetworkOverload",
+                "post_condition_SMV_pt": "alertNetworkOverload",
+                "post_condition_SMV_ft": "alertNetworkOverload",
+                "post_condition_PRISM_pctl": "alertNetworkOverload",
+                "ft": "((LAST V ((! (Fin_Nominal & (! LAST))) | (X ((Lin_Nominal | LAST) V (highFrequencyOfMessages -> alertNetworkOverload))))) & (Nominal -> ((Lin_Nominal | LAST) V (highFrequencyOfMessages -> alertNetworkOverload))))",
+                "pt": "((H (Lin_Nominal -> (Y ((highFrequencyOfMessages -> alertNetworkOverload) S ((highFrequencyOfMessages -> alertNetworkOverload) & Fin_Nominal))))) & (((! Lin_Nominal) S ((! Lin_Nominal) & Fin_Nominal)) -> ((highFrequencyOfMessages -> alertNetworkOverload) S ((highFrequencyOfMessages -> alertNetworkOverload) & Fin_Nominal))))",
+                "pctl": "P>=1[((G ((! (Fin_Nominal & (! LAST))) | (X (Lin_Nominal R (highFrequencyOfMessages => (P>=1[alertNetworkOverload])))))) & (Nominal => (Lin_Nominal | (Lin_Nominal R (highFrequencyOfMessages => (P>=1[alertNetworkOverload]))))))]",
+                "ptExpanded": "((H (((! Nominal) & (Y Nominal)) -> (Y ((highFrequencyOfMessages -> alertNetworkOverload) S ((highFrequencyOfMessages -> alertNetworkOverload) & (Nominal & (Z (! Nominal)))))))) & (((! ((! Nominal) & (Y Nominal))) S ((! ((! Nominal) & (Y Nominal))) & (Nominal & (Z (! Nominal))))) -> ((highFrequencyOfMessages -> alertNetworkOverload) S ((highFrequencyOfMessages -> alertNetworkOverload) & (Nominal & (Z (! Nominal)))))))",
+                "CoCoSpecCode": "(H(((not (Nominal) and YtoPre(Nominal)) => YtoPre(SI((Nominal and ZtoPre(not (Nominal))),(highFrequencyOfMessages => alertNetworkOverload))))) and (SI((Nominal and ZtoPre(not (Nominal))),not ((not (Nominal) and YtoPre(Nominal)))) => SI((Nominal and ZtoPre(not (Nominal))),(highFrequencyOfMessages => alertNetworkOverload))))",
+                "ftExpanded": "((LAST V ((! ((((! Nominal) & (! LAST)) & (X Nominal)) & (! LAST))) | (X ((((Nominal & (! LAST)) & (X (! Nominal))) | LAST) V (highFrequencyOfMessages -> alertNetworkOverload))))) & (Nominal -> ((((Nominal & (! LAST)) & (X (! Nominal))) | LAST) V (highFrequencyOfMessages -> alertNetworkOverload))))",
+                "pctlExpanded": "P>=1[((G ((! (((! Nominal) & (X Nominal)) & (! false))) | (X ((Nominal & (X (! Nominal))) R (highFrequencyOfMessages => (P>=1[alertNetworkOverload])))))) & (Nominal => ((Nominal & (X (! Nominal))) | ((Nominal & (X (! Nominal))) R (highFrequencyOfMessages => (P>=1[alertNetworkOverload]))))))]",
+                "ftInfAUExpanded": "((G ((! ((! Nominal) & (X Nominal))) | (X ((Nominal & (X (! Nominal))) V (highFrequencyOfMessages -> alertNetworkOverload))))) & (Nominal -> ((Nominal & (X (! Nominal))) V (highFrequencyOfMessages -> alertNetworkOverload))))",
+                "component": "ODIN"
+            },
+            "_id": "a2d48f40-8059-11f1-87a3-557ca4e73dc5"
+        },
+        {
+            "reqid": "NR2",
+            "parent_reqid": "",
+            "project": "seams26_rover_example",
+            "rationale": "",
+            "comments": "",
+            "fulltext": "in Nominal whenever identifyHeatpoints rover shall within 2 ticks satisfy visitHeatpoint",
+            "status": "",
+            "semantics": {
+                "type": "nasa",
+                "scope": {
+                    "type": "in"
+                },
+                "condition": "holding",
+                "probability": "null",
+                "timing": "within",
+                "response": "satisfaction",
+                "variables": [
+                    "Nominal",
+                    "identifyHeatpoints",
+                    "visitHeatpoint"
+                ],
+                "scope_mode": "Nominal",
+                "scopeTextRange": [
+                    0,
+                    9
+                ],
+                "qualifier_word": "whenever",
+                "pre_condition": "(identifyHeatpoints)",
+                "regular_condition": "(identifyHeatpoints)",
+                "conditionTextRange": [
+                    11,
+                    37
+                ],
+                "component_name": "rover",
+                "componentTextRange": [
+                    39,
+                    43
+                ],
+                "duration": "2",
+                "timingTextRange": [
+                    51,
+                    64
+                ],
+                "post_condition": "(visitHeatpoint)",
+                "responseTextRange": [
+                    66,
+                    87
+                ],
+                "diagramVariables": "M = <b><i>Nominal</i></b>, CC = <b><i>(identifyHeatpoints)</i></b>,  n = <b><i>2</i></b>, Response = <b><i>(visitHeatpoint)</i></b>.",
+                "description": "ENFORCED: in every interval where <b><i>Nominal</i></b> holds.\nTRIGGER: every point in the interval where <b><i>(identifyHeatpoints)</i></b> is true.\nREQUIRES: for every trigger, RES must hold at some point with distance <= <b><i>2</i></b> from the trigger (i.e., at trigger, trigger+1, ..., or trigger+<b><i>2</i></b>). If the interval ends sooner than trigger+<b><i>2</i></b>, then RES need not hold.",
+                "diagram": "_media/user-interface/examples/svgDiagrams/in_holding_within_satisfaction.svg",
+                "scope_mode_pt": "Nominal",
+                "scope_mode_ft": "Nominal",
+                "scope_mode_pctl": "Nominal",
+                "regular_condition_unexp_pt": "identifyHeatpoints",
+                "regular_condition_unexp_ft": "identifyHeatpoints",
+                "regular_condition_unexp_pctl": "identifyHeatpoints",
+                "regular_condition_SMV_pt": "identifyHeatpoints",
+                "regular_condition_SMV_ft": "identifyHeatpoints",
+                "regular_condition_PRISM_pctl": "identifyHeatpoints",
+                "post_condition_unexp_pt": "visitHeatpoint",
+                "post_condition_unexp_ft": "visitHeatpoint",
+                "post_condition_unexp_pctl": "visitHeatpoint",
+                "post_condition_SMV_pt": "visitHeatpoint",
+                "post_condition_SMV_ft": "visitHeatpoint",
+                "post_condition_PRISM_pctl": "visitHeatpoint",
+                "ft": "((LAST V ((! (Fin_Nominal & (! LAST))) | (X ((Lin_Nominal | LAST) V (identifyHeatpoints -> ((F[<=2] visitHeatpoint) | (F[<2] (Lin_Nominal | LAST)))))))) & (Nominal -> ((Lin_Nominal | LAST) V (identifyHeatpoints -> ((F[<=2] visitHeatpoint) | (F[<2] (Lin_Nominal | LAST)))))))",
+                "pt": "((H (Lin_Nominal -> (Y (((O[=2] (identifyHeatpoints & (! visitHeatpoint))) -> (O[<2] (Fin_Nominal | visitHeatpoint))) S (((O[=2] (identifyHeatpoints & (! visitHeatpoint))) -> (O[<2] (Fin_Nominal | visitHeatpoint))) & Fin_Nominal))))) & (((! Lin_Nominal) S ((! Lin_Nominal) & Fin_Nominal)) -> (((O[=2] (identifyHeatpoints & (! visitHeatpoint))) -> (O[<2] (Fin_Nominal | visitHeatpoint))) S (((O[=2] (identifyHeatpoints & (! visitHeatpoint))) -> (O[<2] (Fin_Nominal | visitHeatpoint))) & Fin_Nominal))))",
+                "pctl": "P>=1[((G ((! (Fin_Nominal & (! LAST))) | (X (Lin_Nominal R (identifyHeatpoints => (P>=1[(F<=2 visitHeatpoint)])))))) & (Nominal => (Lin_Nominal | (Lin_Nominal R (identifyHeatpoints => (P>=1[(F[<=2] visitHeatpoint)]))))))]",
+                "ptExpanded": "((H (((! Nominal) & (Y Nominal)) -> (Y (((O[2,2] (identifyHeatpoints & (! visitHeatpoint))) -> (O[0,1] ((Nominal & (Z (! Nominal))) | visitHeatpoint))) S (((O[2,2] (identifyHeatpoints & (! visitHeatpoint))) -> (O[0,1] ((Nominal & (Z (! Nominal))) | visitHeatpoint))) & (Nominal & (Z (! Nominal)))))))) & (((! ((! Nominal) & (Y Nominal))) S ((! ((! Nominal) & (Y Nominal))) & (Nominal & (Z (! Nominal))))) -> (((O[2,2] (identifyHeatpoints & (! visitHeatpoint))) -> (O[0,1] ((Nominal & (Z (! Nominal))) | visitHeatpoint))) S (((O[2,2] (identifyHeatpoints & (! visitHeatpoint))) -> (O[0,1] ((Nominal & (Z (! Nominal))) | visitHeatpoint))) & (Nominal & (Z (! Nominal)))))))",
+                "CoCoSpecCode": "(H(((not (Nominal) and YtoPre(Nominal)) => YtoPre(SI((Nominal and ZtoPre(not (Nominal))),(OT(2, 2, (identifyHeatpoints and not (visitHeatpoint))) => OT(1, 0, ((Nominal and ZtoPre(not (Nominal))) or visitHeatpoint))))))) and (SI((Nominal and ZtoPre(not (Nominal))),not ((not (Nominal) and YtoPre(Nominal)))) => SI((Nominal and ZtoPre(not (Nominal))),(OT(2, 2, (identifyHeatpoints and not (visitHeatpoint))) => OT(1, 0, ((Nominal and ZtoPre(not (Nominal))) or visitHeatpoint))))))",
+                "ftExpanded": "((LAST V ((! ((((! Nominal) & (! LAST)) & (X Nominal)) & (! LAST))) | (X ((((Nominal & (! LAST)) & (X (! Nominal))) | LAST) V (identifyHeatpoints -> ((F[0,2] visitHeatpoint) | (F[0,1] (((Nominal & (! LAST)) & (X (! Nominal))) | LAST)))))))) & (Nominal -> ((((Nominal & (! LAST)) & (X (! Nominal))) | LAST) V (identifyHeatpoints -> ((F[0,2] visitHeatpoint) | (F[0,1] (((Nominal & (! LAST)) & (X (! Nominal))) | LAST)))))))",
+                "pctlExpanded": "P>=1[((G ((! (((! Nominal) & (X Nominal)) & (! false))) | (X ((Nominal & (X (! Nominal))) R (identifyHeatpoints => (P>=1[(F<=2 visitHeatpoint)])))))) & (Nominal => ((Nominal & (X (! Nominal))) | ((Nominal & (X (! Nominal))) R (identifyHeatpoints => (P>=1[(F[<=2] visitHeatpoint)]))))))]",
+                "ftInfAUExpanded": "((G ((! ((! Nominal) & (X Nominal))) | (X ((Nominal & (X (! Nominal))) V (identifyHeatpoints -> ((F[0,2] visitHeatpoint) | (F[0,1] (Nominal & (X (! Nominal)))))))))) & (Nominal -> ((Nominal & (X (! Nominal))) V (identifyHeatpoints -> ((F[0,2] visitHeatpoint) | (F[0,1] (Nominal & (X (! Nominal)))))))))",
+                "component": "rover"
+            },
+            "_id": "a88b50e0-7e97-11f1-8473-b950cbeebb23"
+        },
+        {
+            "reqid": "MP1",
+            "parent_reqid": "",
+            "project": "seams26_wildfire_fighting",
+            "rationale": "",
+            "comments": "",
+            "fulltext": "Upon fireConfirmed ODIN shall within 2 ticks satisfy reportFire",
+            "status": "",
+            "semantics": {
+                "type": "nasa",
+                "scope": {
+                    "type": "null"
+                },
+                "condition": "regular",
+                "probability": "null",
+                "timing": "within",
+                "response": "satisfaction",
+                "variables": [
+                    "fireConfirmed",
+                    "reportFire"
+                ],
+                "qualifier_word": "upon",
+                "pre_condition": "(fireConfirmed)",
+                "regular_condition": "(fireConfirmed)",
+                "conditionTextRange": [
+                    0,
+                    17
+                ],
+                "component_name": "ODIN",
+                "componentTextRange": [
+                    19,
+                    22
+                ],
+                "duration": "2",
+                "timingTextRange": [
+                    30,
+                    43
+                ],
+                "post_condition": "(reportFire)",
+                "responseTextRange": [
+                    45,
+                    62
+                ],
+                "diagramVariables": "TC = <b><i>(fireConfirmed)</i></b>,  n = <b><i>2</i></b>, Response = <b><i>(reportFire)</i></b>.",
+                "description": "ENFORCED: in the interval defined by the entire execution.\nTRIGGER: first point in the interval if <b><i>(fireConfirmed)</i></b> is true and any point in the interval where <b><i>(fireConfirmed)</i></b> becomes true (from false).\nREQUIRES: for every trigger, RES must hold at some point with distance <= <b><i>2</i></b> from the trigger (i.e., at trigger, trigger+1, ..., or trigger+<b><i>2</i></b>). If the interval ends sooner than trigger+<b><i>2</i></b>, then RES need not hold.",
+                "diagram": "_media/user-interface/examples/svgDiagrams/null_regular_within_satisfaction.svg",
+                "scope_mode_pt": "BAD_PT",
+                "scope_mode_ft": "BAD_FT",
+                "regular_condition_unexp_pt": "fireConfirmed",
+                "regular_condition_unexp_ft": "fireConfirmed",
+                "regular_condition_unexp_pctl": "fireConfirmed",
+                "regular_condition_SMV_pt": "fireConfirmed",
+                "regular_condition_SMV_ft": "fireConfirmed",
+                "regular_condition_PRISM_pctl": "fireConfirmed",
+                "post_condition_unexp_pt": "reportFire",
+                "post_condition_unexp_ft": "reportFire",
+                "post_condition_unexp_pctl": "reportFire",
+                "post_condition_SMV_pt": "reportFire",
+                "post_condition_SMV_ft": "reportFire",
+                "post_condition_PRISM_pctl": "reportFire",
+                "ft": "((LAST V (((! fireConfirmed) & ((! LAST) & (X fireConfirmed))) -> (X ((F[<=2] reportFire) | (F[<2] LAST))))) & (fireConfirmed -> ((F[<=2] reportFire) | (F[<2] LAST))))",
+                "pt": "(H ((O[=2] ((fireConfirmed & (Z (! fireConfirmed))) & (! reportFire))) -> (O[<2] ((Z FALSE) | reportFire))))",
+                "pctl": "P>=1[((G (((! fireConfirmed) & (X fireConfirmed)) => (X (P>=1[(F<=2 reportFire)])))) & (fireConfirmed => (P>=1[(F[<=2] reportFire)])))]",
+                "ptExpanded": "(H ((O[2,2] ((fireConfirmed & (Z (! fireConfirmed))) & (! reportFire))) -> (O[0,1] ((Z FALSE) | reportFire))))",
+                "CoCoSpecCode": "H((OT(2, 2, ((fireConfirmed and ZtoPre(not (fireConfirmed))) and not (reportFire))) => OT(1, 0, (ZtoPre(false) or reportFire))))",
+                "ftExpanded": "((LAST V (((! fireConfirmed) & ((! LAST) & (X fireConfirmed))) -> (X ((F[0,2] reportFire) | (F[0,1] LAST))))) & (fireConfirmed -> ((F[0,2] reportFire) | (F[0,1] LAST))))",
+                "pctlExpanded": "P>=1[((G (((! fireConfirmed) & (X fireConfirmed)) => (X (P>=1[(F<=2 reportFire)])))) & (fireConfirmed => (P>=1[(F[<=2] reportFire)])))]",
+                "ftInfAUExpanded": "((G (((! fireConfirmed) & (X fireConfirmed)) -> (X (F[0,2] reportFire)))) & (fireConfirmed -> (F[0,2] reportFire)))",
+                "component": "ODIN"
+            },
+            "_id": "c021be00-8028-11f1-af36-6f5652dbf5ad"
+        },
+        {
+            "reqid": "NR3",
+            "parent_reqid": "",
+            "project": "seams26_rover_example",
+            "rationale": "",
+            "comments": "R3: The rover shall visit all reachable heatpoints",
+            "fulltext": "in Nominal whenever visitHeatpoint the rover shall within 5 ticks satisfy visitAllHeatpoints",
+            "status": "",
+            "semantics": {
+                "type": "nasa",
+                "scope": {
+                    "type": "in"
+                },
+                "condition": "holding",
+                "probability": "null",
+                "timing": "within",
+                "response": "satisfaction",
+                "variables": [
+                    "Nominal",
+                    "visitHeatpoint",
+                    "visitAllHeatpoints"
+                ],
+                "scope_mode": "Nominal",
+                "scopeTextRange": [
+                    0,
+                    9
+                ],
+                "qualifier_word": "whenever",
+                "pre_condition": "(visitHeatpoint)",
+                "regular_condition": "(visitHeatpoint)",
+                "conditionTextRange": [
+                    11,
+                    33
+                ],
+                "component_name": "rover",
+                "componentTextRange": [
+                    35,
+                    43
+                ],
+                "duration": "5",
+                "timingTextRange": [
+                    51,
+                    64
+                ],
+                "post_condition": "(visitAllHeatpoints)",
+                "responseTextRange": [
+                    66,
+                    91
+                ],
+                "diagramVariables": "M = <b><i>Nominal</i></b>, CC = <b><i>(visitHeatpoint)</i></b>,  n = <b><i>5</i></b>, Response = <b><i>(visitAllHeatpoints)</i></b>.",
+                "description": "ENFORCED: in every interval where <b><i>Nominal</i></b> holds.\nTRIGGER: every point in the interval where <b><i>(visitHeatpoint)</i></b> is true.\nREQUIRES: for every trigger, RES must hold at some point with distance <= <b><i>5</i></b> from the trigger (i.e., at trigger, trigger+1, ..., or trigger+<b><i>5</i></b>). If the interval ends sooner than trigger+<b><i>5</i></b>, then RES need not hold.",
+                "diagram": "_media/user-interface/examples/svgDiagrams/in_holding_within_satisfaction.svg",
+                "scope_mode_pt": "Nominal",
+                "scope_mode_ft": "Nominal",
+                "scope_mode_pctl": "Nominal",
+                "regular_condition_unexp_pt": "visitHeatpoint",
+                "regular_condition_unexp_ft": "visitHeatpoint",
+                "regular_condition_unexp_pctl": "visitHeatpoint",
+                "regular_condition_SMV_pt": "visitHeatpoint",
+                "regular_condition_SMV_ft": "visitHeatpoint",
+                "regular_condition_PRISM_pctl": "visitHeatpoint",
+                "post_condition_unexp_pt": "visitAllHeatpoints",
+                "post_condition_unexp_ft": "visitAllHeatpoints",
+                "post_condition_unexp_pctl": "visitAllHeatpoints",
+                "post_condition_SMV_pt": "visitAllHeatpoints",
+                "post_condition_SMV_ft": "visitAllHeatpoints",
+                "post_condition_PRISM_pctl": "visitAllHeatpoints",
+                "ft": "((LAST V ((! (Fin_Nominal & (! LAST))) | (X ((Lin_Nominal | LAST) V (visitHeatpoint -> ((F[<=5] visitAllHeatpoints) | (F[<5] (Lin_Nominal | LAST)))))))) & (Nominal -> ((Lin_Nominal | LAST) V (visitHeatpoint -> ((F[<=5] visitAllHeatpoints) | (F[<5] (Lin_Nominal | LAST)))))))",
+                "pt": "((H (Lin_Nominal -> (Y (((O[=5] (visitHeatpoint & (! visitAllHeatpoints))) -> (O[<5] (Fin_Nominal | visitAllHeatpoints))) S (((O[=5] (visitHeatpoint & (! visitAllHeatpoints))) -> (O[<5] (Fin_Nominal | visitAllHeatpoints))) & Fin_Nominal))))) & (((! Lin_Nominal) S ((! Lin_Nominal) & Fin_Nominal)) -> (((O[=5] (visitHeatpoint & (! visitAllHeatpoints))) -> (O[<5] (Fin_Nominal | visitAllHeatpoints))) S (((O[=5] (visitHeatpoint & (! visitAllHeatpoints))) -> (O[<5] (Fin_Nominal | visitAllHeatpoints))) & Fin_Nominal))))",
+                "pctl": "P>=1[((G ((! (Fin_Nominal & (! LAST))) | (X (Lin_Nominal R (visitHeatpoint => (P>=1[(F<=5 visitAllHeatpoints)])))))) & (Nominal => (Lin_Nominal | (Lin_Nominal R (visitHeatpoint => (P>=1[(F[<=5] visitAllHeatpoints)]))))))]",
+                "ptExpanded": "((H (((! Nominal) & (Y Nominal)) -> (Y (((O[5,5] (visitHeatpoint & (! visitAllHeatpoints))) -> (O[0,4] ((Nominal & (Z (! Nominal))) | visitAllHeatpoints))) S (((O[5,5] (visitHeatpoint & (! visitAllHeatpoints))) -> (O[0,4] ((Nominal & (Z (! Nominal))) | visitAllHeatpoints))) & (Nominal & (Z (! Nominal)))))))) & (((! ((! Nominal) & (Y Nominal))) S ((! ((! Nominal) & (Y Nominal))) & (Nominal & (Z (! Nominal))))) -> (((O[5,5] (visitHeatpoint & (! visitAllHeatpoints))) -> (O[0,4] ((Nominal & (Z (! Nominal))) | visitAllHeatpoints))) S (((O[5,5] (visitHeatpoint & (! visitAllHeatpoints))) -> (O[0,4] ((Nominal & (Z (! Nominal))) | visitAllHeatpoints))) & (Nominal & (Z (! Nominal)))))))",
+                "CoCoSpecCode": "(H(((not (Nominal) and YtoPre(Nominal)) => YtoPre(SI((Nominal and ZtoPre(not (Nominal))),(OT(5, 5, (visitHeatpoint and not (visitAllHeatpoints))) => OT(4, 0, ((Nominal and ZtoPre(not (Nominal))) or visitAllHeatpoints))))))) and (SI((Nominal and ZtoPre(not (Nominal))),not ((not (Nominal) and YtoPre(Nominal)))) => SI((Nominal and ZtoPre(not (Nominal))),(OT(5, 5, (visitHeatpoint and not (visitAllHeatpoints))) => OT(4, 0, ((Nominal and ZtoPre(not (Nominal))) or visitAllHeatpoints))))))",
+                "ftExpanded": "((LAST V ((! ((((! Nominal) & (! LAST)) & (X Nominal)) & (! LAST))) | (X ((((Nominal & (! LAST)) & (X (! Nominal))) | LAST) V (visitHeatpoint -> ((F[0,5] visitAllHeatpoints) | (F[0,4] (((Nominal & (! LAST)) & (X (! Nominal))) | LAST)))))))) & (Nominal -> ((((Nominal & (! LAST)) & (X (! Nominal))) | LAST) V (visitHeatpoint -> ((F[0,5] visitAllHeatpoints) | (F[0,4] (((Nominal & (! LAST)) & (X (! Nominal))) | LAST)))))))",
+                "pctlExpanded": "P>=1[((G ((! (((! Nominal) & (X Nominal)) & (! false))) | (X ((Nominal & (X (! Nominal))) R (visitHeatpoint => (P>=1[(F<=5 visitAllHeatpoints)])))))) & (Nominal => ((Nominal & (X (! Nominal))) | ((Nominal & (X (! Nominal))) R (visitHeatpoint => (P>=1[(F[<=5] visitAllHeatpoints)]))))))]",
+                "ftInfAUExpanded": "((G ((! ((! Nominal) & (X Nominal))) | (X ((Nominal & (X (! Nominal))) V (visitHeatpoint -> ((F[0,5] visitAllHeatpoints) | (F[0,4] (Nominal & (X (! Nominal)))))))))) & (Nominal -> ((Nominal & (X (! Nominal))) V (visitHeatpoint -> ((F[0,5] visitAllHeatpoints) | (F[0,4] (Nominal & (X (! Nominal)))))))))",
+                "component": "rover"
+            },
+            "_id": "c8ef8d60-7e97-11f1-8473-b950cbeebb23"
+        },
+        {
+            "reqid": "NR1",
+            "parent_reqid": "",
+            "project": "seams26_wildfire_fighting",
+            "rationale": "",
+            "comments": "",
+            "fulltext": "in Nominal upon fireReported ODIN shall satisfy if peopleCloseToFire then startEvacuationProtocol",
+            "status": "",
+            "semantics": {
+                "type": "nasa",
+                "scope": {
+                    "type": "in"
+                },
+                "condition": "regular",
+                "probability": "null",
+                "timing": "null",
+                "response": "satisfaction",
+                "variables": [
+                    "Nominal",
+                    "fireReported",
+                    "peopleCloseToFire",
+                    "startEvacuationProtocol"
+                ],
+                "scope_mode": "Nominal",
+                "scopeTextRange": [
+                    0,
+                    9
+                ],
+                "qualifier_word": "upon",
+                "pre_condition": "(fireReported)",
+                "regular_condition": "(fireReported)",
+                "conditionTextRange": [
+                    11,
+                    27
+                ],
+                "component_name": "ODIN",
+                "componentTextRange": [
+                    29,
+                    32
+                ],
+                "post_condition": "(peopleCloseToFire => startEvacuationProtocol)",
+                "responseTextRange": [
+                    40,
+                    96
+                ],
+                "diagramVariables": "M = <b><i>Nominal</i></b>, TC = <b><i>(fireReported)</i></b>, Response = <b><i>(peopleCloseToFire => startEvacuationProtocol)</i></b>.",
+                "description": "ENFORCED: in every interval where <b><i>Nominal</i></b> holds.\nTRIGGER: first point in the interval if <b><i>(fireReported)</i></b> is true and any point in the interval where <b><i>(fireReported)</i></b> becomes true (from false).\nREQUIRES: for every trigger, RES must hold at some time point between (and including) the trigger and the end of the interval.",
+                "diagram": "_media/user-interface/examples/svgDiagrams/in_regular_null_satisfaction.svg",
+                "scope_mode_pt": "Nominal",
+                "scope_mode_ft": "Nominal",
+                "scope_mode_pctl": "Nominal",
+                "regular_condition_unexp_pt": "fireReported",
+                "regular_condition_unexp_ft": "fireReported",
+                "regular_condition_unexp_pctl": "fireReported",
+                "regular_condition_SMV_pt": "fireReported",
+                "regular_condition_SMV_ft": "fireReported",
+                "regular_condition_PRISM_pctl": "fireReported",
+                "post_condition_unexp_pt": "(peopleCloseToFire -> startEvacuationProtocol)",
+                "post_condition_unexp_ft": "(peopleCloseToFire -> startEvacuationProtocol)",
+                "post_condition_unexp_pctl": "(peopleCloseToFire -> startEvacuationProtocol)",
+                "post_condition_SMV_pt": "(peopleCloseToFire -> startEvacuationProtocol)",
+                "post_condition_SMV_ft": "(peopleCloseToFire -> startEvacuationProtocol)",
+                "post_condition_PRISM_pctl": "(peopleCloseToFire -> startEvacuationProtocol)",
+                "ft": "((LAST V ((! (Fin_Nominal & (! LAST))) | (X (((Lin_Nominal | LAST) V (((! fireReported) & ((! LAST) & ((X fireReported) & (! (Lin_Nominal | LAST))))) -> ((X ((! (Lin_Nominal | LAST)) U (peopleCloseToFire -> startEvacuationProtocol))) & (! (Lin_Nominal | LAST))))) & (fireReported -> ((! (Lin_Nominal | LAST)) U (peopleCloseToFire -> startEvacuationProtocol))))))) & (Nominal -> (((Lin_Nominal | LAST) V (((! fireReported) & ((! LAST) & ((X fireReported) & (! (Lin_Nominal | LAST))))) -> ((X ((! (Lin_Nominal | LAST)) U (peopleCloseToFire -> startEvacuationProtocol))) & (! (Lin_Nominal | LAST))))) & (fireReported -> ((! (Lin_Nominal | LAST)) U (peopleCloseToFire -> startEvacuationProtocol))))))",
+                "pt": "((H (Lin_Nominal -> (Y (((! fireReported) S ((! fireReported) & Fin_Nominal)) | (! ((! (peopleCloseToFire -> startEvacuationProtocol)) S ((! (peopleCloseToFire -> startEvacuationProtocol)) & (fireReported & ((Y (! fireReported)) | Fin_Nominal))))))))) & (((! Lin_Nominal) S ((! Lin_Nominal) & Fin_Nominal)) -> (((! fireReported) S ((! fireReported) & Fin_Nominal)) | (! ((! (peopleCloseToFire -> startEvacuationProtocol)) S ((! (peopleCloseToFire -> startEvacuationProtocol)) & (fireReported & ((Y (! fireReported)) | Fin_Nominal))))))))",
+                "pctl": "P>=1[((G ((! (Fin_Nominal & (! LAST))) | (X ((Lin_Nominal R (((! fireReported) & ((X fireReported) & (! Lin_Nominal))) => ((X (P>=1[((! Lin_Nominal) U (peopleCloseToFire -> startEvacuationProtocol))])) & (! Lin_Nominal)))) & (fireReported => (P>=1[((! Lin_Nominal) U (peopleCloseToFire -> startEvacuationProtocol))])))))) & (Nominal => (Lin_Nominal | ((Lin_Nominal R (((! fireReported) & ((X fireReported) & (! Lin_Nominal))) => ((X (P>=1[((! Lin_Nominal) U (peopleCloseToFire -> startEvacuationProtocol))])) & (! Lin_Nominal)))) & (fireReported => (P>=1[((! Lin_Nominal) U (peopleCloseToFire -> startEvacuationProtocol))]))))))]",
+                "ptExpanded": "((H (((! Nominal) & (Y Nominal)) -> (Y (((! fireReported) S ((! fireReported) & (Nominal & (Z (! Nominal))))) | (! ((! (peopleCloseToFire -> startEvacuationProtocol)) S ((! (peopleCloseToFire -> startEvacuationProtocol)) & (fireReported & ((Y (! fireReported)) | (Nominal & (Z (! Nominal)))))))))))) & (((! ((! Nominal) & (Y Nominal))) S ((! ((! Nominal) & (Y Nominal))) & (Nominal & (Z (! Nominal))))) -> (((! fireReported) S ((! fireReported) & (Nominal & (Z (! Nominal))))) | (! ((! (peopleCloseToFire -> startEvacuationProtocol)) S ((! (peopleCloseToFire -> startEvacuationProtocol)) & (fireReported & ((Y (! fireReported)) | (Nominal & (Z (! Nominal)))))))))))",
+                "CoCoSpecCode": "(H(((not (Nominal) and YtoPre(Nominal)) => YtoPre((SI((Nominal and ZtoPre(not (Nominal))),not (fireReported)) or not (SI((fireReported and (YtoPre(not (fireReported)) or (Nominal and ZtoPre(not (Nominal))))),not ((peopleCloseToFire => startEvacuationProtocol)))))))) and (SI((Nominal and ZtoPre(not (Nominal))),not ((not (Nominal) and YtoPre(Nominal)))) => (SI((Nominal and ZtoPre(not (Nominal))),not (fireReported)) or not (SI((fireReported and (YtoPre(not (fireReported)) or (Nominal and ZtoPre(not (Nominal))))),not ((peopleCloseToFire => startEvacuationProtocol)))))))",
+                "ftExpanded": "((LAST V ((! ((((! Nominal) & (! LAST)) & (X Nominal)) & (! LAST))) | (X (((((Nominal & (! LAST)) & (X (! Nominal))) | LAST) V (((! fireReported) & ((! LAST) & ((X fireReported) & (! (((Nominal & (! LAST)) & (X (! Nominal))) | LAST))))) -> ((X ((! (((Nominal & (! LAST)) & (X (! Nominal))) | LAST)) U (peopleCloseToFire -> startEvacuationProtocol))) & (! (((Nominal & (! LAST)) & (X (! Nominal))) | LAST))))) & (fireReported -> ((! (((Nominal & (! LAST)) & (X (! Nominal))) | LAST)) U (peopleCloseToFire -> startEvacuationProtocol))))))) & (Nominal -> (((((Nominal & (! LAST)) & (X (! Nominal))) | LAST) V (((! fireReported) & ((! LAST) & ((X fireReported) & (! (((Nominal & (! LAST)) & (X (! Nominal))) | LAST))))) -> ((X ((! (((Nominal & (! LAST)) & (X (! Nominal))) | LAST)) U (peopleCloseToFire -> startEvacuationProtocol))) & (! (((Nominal & (! LAST)) & (X (! Nominal))) | LAST))))) & (fireReported -> ((! (((Nominal & (! LAST)) & (X (! Nominal))) | LAST)) U (peopleCloseToFire -> startEvacuationProtocol))))))",
+                "pctlExpanded": "P>=1[((G ((! (((! Nominal) & (X Nominal)) & (! false))) | (X (((Nominal & (X (! Nominal))) R (((! fireReported) & ((X fireReported) & (! (Nominal & (X (! Nominal)))))) => ((X (P>=1[((! (Nominal & (X (! Nominal)))) U (peopleCloseToFire -> startEvacuationProtocol))])) & (! (Nominal & (X (! Nominal))))))) & (fireReported => (P>=1[((! (Nominal & (X (! Nominal)))) U (peopleCloseToFire -> startEvacuationProtocol))])))))) & (Nominal => ((Nominal & (X (! Nominal))) | (((Nominal & (X (! Nominal))) R (((! fireReported) & ((X fireReported) & (! (Nominal & (X (! Nominal)))))) => ((X (P>=1[((! (Nominal & (X (! Nominal)))) U (peopleCloseToFire -> startEvacuationProtocol))])) & (! (Nominal & (X (! Nominal))))))) & (fireReported => (P>=1[((! (Nominal & (X (! Nominal)))) U (peopleCloseToFire -> startEvacuationProtocol))]))))))]",
+                "ftInfAUExpanded": "((G ((! ((! Nominal) & (X Nominal))) | (X (((Nominal & (X (! Nominal))) V (((! fireReported) & ((X fireReported) & (! (Nominal & (X (! Nominal)))))) -> ((X ((! (Nominal & (X (! Nominal)))) U (peopleCloseToFire -> startEvacuationProtocol))) & (! (Nominal & (X (! Nominal))))))) & (fireReported -> ((! (Nominal & (X (! Nominal)))) U (peopleCloseToFire -> startEvacuationProtocol))))))) & (Nominal -> (((Nominal & (X (! Nominal))) V (((! fireReported) & ((X fireReported) & (! (Nominal & (X (! Nominal)))))) -> ((X ((! (Nominal & (X (! Nominal)))) U (peopleCloseToFire -> startEvacuationProtocol))) & (! (Nominal & (X (! Nominal))))))) & (fireReported -> ((! (Nominal & (X (! Nominal)))) U (peopleCloseToFire -> startEvacuationProtocol))))))",
+                "component": "ODIN"
+            },
+            "_id": "cbfc41f0-8028-11f1-af36-6f5652dbf5ad"
+        },
+        {
+            "reqid": "NR3_Assumption",
+            "parent_reqid": "",
+            "project": "seams26_wildfire_fighting",
+            "rationale": "",
+            "comments": "",
+            "fulltext": "In Nominal upon startEvacuationProtocol ODIN shall within 5 ticks satisfy evacuationSuccessful",
+            "status": "",
+            "semantics": {
+                "type": "nasa",
+                "scope": {
+                    "type": "in"
+                },
+                "condition": "regular",
+                "probability": "null",
+                "timing": "within",
+                "response": "satisfaction",
+                "variables": [
+                    "Nominal",
+                    "startEvacuationProtocol",
+                    "evacuationSuccessful"
+                ],
+                "scope_mode": "Nominal",
+                "scopeTextRange": [
+                    0,
+                    9
+                ],
+                "qualifier_word": "upon",
+                "pre_condition": "(startEvacuationProtocol)",
+                "regular_condition": "(startEvacuationProtocol)",
+                "conditionTextRange": [
+                    11,
+                    38
+                ],
+                "component_name": "ODIN",
+                "componentTextRange": [
+                    40,
+                    43
+                ],
+                "duration": "5",
+                "timingTextRange": [
+                    51,
+                    64
+                ],
+                "post_condition": "(evacuationSuccessful)",
+                "responseTextRange": [
+                    66,
+                    93
+                ],
+                "diagramVariables": "M = <b><i>Nominal</i></b>, TC = <b><i>(startEvacuationProtocol)</i></b>,  n = <b><i>5</i></b>, Response = <b><i>(evacuationSuccessful)</i></b>.",
+                "description": "SCOPE: in every interval where <b><i>Nominal</i></b> holds.<br>TRIGGER: first point in the interval if <b><i>(startEvacuationProtocol)</i></b> is true and any point in the interval where <b><i>(startEvacuationProtocol)</i></b> becomes true (from false).<br>REQUIRED BEHAVIOR: for every trigger, <b><i>(evacuationSuccessful)</i></b> must hold at some point with distance <= <b><i>5</i></b> from the trigger (i.e., at trigger, trigger+1, ..., or trigger+<b><i>5</i></b>). If the interval ends sooner than trigger+<b><i>5</i></b>, then <b><i>(evacuationSuccessful)</i></b> need not hold.",
+                "probabilistic_description": "SCOPE: in every interval where <b><i>Nominal</i></b> holds.<br>TRIGGER: first point in the interval if <b><i>(startEvacuationProtocol)</i></b> is true and any point in the interval where <b><i>(startEvacuationProtocol)</i></b> becomes true (from false).<br>REQUIRED BEHAVIOR: for every trigger, with probability >=1, <b><i>(evacuationSuccessful)</i></b> must hold at some point with distance <= <b><i>5</i></b> from the trigger (i.e., at trigger, trigger+1, ..., or trigger+<b><i>5</i></b>). If the interval ends sooner than trigger+<b><i>5</i></b>, then <b><i>(evacuationSuccessful)</i></b> need not hold.",
+                "diagram": "_media/user-interface/examples/svgDiagrams/in_regular_within_satisfaction.svg",
+                "scope_mode_pt": "Nominal",
+                "scope_mode_ft": "Nominal",
+                "scope_mode_pctl": "Nominal",
+                "regular_condition_unexp_pt": "startEvacuationProtocol",
+                "regular_condition_unexp_ft": "startEvacuationProtocol",
+                "regular_condition_unexp_pctl": "startEvacuationProtocol",
+                "regular_condition_SMV_pt": "startEvacuationProtocol",
+                "regular_condition_SMV_ft": "startEvacuationProtocol",
+                "regular_condition_MLTL_ft": "startEvacuationProtocol",
+                "regular_condition_PRISM_pctl": "startEvacuationProtocol",
+                "post_condition_unexp_pt": "evacuationSuccessful",
+                "post_condition_unexp_ft": "evacuationSuccessful",
+                "post_condition_unexp_pctl": "evacuationSuccessful",
+                "post_condition_SMV_pt": "evacuationSuccessful",
+                "post_condition_SMV_ft": "evacuationSuccessful",
+                "post_condition_MLTL_ft": "evacuationSuccessful",
+                "post_condition_PRISM_pctl": "evacuationSuccessful",
+                "ft": "((LAST V ((! (Fin_Nominal & (! LAST))) | (X (((Lin_Nominal | LAST) V (((! startEvacuationProtocol) & ((! LAST) & ((X startEvacuationProtocol) & (! (Lin_Nominal | LAST))))) -> ((X ((F[<=5] evacuationSuccessful) | (F[<5] (Lin_Nominal | LAST)))) & (! (Lin_Nominal | LAST))))) & (startEvacuationProtocol -> ((F[<=5] evacuationSuccessful) | (F[<5] (Lin_Nominal | LAST)))))))) & (Nominal -> (((Lin_Nominal | LAST) V (((! startEvacuationProtocol) & ((! LAST) & ((X startEvacuationProtocol) & (! (Lin_Nominal | LAST))))) -> ((X ((F[<=5] evacuationSuccessful) | (F[<5] (Lin_Nominal | LAST)))) & (! (Lin_Nominal | LAST))))) & (startEvacuationProtocol -> ((F[<=5] evacuationSuccessful) | (F[<5] (Lin_Nominal | LAST)))))))",
+                "pt": "((H (Lin_Nominal -> (Y (((O[=5] ((startEvacuationProtocol & ((Y (! startEvacuationProtocol)) | Fin_Nominal)) & (! evacuationSuccessful))) -> (O[<5] (Fin_Nominal | evacuationSuccessful))) S (((O[=5] ((startEvacuationProtocol & ((Y (! startEvacuationProtocol)) | Fin_Nominal)) & (! evacuationSuccessful))) -> (O[<5] (Fin_Nominal | evacuationSuccessful))) & Fin_Nominal))))) & (((! Lin_Nominal) S ((! Lin_Nominal) & Fin_Nominal)) -> (((O[=5] ((startEvacuationProtocol & ((Y (! startEvacuationProtocol)) | Fin_Nominal)) & (! evacuationSuccessful))) -> (O[<5] (Fin_Nominal | evacuationSuccessful))) S (((O[=5] ((startEvacuationProtocol & ((Y (! startEvacuationProtocol)) | Fin_Nominal)) & (! evacuationSuccessful))) -> (O[<5] (Fin_Nominal | evacuationSuccessful))) & Fin_Nominal))))",
+                "pctl": "P>=1[((G ((! (Fin_Nominal & (! LAST))) | (X ((Lin_Nominal R (((! startEvacuationProtocol) & ((X startEvacuationProtocol) & (! Lin_Nominal))) => ((X (P>=1[(F<=5 evacuationSuccessful)])) & (! Lin_Nominal)))) & (startEvacuationProtocol => (P>=1[(F[<=5] evacuationSuccessful)])))))) & (Nominal => (Lin_Nominal | ((Lin_Nominal R (((! startEvacuationProtocol) & ((X startEvacuationProtocol) & (! Lin_Nominal))) => ((X (P>=1[(F[<=5] evacuationSuccessful)])) & (! Lin_Nominal)))) & (startEvacuationProtocol => (P>=1[(F[<=5] evacuationSuccessful)]))))))]",
+                "ptExpanded": "((H (((! Nominal) & (Y Nominal)) -> (Y (((O[5,5] ((startEvacuationProtocol & ((Y (! startEvacuationProtocol)) | (Nominal & (Z (! Nominal))))) & (! evacuationSuccessful))) -> (O[0,4] ((Nominal & (Z (! Nominal))) | evacuationSuccessful))) S (((O[5,5] ((startEvacuationProtocol & ((Y (! startEvacuationProtocol)) | (Nominal & (Z (! Nominal))))) & (! evacuationSuccessful))) -> (O[0,4] ((Nominal & (Z (! Nominal))) | evacuationSuccessful))) & (Nominal & (Z (! Nominal)))))))) & (((! ((! Nominal) & (Y Nominal))) S ((! ((! Nominal) & (Y Nominal))) & (Nominal & (Z (! Nominal))))) -> (((O[5,5] ((startEvacuationProtocol & ((Y (! startEvacuationProtocol)) | (Nominal & (Z (! Nominal))))) & (! evacuationSuccessful))) -> (O[0,4] ((Nominal & (Z (! Nominal))) | evacuationSuccessful))) S (((O[5,5] ((startEvacuationProtocol & ((Y (! startEvacuationProtocol)) | (Nominal & (Z (! Nominal))))) & (! evacuationSuccessful))) -> (O[0,4] ((Nominal & (Z (! Nominal))) | evacuationSuccessful))) & (Nominal & (Z (! Nominal)))))))",
+                "CoCoSpecCode": "(H(((not (Nominal) and YtoPre(Nominal)) => YtoPre(SI((Nominal and ZtoPre(not (Nominal))),(OT(5, 5, ((startEvacuationProtocol and (YtoPre(not (startEvacuationProtocol)) or (Nominal and ZtoPre(not (Nominal))))) and not (evacuationSuccessful))) => OT(4, 0, ((Nominal and ZtoPre(not (Nominal))) or evacuationSuccessful))))))) and (SI((Nominal and ZtoPre(not (Nominal))),not ((not (Nominal) and YtoPre(Nominal)))) => SI((Nominal and ZtoPre(not (Nominal))),(OT(5, 5, ((startEvacuationProtocol and (YtoPre(not (startEvacuationProtocol)) or (Nominal and ZtoPre(not (Nominal))))) and not (evacuationSuccessful))) => OT(4, 0, ((Nominal and ZtoPre(not (Nominal))) or evacuationSuccessful))))))",
+                "ftExpanded": "((LAST V ((! ((((! Nominal) & (! LAST)) & (X Nominal)) & (! LAST))) | (X (((((Nominal & (! LAST)) & (X (! Nominal))) | LAST) V (((! startEvacuationProtocol) & ((! LAST) & ((X startEvacuationProtocol) & (! (((Nominal & (! LAST)) & (X (! Nominal))) | LAST))))) -> ((X ((F[0,5] evacuationSuccessful) | (F[0,4] (((Nominal & (! LAST)) & (X (! Nominal))) | LAST)))) & (! (((Nominal & (! LAST)) & (X (! Nominal))) | LAST))))) & (startEvacuationProtocol -> ((F[0,5] evacuationSuccessful) | (F[0,4] (((Nominal & (! LAST)) & (X (! Nominal))) | LAST)))))))) & (Nominal -> (((((Nominal & (! LAST)) & (X (! Nominal))) | LAST) V (((! startEvacuationProtocol) & ((! LAST) & ((X startEvacuationProtocol) & (! (((Nominal & (! LAST)) & (X (! Nominal))) | LAST))))) -> ((X ((F[0,5] evacuationSuccessful) | (F[0,4] (((Nominal & (! LAST)) & (X (! Nominal))) | LAST)))) & (! (((Nominal & (! LAST)) & (X (! Nominal))) | LAST))))) & (startEvacuationProtocol -> ((F[0,5] evacuationSuccessful) | (F[0,4] (((Nominal & (! LAST)) & (X (! Nominal))) | LAST)))))))",
+                "pctlExpanded": "P>=1[((G ((! (((! Nominal) & (X Nominal)) & (! false))) | (X (((Nominal & (X (! Nominal))) R (((! startEvacuationProtocol) & ((X startEvacuationProtocol) & (! (Nominal & (X (! Nominal)))))) => ((X (P>=1[(F<=5 evacuationSuccessful)])) & (! (Nominal & (X (! Nominal))))))) & (startEvacuationProtocol => (P>=1[(F[<=5] evacuationSuccessful)])))))) & (Nominal => ((Nominal & (X (! Nominal))) | (((Nominal & (X (! Nominal))) R (((! startEvacuationProtocol) & ((X startEvacuationProtocol) & (! (Nominal & (X (! Nominal)))))) => ((X (P>=1[(F[<=5] evacuationSuccessful)])) & (! (Nominal & (X (! Nominal))))))) & (startEvacuationProtocol => (P>=1[(F[<=5] evacuationSuccessful)]))))))]",
+                "ftInfAUExpanded": "((G ((! ((! Nominal) & (X Nominal))) | (X (((Nominal & (X (! Nominal))) V (((! startEvacuationProtocol) & ((X startEvacuationProtocol) & (! (Nominal & (X (! Nominal)))))) -> ((X ((F[0,5] evacuationSuccessful) | (F[0,4] (Nominal & (X (! Nominal)))))) & (! (Nominal & (X (! Nominal))))))) & (startEvacuationProtocol -> ((F[0,5] evacuationSuccessful) | (F[0,4] (Nominal & (X (! Nominal)))))))))) & (Nominal -> (((Nominal & (X (! Nominal))) V (((! startEvacuationProtocol) & ((X startEvacuationProtocol) & (! (Nominal & (X (! Nominal)))))) -> ((X ((F[0,5] evacuationSuccessful) | (F[0,4] (Nominal & (X (! Nominal)))))) & (! (Nominal & (X (! Nominal))))))) & (startEvacuationProtocol -> ((F[0,5] evacuationSuccessful) | (F[0,4] (Nominal & (X (! Nominal)))))))))",
+                "mltlExpanded": "((G[0,M] (((p0 & ((! p1) & ((F[1,1] p1) & (F[1,1] p0)))) -> ((F[1,6] p2) | (F[2,6] (! p0)))) & (((! p0) & (F[1,1] p0)) -> (F[1,1] (p1 -> ((F[0,5] p2) | (F[1,5] (! p0)))))))) & ((p0 & p1) -> ((F[0,5] p2) | (F[1,5] (! p0)))))",
+                "WESTMapping": "p0: Nominal<br/>p1: startEvacuationProtocol<br/>p2: evacuationSuccessful",
+                "R2U2Code": "((((Nominal && ((! startEvacuationProtocol) && ((F[1,1] startEvacuationProtocol) && (F[1,1] Nominal)))) -> ((F[1,6] evacuationSuccessful) || (F[2,6] (! Nominal)))) && (((! Nominal) && (F[1,1] Nominal)) -> (F[1,1] (startEvacuationProtocol -> ((F[0,5] evacuationSuccessful) || (F[1,5] (! Nominal))))))) && (((TAU == 0) && (Nominal && startEvacuationProtocol)) -> ((F[0,5] evacuationSuccessful) || (F[1,5] (! Nominal)))))",
+                "component": "ODIN"
+            },
+            "_id": "e9f89040-8056-11f1-87a3-557ca4e73dc5"
+        },
+        {
+            "reqid": "AR",
+            "parent_reqid": "",
+            "project": "seams26_wildfire_fighting",
+            "rationale": "",
+            "comments": "",
+            "fulltext": "whenever escapeRouteBlocked ODIN shall within 10 ticks satisfy if resolveRoute then evacuationSuccessful ",
+            "status": "",
+            "semantics": {
+                "type": "nasa",
+                "scope": {
+                    "type": "null"
+                },
+                "condition": "holding",
+                "probability": "null",
+                "timing": "within",
+                "response": "satisfaction",
+                "variables": [
+                    "escapeRouteBlocked",
+                    "resolveRoute",
+                    "evacuationSuccessful"
+                ],
+                "qualifier_word": "whenever",
+                "pre_condition": "(escapeRouteBlocked)",
+                "regular_condition": "(escapeRouteBlocked)",
+                "conditionTextRange": [
+                    0,
+                    26
+                ],
+                "component_name": "ODIN",
+                "componentTextRange": [
+                    28,
+                    31
+                ],
+                "duration": "10",
+                "timingTextRange": [
+                    39,
+                    53
+                ],
+                "post_condition": "(resolveRoute => evacuationSuccessful)",
+                "responseTextRange": [
+                    55,
+                    103
+                ],
+                "diagramVariables": "CC = <b><i>(escapeRouteBlocked)</i></b>,  n = <b><i>10</i></b>, Response = <b><i>(resolveRoute => evacuationSuccessful)</i></b>.",
+                "description": "ENFORCED: in the interval defined by the entire execution.\nTRIGGER: every point in the interval where <b><i>(escapeRouteBlocked)</i></b> is true.\nREQUIRES: for every trigger, RES must hold at some point with distance <= <b><i>10</i></b> from the trigger (i.e., at trigger, trigger+1, ..., or trigger+<b><i>10</i></b>). If the interval ends sooner than trigger+<b><i>10</i></b>, then RES need not hold.",
+                "diagram": "_media/user-interface/examples/svgDiagrams/null_holding_within_satisfaction.svg",
+                "scope_mode_pt": "BAD_PT",
+                "scope_mode_ft": "BAD_FT",
+                "regular_condition_unexp_pt": "escapeRouteBlocked",
+                "regular_condition_unexp_ft": "escapeRouteBlocked",
+                "regular_condition_unexp_pctl": "escapeRouteBlocked",
+                "regular_condition_SMV_pt": "escapeRouteBlocked",
+                "regular_condition_SMV_ft": "escapeRouteBlocked",
+                "regular_condition_PRISM_pctl": "escapeRouteBlocked",
+                "post_condition_unexp_pt": "(resolveRoute -> evacuationSuccessful)",
+                "post_condition_unexp_ft": "(resolveRoute -> evacuationSuccessful)",
+                "post_condition_unexp_pctl": "(resolveRoute -> evacuationSuccessful)",
+                "post_condition_SMV_pt": "(resolveRoute -> evacuationSuccessful)",
+                "post_condition_SMV_ft": "(resolveRoute -> evacuationSuccessful)",
+                "post_condition_PRISM_pctl": "(resolveRoute -> evacuationSuccessful)",
+                "ft": "(LAST V (escapeRouteBlocked -> ((F[<=10] (resolveRoute -> evacuationSuccessful)) | (F[<10] LAST))))",
+                "pt": "(H ((O[=10] (escapeRouteBlocked & (! (resolveRoute -> evacuationSuccessful)))) -> (O[<10] ((Z FALSE) | (resolveRoute -> evacuationSuccessful)))))",
+                "pctl": "P>=1[(G (escapeRouteBlocked => (P>=1[(F<=10 (resolveRoute -> evacuationSuccessful))])))]",
+                "ptExpanded": "(H ((O[10,10] (escapeRouteBlocked & (! (resolveRoute -> evacuationSuccessful)))) -> (O[0,9] ((Z FALSE) | (resolveRoute -> evacuationSuccessful)))))",
+                "CoCoSpecCode": "H((OT(10, 10, (escapeRouteBlocked and not ((resolveRoute => evacuationSuccessful)))) => OT(9, 0, (ZtoPre(false) or (resolveRoute => evacuationSuccessful)))))",
+                "ftExpanded": "(LAST V (escapeRouteBlocked -> ((F[0,10] (resolveRoute -> evacuationSuccessful)) | (F[0,9] LAST))))",
+                "pctlExpanded": "P>=1[(G (escapeRouteBlocked => (P>=1[(F<=10 (resolveRoute -> evacuationSuccessful))])))]",
+                "ftInfAUExpanded": "(G (escapeRouteBlocked -> (F[0,10] (resolveRoute -> evacuationSuccessful))))",
+                "component": "ODIN"
+            },
+            "_id": "ef8464d0-8056-11f1-87a3-557ca4e73dc5"
+        },
+        {
+            "reqid": "UC",
+            "parent_reqid": "",
+            "project": "seams26_rover_example",
+            "rationale": "",
+            "comments": "Heatpoint becomes unreachable",
+            "fulltext": "in Nominal whenever identifyHeatpoints & heatpointPathBlocked the rover shall never satisfy visitHeatpoint",
+            "status": "",
+            "semantics": {
+                "type": "nasa",
+                "scope": {
+                    "type": "in"
+                },
+                "condition": "holding",
+                "probability": "null",
+                "timing": "never",
+                "response": "satisfaction",
+                "variables": [
+                    "Nominal",
+                    "identifyHeatpoints",
+                    "heatpointPathBlocked",
+                    "visitHeatpoint"
+                ],
+                "scope_mode": "Nominal",
+                "scopeTextRange": [
+                    0,
+                    9
+                ],
+                "qualifier_word": "whenever",
+                "pre_condition": "(identifyHeatpoints & heatpointPathBlocked)",
+                "regular_condition": "(identifyHeatpoints & heatpointPathBlocked)",
+                "conditionTextRange": [
+                    11,
+                    60
+                ],
+                "component_name": "rover",
+                "componentTextRange": [
+                    62,
+                    70
+                ],
+                "timingTextRange": [
+                    78,
+                    82
+                ],
+                "post_condition": "(visitHeatpoint)",
+                "responseTextRange": [
+                    84,
+                    105
+                ],
+                "diagramVariables": "M = <b><i>Nominal</i></b>, CC = <b><i>(identifyHeatpoints & heatpointPathBlocked)</i></b>, Response = <b><i>(visitHeatpoint)</i></b>.",
+                "description": "ENFORCED: in every interval where <b><i>Nominal</i></b> holds.\nTRIGGER: every point in the interval where <b><i>(identifyHeatpoints & heatpointPathBlocked)</i></b> is true.\nREQUIRES: for every trigger, RES must be false at all time points between (and including) the trigger and the end of the interval.",
+                "diagram": "_media/user-interface/examples/svgDiagrams/in_holding_never_satisfaction.svg",
+                "scope_mode_pt": "Nominal",
+                "scope_mode_ft": "Nominal",
+                "scope_mode_pctl": "Nominal",
+                "regular_condition_unexp_pt": "(identifyHeatpoints & heatpointPathBlocked)",
+                "regular_condition_unexp_ft": "(identifyHeatpoints & heatpointPathBlocked)",
+                "regular_condition_unexp_pctl": "(identifyHeatpoints & heatpointPathBlocked)",
+                "regular_condition_SMV_pt": "(identifyHeatpoints & heatpointPathBlocked)",
+                "regular_condition_SMV_ft": "(identifyHeatpoints & heatpointPathBlocked)",
+                "regular_condition_PRISM_pctl": "(identifyHeatpoints & heatpointPathBlocked)",
+                "post_condition_unexp_pt": "visitHeatpoint",
+                "post_condition_unexp_ft": "visitHeatpoint",
+                "post_condition_unexp_pctl": "visitHeatpoint",
+                "post_condition_SMV_pt": "visitHeatpoint",
+                "post_condition_SMV_ft": "visitHeatpoint",
+                "post_condition_PRISM_pctl": "visitHeatpoint",
+                "ft": "((LAST V ((! (Fin_Nominal & (! LAST))) | (X ((Lin_Nominal | LAST) V ((identifyHeatpoints & heatpointPathBlocked) -> ((Lin_Nominal | LAST) V (! visitHeatpoint))))))) & (Nominal -> ((Lin_Nominal | LAST) V ((identifyHeatpoints & heatpointPathBlocked) -> ((Lin_Nominal | LAST) V (! visitHeatpoint))))))",
+                "pt": "((H (Lin_Nominal -> (Y ((((! (identifyHeatpoints & heatpointPathBlocked)) S ((! (identifyHeatpoints & heatpointPathBlocked)) & Fin_Nominal)) | (! visitHeatpoint)) S ((((! (identifyHeatpoints & heatpointPathBlocked)) S ((! (identifyHeatpoints & heatpointPathBlocked)) & Fin_Nominal)) | (! visitHeatpoint)) & Fin_Nominal))))) & (((! Lin_Nominal) S ((! Lin_Nominal) & Fin_Nominal)) -> ((((! (identifyHeatpoints & heatpointPathBlocked)) S ((! (identifyHeatpoints & heatpointPathBlocked)) & Fin_Nominal)) | (! visitHeatpoint)) S ((((! (identifyHeatpoints & heatpointPathBlocked)) S ((! (identifyHeatpoints & heatpointPathBlocked)) & Fin_Nominal)) | (! visitHeatpoint)) & Fin_Nominal))))",
+                "pctl": "P>=1[((G ((! (Fin_Nominal & (! LAST))) | (X (Lin_Nominal R ((identifyHeatpoints & heatpointPathBlocked) => (P>=1[(Lin_Nominal R (! visitHeatpoint))])))))) & (Nominal => (Lin_Nominal | (Lin_Nominal R ((identifyHeatpoints & heatpointPathBlocked) => (P>=1[(Lin_Nominal R (! visitHeatpoint))]))))))]",
+                "ptExpanded": "((H (((! Nominal) & (Y Nominal)) -> (Y ((((! (identifyHeatpoints & heatpointPathBlocked)) S ((! (identifyHeatpoints & heatpointPathBlocked)) & (Nominal & (Z (! Nominal))))) | (! visitHeatpoint)) S ((((! (identifyHeatpoints & heatpointPathBlocked)) S ((! (identifyHeatpoints & heatpointPathBlocked)) & (Nominal & (Z (! Nominal))))) | (! visitHeatpoint)) & (Nominal & (Z (! Nominal)))))))) & (((! ((! Nominal) & (Y Nominal))) S ((! ((! Nominal) & (Y Nominal))) & (Nominal & (Z (! Nominal))))) -> ((((! (identifyHeatpoints & heatpointPathBlocked)) S ((! (identifyHeatpoints & heatpointPathBlocked)) & (Nominal & (Z (! Nominal))))) | (! visitHeatpoint)) S ((((! (identifyHeatpoints & heatpointPathBlocked)) S ((! (identifyHeatpoints & heatpointPathBlocked)) & (Nominal & (Z (! Nominal))))) | (! visitHeatpoint)) & (Nominal & (Z (! Nominal)))))))",
+                "CoCoSpecCode": "(H(((not (Nominal) and YtoPre(Nominal)) => YtoPre(SI((Nominal and ZtoPre(not (Nominal))),(SI((Nominal and ZtoPre(not (Nominal))),not ((identifyHeatpoints and heatpointPathBlocked))) or not (visitHeatpoint)))))) and (SI((Nominal and ZtoPre(not (Nominal))),not ((not (Nominal) and YtoPre(Nominal)))) => SI((Nominal and ZtoPre(not (Nominal))),(SI((Nominal and ZtoPre(not (Nominal))),not ((identifyHeatpoints and heatpointPathBlocked))) or not (visitHeatpoint)))))",
+                "ftExpanded": "((LAST V ((! ((((! Nominal) & (! LAST)) & (X Nominal)) & (! LAST))) | (X ((((Nominal & (! LAST)) & (X (! Nominal))) | LAST) V ((identifyHeatpoints & heatpointPathBlocked) -> ((((Nominal & (! LAST)) & (X (! Nominal))) | LAST) V (! visitHeatpoint))))))) & (Nominal -> ((((Nominal & (! LAST)) & (X (! Nominal))) | LAST) V ((identifyHeatpoints & heatpointPathBlocked) -> ((((Nominal & (! LAST)) & (X (! Nominal))) | LAST) V (! visitHeatpoint))))))",
+                "pctlExpanded": "P>=1[((G ((! (((! Nominal) & (X Nominal)) & (! false))) | (X ((Nominal & (X (! Nominal))) R ((identifyHeatpoints & heatpointPathBlocked) => (P>=1[((Nominal & (X (! Nominal))) R (! visitHeatpoint))])))))) & (Nominal => ((Nominal & (X (! Nominal))) | ((Nominal & (X (! Nominal))) R ((identifyHeatpoints & heatpointPathBlocked) => (P>=1[((Nominal & (X (! Nominal))) R (! visitHeatpoint))]))))))]",
+                "ftInfAUExpanded": "((G ((! ((! Nominal) & (X Nominal))) | (X ((Nominal & (X (! Nominal))) V ((identifyHeatpoints & heatpointPathBlocked) -> ((Nominal & (X (! Nominal))) V (! visitHeatpoint))))))) & (Nominal -> ((Nominal & (X (! Nominal))) V ((identifyHeatpoints & heatpointPathBlocked) -> ((Nominal & (X (! Nominal))) V (! visitHeatpoint))))))",
+                "component": "rover"
+            },
+            "_id": "f4980140-7e97-11f1-8473-b950cbeebb23"
+        }
+    ],
+    "variables": [
+        {
+            "project": "seams26-guiding_example",
+            "component_name": "robot_1",
+            "variable_name": "atLab_r1",
+            "reqs": [
+                "2440a702-af1b-11f0-87cb-03cfe6591398",
+                "2440a703-af1b-11f0-87cb-03cfe6591398",
+                "2440a708-af1b-11f0-87cb-03cfe6591398"
+            ],
+            "dataType": "",
+            "idType": "",
+            "moduleName": "",
+            "description": "",
+            "assignment": "",
+            "copilotAssignment": "",
+            "modeRequirement": "",
+            "modeldoc": false,
+            "modelComponent": "",
+            "modeldoc_id": "",
+            "completed": false,
+            "_id": "seams26-guiding_examplerobot_1atLab_r1"
+        },
+        {
+            "project": "seams26-guiding_example",
+            "component_name": "robot_1",
+            "variable_name": "atNurse_r1",
+            "reqs": [
+                "2440a702-af1b-11f0-87cb-03cfe6591398",
+                "2440a708-af1b-11f0-87cb-03cfe6591398"
+            ],
+            "dataType": "",
+            "idType": "",
+            "moduleName": "",
+            "description": "",
+            "assignment": "",
+            "copilotAssignment": "",
+            "modeRequirement": "",
+            "modeldoc": false,
+            "modelComponent": "",
+            "modeldoc_id": "",
+            "completed": false,
+            "_id": "seams26-guiding_examplerobot_1atNurse_r1"
+        },
+        {
+            "project": "seams26-guiding_example",
+            "component_name": "robot_1",
+            "variable_name": "gotoLab_r1",
+            "reqs": [
+                "2440a703-af1b-11f0-87cb-03cfe6591398"
+            ],
+            "dataType": "",
+            "idType": "",
+            "moduleName": "",
+            "description": "",
+            "assignment": "",
+            "copilotAssignment": "",
+            "modeRequirement": "",
+            "modeldoc": false,
+            "modelComponent": "",
+            "modeldoc_id": "",
+            "completed": false,
+            "_id": "seams26-guiding_examplerobot_1gotoLab_r1"
+        },
+        {
+            "project": "seams26-guiding_example",
+            "component_name": "robot_1",
+            "variable_name": "openDrawer_r1",
+            "reqs": [
+                "2440a700-af1b-11f0-87cb-03cfe6591398",
+                "2440a702-af1b-11f0-87cb-03cfe6591398",
+                "2440a708-af1b-11f0-87cb-03cfe6591398"
+            ],
+            "dataType": "",
+            "idType": "",
+            "moduleName": "",
+            "description": "",
+            "assignment": "",
+            "copilotAssignment": "",
+            "modeRequirement": "",
+            "modeldoc": false,
+            "modelComponent": "",
+            "modeldoc_id": "",
+            "completed": false,
+            "_id": "seams26-guiding_examplerobot_1openDrawer_r1"
+        },
+        {
+            "project": "seams26-guiding_example",
+            "component_name": "robot_1",
+            "variable_name": "transferSample_r12",
+            "reqs": [
+                "2440a708-af1b-11f0-87cb-03cfe6591398"
+            ],
+            "dataType": "",
+            "idType": "",
+            "moduleName": "",
+            "description": "",
+            "assignment": "",
+            "copilotAssignment": "",
+            "modeRequirement": "",
+            "modeldoc": false,
+            "modelComponent": "",
+            "modeldoc_id": "",
+            "completed": false,
+            "_id": "seams26-guiding_examplerobot_1transferSample_r12"
+        },
+        {
+            "project": "seams26-guiding_example",
+            "component_name": "robot_2",
+            "variable_name": "atLab_r2",
+            "reqs": [
+                "2440a709-af1b-11f0-87cb-03cfe6591398"
+            ],
+            "dataType": "",
+            "idType": "",
+            "moduleName": "",
+            "description": "",
+            "assignment": "",
+            "copilotAssignment": "",
+            "modeRequirement": "",
+            "modeldoc": false,
+            "modelComponent": "",
+            "modeldoc_id": "",
+            "completed": false,
+            "_id": "seams26-guiding_examplerobot_2atLab_r2"
+        },
+        {
+            "project": "seams26-guiding_example",
+            "component_name": "robot_2",
+            "variable_name": "gotoLab_r2",
+            "reqs": [
+                "2440a705-af1b-11f0-87cb-03cfe6591398",
+                "2440a709-af1b-11f0-87cb-03cfe6591398"
+            ],
+            "dataType": "",
+            "idType": "",
+            "moduleName": "",
+            "description": "",
+            "assignment": "",
+            "copilotAssignment": "",
+            "modeRequirement": "",
+            "modeldoc": false,
+            "modelComponent": "",
+            "modeldoc_id": "",
+            "completed": false,
+            "_id": "seams26-guiding_examplerobot_2gotoLab_r2"
+        },
+        {
+            "project": "seams26-guiding_example",
+            "component_name": "robot_2",
+            "variable_name": "hasSample_r2",
+            "reqs": [
+                "2440a709-af1b-11f0-87cb-03cfe6591398"
+            ],
+            "dataType": "",
+            "idType": "",
+            "moduleName": "",
+            "description": "",
+            "assignment": "",
+            "copilotAssignment": "",
+            "modeRequirement": "",
+            "modeldoc": false,
+            "modelComponent": "",
+            "modeldoc_id": "",
+            "completed": false,
+            "_id": "seams26-guiding_examplerobot_2hasSample_r2"
+        },
+        {
+            "project": "seams26-guiding_example",
+            "component_name": "robot_2",
+            "variable_name": "navigationError_r1",
+            "reqs": [
+                "2440a705-af1b-11f0-87cb-03cfe6591398"
+            ],
+            "dataType": "",
+            "idType": "",
+            "moduleName": "",
+            "description": "",
+            "assignment": "",
+            "copilotAssignment": "",
+            "modeRequirement": "",
+            "modeldoc": false,
+            "modelComponent": "",
+            "modeldoc_id": "",
+            "completed": false,
+            "_id": "seams26-guiding_examplerobot_2navigationError_r1"
+        },
+        {
+            "project": "seams26-guiding_example",
+            "component_name": "robot_2",
+            "variable_name": "transferSample_r12",
+            "reqs": [
+                "2440a705-af1b-11f0-87cb-03cfe6591398",
+                "2440a709-af1b-11f0-87cb-03cfe6591398"
+            ],
+            "dataType": "",
+            "idType": "",
+            "moduleName": "",
+            "description": "",
+            "assignment": "",
+            "copilotAssignment": "",
+            "modeRequirement": "",
+            "modeldoc": false,
+            "modelComponent": "",
+            "modeldoc_id": "",
+            "completed": false,
+            "_id": "seams26-guiding_examplerobot_2transferSample_r12"
+        },
+        {
+            "project": "seams26_rover_example",
+            "component_name": "rover",
+            "variable_name": "Nominal",
+            "reqs": [
+                "93f3dcb0-7e97-11f1-8473-b950cbeebb23",
+                "a88b50e0-7e97-11f1-8473-b950cbeebb23",
+                "c8ef8d60-7e97-11f1-8473-b950cbeebb23",
+                "f4980140-7e97-11f1-8473-b950cbeebb23"
+            ],
+            "dataType": "boolean",
+            "idType": "Output",
+            "moduleName": "",
+            "description": "",
+            "assignment": "",
+            "assignmentVariables": [],
+            "copilotAssignment": "",
+            "smvAssignment": "",
+            "smvAssignmentVariables": [],
+            "modeRequirement": "",
+            "modeldoc": false,
+            "modeldoc_id": "",
+            "modeldoc_vectorIndex": null,
+            "modelComponent": "",
+            "completed": true,
+            "smvCompleted": true,
+            "r2u2Completed": true,
+            "_id": "seams26_rover_exampleroverNominal"
+        },
+        {
+            "project": "seams26_rover_example",
+            "component_name": "rover",
+            "variable_name": "Quiescing",
+            "reqs": [
+                "0565ce00-7ebe-11f1-8473-b950cbeebb23",
+                "7aea4c10-7ebd-11f1-8473-b950cbeebb23"
+            ],
+            "dataType": "boolean",
+            "idType": "Output",
+            "moduleName": "",
+            "description": "",
+            "assignment": "",
+            "assignmentVariables": [],
+            "copilotAssignment": "",
+            "smvAssignment": "",
+            "smvAssignmentVariables": [],
+            "modeRequirement": "",
+            "modeldoc": false,
+            "modeldoc_id": "",
+            "modeldoc_vectorIndex": null,
+            "modelComponent": "",
+            "completed": true,
+            "smvCompleted": true,
+            "r2u2Completed": true,
+            "_id": "seams26_rover_exampleroverQuiescing"
+        },
+        {
+            "project": "seams26_rover_example",
+            "component_name": "rover",
+            "variable_name": "calculateNewRoute",
+            "reqs": [
+                "0565ce00-7ebe-11f1-8473-b950cbeebb23",
+                "0f781510-7ebe-11f1-8473-b950cbeebb23",
+                "7aea4c10-7ebd-11f1-8473-b950cbeebb23"
+            ],
+            "dataType": "boolean",
+            "idType": "Output",
+            "moduleName": "",
+            "description": "",
+            "assignment": "",
+            "assignmentVariables": [],
+            "copilotAssignment": "",
+            "smvAssignment": "",
+            "smvAssignmentVariables": [],
+            "modeRequirement": "",
+            "modeldoc": false,
+            "modeldoc_id": "",
+            "modeldoc_vectorIndex": null,
+            "modelComponent": "",
+            "completed": true,
+            "smvCompleted": true,
+            "r2u2Completed": true,
+            "_id": "seams26_rover_examplerovercalculateNewRoute"
+        },
+        {
+            "project": "seams26_rover_example",
+            "component_name": "rover",
+            "variable_name": "heatPointAccessible",
+            "reqs": [
+                "0b133450-7ebe-11f1-8473-b950cbeebb23"
+            ],
+            "dataType": "boolean",
+            "idType": "Input",
+            "moduleName": "",
+            "description": "",
+            "assignment": "",
+            "assignmentVariables": [],
+            "copilotAssignment": "",
+            "smvAssignment": "",
+            "smvAssignmentVariables": [],
+            "modeRequirement": "",
+            "modeldoc": false,
+            "modeldoc_id": "",
+            "modeldoc_vectorIndex": null,
+            "modelComponent": "",
+            "completed": true,
+            "smvCompleted": true,
+            "r2u2Completed": true,
+            "_id": "seams26_rover_exampleroverheatPointAccessible"
+        },
+        {
+            "project": "seams26_rover_example",
+            "component_name": "rover",
+            "variable_name": "heatpointPathBlocked",
+            "reqs": [
+                "0b133450-7ebe-11f1-8473-b950cbeebb23",
+                "0f781510-7ebe-11f1-8473-b950cbeebb23",
+                "f4980140-7e97-11f1-8473-b950cbeebb23"
+            ],
+            "dataType": "boolean",
+            "idType": "Input",
+            "moduleName": "",
+            "description": "",
+            "assignment": "",
+            "assignmentVariables": [],
+            "copilotAssignment": "",
+            "smvAssignment": "",
+            "smvAssignmentVariables": [],
+            "modeRequirement": "",
+            "modeldoc": false,
+            "modeldoc_id": "",
+            "modeldoc_vectorIndex": null,
+            "modelComponent": "",
+            "completed": true,
+            "smvCompleted": true,
+            "r2u2Completed": true,
+            "_id": "seams26_rover_exampleroverheatpointPathBlocked"
+        },
+        {
+            "project": "seams26_rover_example",
+            "component_name": "rover",
+            "variable_name": "identifyHeatpoint",
+            "reqs": [
+                "7aea4c10-7ebd-11f1-8473-b950cbeebb23"
+            ],
+            "dataType": "",
+            "idType": "",
+            "moduleName": "",
+            "description": "",
+            "assignment": "",
+            "copilotAssignment": "",
+            "modeRequirement": "",
+            "modeldoc": false,
+            "modelComponent": "",
+            "modeldoc_id": "",
+            "completed": false,
+            "_id": "seams26_rover_exampleroveridentifyHeatpoint"
+        },
+        {
+            "project": "seams26_rover_example",
+            "component_name": "rover",
+            "variable_name": "identifyHeatpoints",
+            "reqs": [
+                "93f3dcb0-7e97-11f1-8473-b950cbeebb23",
+                "a88b50e0-7e97-11f1-8473-b950cbeebb23",
+                "f4980140-7e97-11f1-8473-b950cbeebb23"
+            ],
+            "dataType": "boolean",
+            "idType": "Output",
+            "moduleName": "",
+            "description": "",
+            "assignment": "",
+            "assignmentVariables": [],
+            "copilotAssignment": "",
+            "smvAssignment": "",
+            "smvAssignmentVariables": [],
+            "modeRequirement": "",
+            "modeldoc": false,
+            "modeldoc_id": "",
+            "modeldoc_vectorIndex": null,
+            "modelComponent": "",
+            "completed": true,
+            "smvCompleted": true,
+            "r2u2Completed": true,
+            "_id": "seams26_rover_exampleroveridentifyHeatpoints"
+        },
+        {
+            "project": "seams26_rover_example",
+            "component_name": "rover",
+            "variable_name": "lowBattery",
+            "reqs": [
+                "3a17e4a0-7e94-11f1-8473-b950cbeebb23"
+            ],
+            "dataType": "boolean",
+            "idType": "Input",
+            "moduleName": "",
+            "description": "",
+            "assignment": "",
+            "assignmentVariables": [],
+            "copilotAssignment": "",
+            "smvAssignment": "",
+            "smvAssignmentVariables": [],
+            "modeRequirement": "",
+            "modeldoc": false,
+            "modeldoc_id": "",
+            "modeldoc_vectorIndex": null,
+            "modelComponent": "",
+            "completed": true,
+            "smvCompleted": true,
+            "r2u2Completed": true,
+            "_id": "seams26_rover_exampleroverlowBattery"
+        },
+        {
+            "project": "seams26_rover_example",
+            "component_name": "rover",
+            "variable_name": "safeDistanceFromObstacle",
+            "reqs": [
+                "0565ce00-7ebe-11f1-8473-b950cbeebb23",
+                "9ad2f720-7e95-11f1-8473-b950cbeebb23"
+            ],
+            "dataType": "boolean",
+            "idType": "Input",
+            "moduleName": "",
+            "description": "",
+            "assignment": "",
+            "assignmentVariables": [],
+            "copilotAssignment": "",
+            "smvAssignment": "",
+            "smvAssignmentVariables": [],
+            "modeRequirement": "",
+            "modeldoc": false,
+            "modeldoc_id": "",
+            "modeldoc_vectorIndex": null,
+            "modelComponent": "",
+            "completed": true,
+            "smvCompleted": true,
+            "r2u2Completed": true,
+            "_id": "seams26_rover_exampleroversafeDistanceFromObstacle"
+        },
+        {
+            "project": "seams26_rover_example",
+            "component_name": "rover",
+            "variable_name": "visitAllHeatpoints",
+            "reqs": [
+                "0b133450-7ebe-11f1-8473-b950cbeebb23",
+                "c8ef8d60-7e97-11f1-8473-b950cbeebb23"
+            ],
+            "dataType": "boolean",
+            "idType": "Output",
+            "moduleName": "",
+            "description": "",
+            "assignment": "",
+            "assignmentVariables": [],
+            "copilotAssignment": "",
+            "smvAssignment": "",
+            "smvAssignmentVariables": [],
+            "modeRequirement": "",
+            "modeldoc": false,
+            "modeldoc_id": "",
+            "modeldoc_vectorIndex": null,
+            "modelComponent": "",
+            "completed": true,
+            "smvCompleted": true,
+            "r2u2Completed": true,
+            "_id": "seams26_rover_examplerovervisitAllHeatpoints"
+        },
+        {
+            "project": "seams26_rover_example",
+            "component_name": "rover",
+            "variable_name": "visitHeatpoint",
+            "reqs": [
+                "0f781510-7ebe-11f1-8473-b950cbeebb23",
+                "a88b50e0-7e97-11f1-8473-b950cbeebb23",
+                "c8ef8d60-7e97-11f1-8473-b950cbeebb23",
+                "f4980140-7e97-11f1-8473-b950cbeebb23"
+            ],
+            "dataType": "boolean",
+            "idType": "Output",
+            "moduleName": "",
+            "description": "",
+            "assignment": "",
+            "assignmentVariables": [],
+            "copilotAssignment": "",
+            "smvAssignment": "",
+            "smvAssignmentVariables": [],
+            "modeRequirement": "",
+            "modeldoc": false,
+            "modeldoc_id": "",
+            "modeldoc_vectorIndex": null,
+            "modelComponent": "",
+            "completed": true,
+            "smvCompleted": true,
+            "r2u2Completed": true,
+            "_id": "seams26_rover_examplerovervisitHeatpoint"
+        },
+        {
+            "project": "seams26_wildfire_fighting",
+            "component_name": "ODIN",
+            "variable_name": "Nominal",
+            "reqs": [
+                "3e2d6060-8056-11f1-87a3-557ca4e73dc5",
+                "6dd6c310-8056-11f1-87a3-557ca4e73dc5",
+                "a2d48f40-8059-11f1-87a3-557ca4e73dc5",
+                "cbfc41f0-8028-11f1-af36-6f5652dbf5ad",
+                "e9f89040-8056-11f1-87a3-557ca4e73dc5"
+            ],
+            "dataType": "boolean",
+            "idType": "Output",
+            "moduleName": "",
+            "description": "",
+            "assignment": "",
+            "assignmentVariables": [],
+            "copilotAssignment": "",
+            "smvAssignment": "",
+            "smvAssignmentVariables": [],
+            "modeRequirement": "",
+            "modeldoc": false,
+            "modeldoc_id": "",
+            "modeldoc_vectorIndex": null,
+            "modelComponent": "",
+            "completed": true,
+            "smvCompleted": true,
+            "r2u2Completed": true,
+            "_id": "seams26_wildfire_fightingODINNominal"
+        },
+        {
+            "project": "seams26_wildfire_fighting",
+            "component_name": "ODIN",
+            "variable_name": "Quiescing",
+            "reqs": [
+                "14c12b70-8057-11f1-87a3-557ca4e73dc5",
+                "17ac1660-8057-11f1-87a3-557ca4e73dc5"
+            ],
+            "dataType": "boolean",
+            "idType": "Output",
+            "moduleName": "",
+            "description": "",
+            "assignment": "",
+            "assignmentVariables": [],
+            "copilotAssignment": "",
+            "smvAssignment": "",
+            "smvAssignmentVariables": [],
+            "modeRequirement": "",
+            "modeldoc": false,
+            "modeldoc_id": "",
+            "modeldoc_vectorIndex": null,
+            "modelComponent": "",
+            "completed": true,
+            "smvCompleted": true,
+            "r2u2Completed": true,
+            "_id": "seams26_wildfire_fightingODINQuiescing"
+        },
+        {
+            "project": "seams26_wildfire_fighting",
+            "component_name": "ODIN",
+            "variable_name": "alertEmergency",
+            "reqs": [
+                "14c12b70-8057-11f1-87a3-557ca4e73dc5",
+                "17ac1660-8057-11f1-87a3-557ca4e73dc5"
+            ],
+            "dataType": "boolean",
+            "idType": "Output",
+            "moduleName": "",
+            "description": "",
+            "assignment": "",
+            "assignmentVariables": [],
+            "copilotAssignment": "",
+            "smvAssignment": "",
+            "smvAssignmentVariables": [],
+            "modeRequirement": "",
+            "modeldoc": false,
+            "modeldoc_id": "",
+            "modeldoc_vectorIndex": null,
+            "modelComponent": "",
+            "completed": true,
+            "smvCompleted": true,
+            "r2u2Completed": true,
+            "_id": "seams26_wildfire_fightingODINalertEmergency"
+        },
+        {
+            "project": "seams26_wildfire_fighting",
+            "component_name": "ODIN",
+            "variable_name": "alertNetworkOverload",
+            "reqs": [
+                "14c12b70-8057-11f1-87a3-557ca4e73dc5",
+                "a2d48f40-8059-11f1-87a3-557ca4e73dc5"
+            ],
+            "dataType": "boolean",
+            "idType": "Output",
+            "moduleName": "",
+            "description": "",
+            "assignment": "",
+            "assignmentVariables": [],
+            "copilotAssignment": "",
+            "smvAssignment": "",
+            "smvAssignmentVariables": [],
+            "modeRequirement": "",
+            "modeldoc": false,
+            "modeldoc_id": "",
+            "modeldoc_vectorIndex": null,
+            "modelComponent": "",
+            "completed": true,
+            "smvCompleted": true,
+            "r2u2Completed": true,
+            "_id": "seams26_wildfire_fightingODINalertNetworkOverload"
+        },
+        {
+            "project": "seams26_wildfire_fighting",
+            "component_name": "ODIN",
+            "variable_name": "escapeRouteBlocked",
+            "reqs": [
+                "6dd6c310-8056-11f1-87a3-557ca4e73dc5",
+                "ef8464d0-8056-11f1-87a3-557ca4e73dc5"
+            ],
+            "dataType": "boolean",
+            "idType": "Input",
+            "moduleName": "",
+            "description": "",
+            "assignment": "",
+            "assignmentVariables": [],
+            "copilotAssignment": "",
+            "smvAssignment": "",
+            "smvAssignmentVariables": [],
+            "modeRequirement": "",
+            "modeldoc": false,
+            "modeldoc_id": "",
+            "modeldoc_vectorIndex": null,
+            "modelComponent": "",
+            "completed": true,
+            "smvCompleted": true,
+            "r2u2Completed": true,
+            "_id": "seams26_wildfire_fightingODINescapeRouteBlocked"
+        },
+        {
+            "project": "seams26_wildfire_fighting",
+            "component_name": "ODIN",
+            "variable_name": "evacuationSuccessful",
+            "reqs": [
+                "6dd6c310-8056-11f1-87a3-557ca4e73dc5",
+                "e9f89040-8056-11f1-87a3-557ca4e73dc5",
+                "ef8464d0-8056-11f1-87a3-557ca4e73dc5"
+            ],
+            "dataType": "boolean",
+            "idType": "Input",
+            "moduleName": "",
+            "description": "",
+            "assignment": "",
+            "assignmentVariables": [],
+            "copilotAssignment": "",
+            "smvAssignment": "",
+            "smvAssignmentVariables": [],
+            "modeRequirement": "",
+            "modeldoc": false,
+            "modeldoc_id": "",
+            "modeldoc_vectorIndex": null,
+            "modelComponent": "",
+            "completed": true,
+            "smvCompleted": true,
+            "r2u2Completed": true,
+            "_id": "seams26_wildfire_fightingODINevacuationSuccessful"
+        },
+        {
+            "project": "seams26_wildfire_fighting",
+            "component_name": "ODIN",
+            "variable_name": "fireConfirmed",
+            "reqs": [
+                "c021be00-8028-11f1-af36-6f5652dbf5ad"
+            ],
+            "dataType": "boolean",
+            "idType": "Input",
+            "moduleName": "",
+            "description": "",
+            "assignment": "",
+            "assignmentVariables": [],
+            "copilotAssignment": "",
+            "smvAssignment": "",
+            "smvAssignmentVariables": [],
+            "modeRequirement": "",
+            "modeldoc": false,
+            "modeldoc_id": "",
+            "modeldoc_vectorIndex": null,
+            "modelComponent": "",
+            "completed": true,
+            "smvCompleted": true,
+            "r2u2Completed": true,
+            "_id": "seams26_wildfire_fightingODINfireConfirmed"
+        },
+        {
+            "project": "seams26_wildfire_fighting",
+            "component_name": "ODIN",
+            "variable_name": "fireReported",
+            "reqs": [
+                "17ac1660-8057-11f1-87a3-557ca4e73dc5",
+                "746b4750-8051-11f1-87a3-557ca4e73dc5",
+                "cbfc41f0-8028-11f1-af36-6f5652dbf5ad"
+            ],
+            "dataType": "boolean",
+            "idType": "Input",
+            "moduleName": "",
+            "description": "",
+            "assignment": "",
+            "assignmentVariables": [],
+            "copilotAssignment": "",
+            "smvAssignment": "",
+            "smvAssignmentVariables": [],
+            "modeRequirement": "",
+            "modeldoc": false,
+            "modeldoc_id": "",
+            "modeldoc_vectorIndex": null,
+            "modelComponent": "",
+            "completed": true,
+            "smvCompleted": true,
+            "r2u2Completed": true,
+            "_id": "seams26_wildfire_fightingODINfireReported"
+        },
+        {
+            "project": "seams26_wildfire_fighting",
+            "component_name": "ODIN",
+            "variable_name": "highFrequencyOfMessages",
+            "reqs": [
+                "14c12b70-8057-11f1-87a3-557ca4e73dc5",
+                "a2d48f40-8059-11f1-87a3-557ca4e73dc5"
+            ],
+            "dataType": "boolean",
+            "idType": "Input",
+            "moduleName": "",
+            "description": "",
+            "assignment": "",
+            "assignmentVariables": [],
+            "copilotAssignment": "",
+            "smvAssignment": "",
+            "smvAssignmentVariables": [],
+            "modeRequirement": "",
+            "modeldoc": false,
+            "modeldoc_id": "",
+            "modeldoc_vectorIndex": null,
+            "modelComponent": "",
+            "completed": true,
+            "smvCompleted": true,
+            "r2u2Completed": true,
+            "_id": "seams26_wildfire_fightingODINhighFrequencyOfMessages"
+        },
+        {
+            "project": "seams26_wildfire_fighting",
+            "component_name": "ODIN",
+            "variable_name": "noFireCommand",
+            "reqs": [
+                "746b4750-8051-11f1-87a3-557ca4e73dc5"
+            ],
+            "dataType": "boolean",
+            "idType": "Output",
+            "moduleName": "",
+            "description": "",
+            "assignment": "",
+            "assignmentVariables": [],
+            "copilotAssignment": "",
+            "smvAssignment": "",
+            "smvAssignmentVariables": [],
+            "modeRequirement": "",
+            "modeldoc": false,
+            "modeldoc_id": "",
+            "modeldoc_vectorIndex": null,
+            "modelComponent": "",
+            "completed": true,
+            "smvCompleted": true,
+            "r2u2Completed": true,
+            "_id": "seams26_wildfire_fightingODINnoFireCommand"
+        },
+        {
+            "project": "seams26_wildfire_fighting",
+            "component_name": "ODIN",
+            "variable_name": "peopleCloseToFire",
+            "reqs": [
+                "17ac1660-8057-11f1-87a3-557ca4e73dc5",
+                "cbfc41f0-8028-11f1-af36-6f5652dbf5ad"
+            ],
+            "dataType": "boolean",
+            "idType": "Input",
+            "moduleName": "",
+            "description": "",
+            "assignment": "",
+            "assignmentVariables": [],
+            "copilotAssignment": "",
+            "smvAssignment": "",
+            "smvAssignmentVariables": [],
+            "modeRequirement": "",
+            "modeldoc": false,
+            "modeldoc_id": "",
+            "modeldoc_vectorIndex": null,
+            "modelComponent": "",
+            "completed": true,
+            "smvCompleted": true,
+            "r2u2Completed": true,
+            "_id": "seams26_wildfire_fightingODINpeopleCloseToFire"
+        },
+        {
+            "project": "seams26_wildfire_fighting",
+            "component_name": "ODIN",
+            "variable_name": "reportFire",
+            "reqs": [
+                "c021be00-8028-11f1-af36-6f5652dbf5ad"
+            ],
+            "dataType": "boolean",
+            "idType": "Output",
+            "moduleName": "",
+            "description": "",
+            "assignment": "",
+            "assignmentVariables": [],
+            "copilotAssignment": "",
+            "smvAssignment": "",
+            "smvAssignmentVariables": [],
+            "modeRequirement": "",
+            "modeldoc": false,
+            "modeldoc_id": "",
+            "modeldoc_vectorIndex": null,
+            "modelComponent": "",
+            "completed": true,
+            "smvCompleted": true,
+            "r2u2Completed": true,
+            "_id": "seams26_wildfire_fightingODINreportFire"
+        },
+        {
+            "project": "seams26_wildfire_fighting",
+            "component_name": "ODIN",
+            "variable_name": "resolveRoute",
+            "reqs": [
+                "ef8464d0-8056-11f1-87a3-557ca4e73dc5"
+            ],
+            "dataType": "boolean",
+            "idType": "Output",
+            "moduleName": "",
+            "description": "",
+            "assignment": "",
+            "assignmentVariables": [],
+            "copilotAssignment": "",
+            "smvAssignment": "",
+            "smvAssignmentVariables": [],
+            "modeRequirement": "",
+            "modeldoc": false,
+            "modeldoc_id": "",
+            "modeldoc_vectorIndex": null,
+            "modelComponent": "",
+            "completed": true,
+            "smvCompleted": true,
+            "r2u2Completed": true,
+            "_id": "seams26_wildfire_fightingODINresolveRoute"
+        },
+        {
+            "project": "seams26_wildfire_fighting",
+            "component_name": "ODIN",
+            "variable_name": "sendEntrapmentNotification",
+            "reqs": [
+                "3e2d6060-8056-11f1-87a3-557ca4e73dc5"
+            ],
+            "dataType": "boolean",
+            "idType": "Output",
+            "moduleName": "",
+            "description": "",
+            "assignment": "",
+            "assignmentVariables": [],
+            "copilotAssignment": "",
+            "smvAssignment": "",
+            "smvAssignmentVariables": [],
+            "modeRequirement": "",
+            "modeldoc": false,
+            "modeldoc_id": "",
+            "modeldoc_vectorIndex": null,
+            "modelComponent": "",
+            "completed": true,
+            "smvCompleted": true,
+            "r2u2Completed": true,
+            "_id": "seams26_wildfire_fightingODINsendEntrapmentNotification"
+        },
+        {
+            "project": "seams26_wildfire_fighting",
+            "component_name": "ODIN",
+            "variable_name": "startEvacuationProtocol",
+            "reqs": [
+                "cbfc41f0-8028-11f1-af36-6f5652dbf5ad",
+                "e9f89040-8056-11f1-87a3-557ca4e73dc5"
+            ],
+            "dataType": "boolean",
+            "idType": "Output",
+            "moduleName": "",
+            "description": "",
+            "assignment": "",
+            "assignmentVariables": [],
+            "copilotAssignment": "",
+            "smvAssignment": "",
+            "smvAssignmentVariables": [],
+            "modeRequirement": "",
+            "modeldoc": false,
+            "modeldoc_id": "",
+            "modeldoc_vectorIndex": null,
+            "modelComponent": "",
+            "completed": true,
+            "smvCompleted": true,
+            "r2u2Completed": true,
+            "_id": "seams26_wildfire_fightingODINstartEvacuationProtocol"
+        },
+        {
+            "project": "seams26_wildfire_fighting",
+            "component_name": "ODIN",
+            "variable_name": "unitEntrapped",
+            "reqs": [
+                "3e2d6060-8056-11f1-87a3-557ca4e73dc5"
+            ],
+            "dataType": "boolean",
+            "idType": "Input",
+            "moduleName": "",
+            "description": "",
+            "assignment": "",
+            "assignmentVariables": [],
+            "copilotAssignment": "",
+            "smvAssignment": "",
+            "smvAssignmentVariables": [],
+            "modeRequirement": "",
+            "modeldoc": false,
+            "modeldoc_id": "",
+            "modeldoc_vectorIndex": null,
+            "modelComponent": "",
+            "completed": true,
+            "smvCompleted": true,
+            "r2u2Completed": true,
+            "_id": "seams26_wildfire_fightingODINunitEntrapped"
+        },
+        {
+            "project": "seams26_wildfire_fighting",
+            "component_name": "fireUnits",
+            "variable_name": "safeDistanceFromFire",
+            "reqs": [
+                "54be5aa0-8056-11f1-87a3-557ca4e73dc5"
+            ],
+            "dataType": "",
+            "idType": "",
+            "moduleName": "",
+            "description": "",
+            "assignment": "",
+            "copilotAssignment": "",
+            "modeRequirement": "",
+            "modeldoc": false,
+            "modelComponent": "",
+            "modeldoc_id": "",
+            "completed": false,
+            "_id": "seams26_wildfire_fightingfireUnitssafeDistanceFromFire"
+        },
+        {
+            "project": "seams26_wildfire_fighting",
+            "component_name": "vehicle",
+            "variable_name": "hasEnoughBatteryToReturn",
+            "reqs": [
+                "7a683060-8055-11f1-87a3-557ca4e73dc5"
+            ],
+            "dataType": "",
+            "idType": "",
+            "moduleName": "",
+            "description": "",
+            "assignment": "",
+            "copilotAssignment": "",
+            "modeRequirement": "",
+            "modeldoc": false,
+            "modelComponent": "",
+            "modeldoc_id": "",
+            "completed": false,
+            "_id": "seams26_wildfire_fightingvehiclehasEnoughBatteryToReturn"
+        }
+    ]
+}
